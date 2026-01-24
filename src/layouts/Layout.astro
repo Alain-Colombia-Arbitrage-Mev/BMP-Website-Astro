@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import i18nUrl from '../scripts/i18n.ts?url';
 
 interface Props {
   title: string;
@@ -7,7 +8,6 @@ interface Props {
 }
 
 const { title, description = 'BeMind Power' } = Astro.props;
-const i18nScript = Astro.resolve('../scripts/i18n.ts');
 ---
 
 <!doctype html>
@@ -30,6 +30,6 @@ const i18nScript = Astro.resolve('../scripts/i18n.ts');
   </head>
   <body>
     <slot />
-    <script type="module" src={i18nScript}></script>
+    <script type="module" src={i18nUrl}></script>
   </body>
 </html>
