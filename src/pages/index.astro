@@ -15,8 +15,8 @@ import VideoHeroBackground from '../components/VideoHeroBackground.astro';
     <HomeHeader />
 
     <!-- Skip Button -->
-    <button class="glass absolute z-10 bottom-[clamp(16px,4vw,48px)] right-[clamp(16px,5vw,64px)] flex items-center gap-2 px-4 py-2 text-[20px] font-black text-[#e3e3e3] hover:bg-white/10 hover:text-white max-lg:text-[16px] max-sm:px-3 max-sm:text-[14px] 2xl:text-[24px]" data-i18n="skip">
-      Omitir Intro
+    <button class="glass absolute z-10 bottom-[clamp(16px,4vw,48px)] right-[clamp(16px,5vw,64px)] flex items-center gap-2 px-4 py-2 text-[20px] font-black text-[#e3e3e3] hover:bg-white/10 hover:text-white max-lg:text-[16px] max-sm:px-3 max-sm:text-[14px] 2xl:text-[24px]">
+      <span data-i18n="skip">Omitir Intro</span>
       <svg class="h-5 w-5 max-sm:h-4 max-sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
       </svg>
@@ -24,11 +24,9 @@ import VideoHeroBackground from '../components/VideoHeroBackground.astro';
   </main>
 
   <script type="module" lang="ts">
-    import { initI18n } from '../scripts/i18n';
     import { initHomeMenu } from '../scripts/home-menu';
 
     const start = () => {
-      initI18n();
       initHomeMenu();
     };
 

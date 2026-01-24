@@ -75,6 +75,7 @@ export const initI18n = (): void => {
       btn.setAttribute('aria-pressed', String(isActive));
       btn.classList.toggle('font-black', isActive);
       btn.classList.toggle('font-normal', !isActive);
+      btn.classList.toggle('is-active', isActive);
     });
     document.documentElement.lang = currentLang;
   };

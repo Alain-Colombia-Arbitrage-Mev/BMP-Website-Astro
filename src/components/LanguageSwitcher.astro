@@ -15,12 +15,13 @@ const baseButton =
 const sizeClass = size === 'sm' ? 'text-[12px] px-4 py-1.5 min-w-[120px]' : 'text-[14px] px-3 py-1.5';
 ---
 
-<div class:list={['flex items-center gap-2', size === 'sm' ? 'flex-col' : 'flex-row']}>
+<div class:list={['lang-switcher flex items-center gap-2', size === 'sm' ? 'flex-col' : 'flex-row']}>
   {languages.map((lang, index) => (
     <>
       <button
         class:list={[
           'glass',
+          'lang-button',
           baseButton,
           sizeClass,
           lang.active ? 'font-black' : 'font-normal'
