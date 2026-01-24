@@ -1,0 +1,21 @@
+---
+interface Props {
+  videoSrc: string;
+}
+
+const { videoSrc } = Astro.props;
+---
+
+<div class="absolute inset-0">
+  <video
+    class="absolute inset-0 h-full w-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+  >
+    <source src={videoSrc} type="video/mp4" />
+  </video>
+  <div class="pointer-events-none absolute inset-0 bg-black/35"></div>
+</div>

@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<a href="/" class:list={["flex items-center gap-3 group", className]}>
+  <!-- Logo Icon -->
+  <div class="relative">
+    <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg 
+                flex items-center justify-center shadow-lg
+                group-hover:shadow-indigo-500/30 transition-shadow duration-300">
+      <!-- Pixel art style blocks -->
+      <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none">
+        <rect x="4" y="4" width="4" height="4" fill="white" opacity="0.9"/>
+        <rect x="10" y="4" width="4" height="4" fill="white" opacity="0.7"/>
+        <rect x="4" y="10" width="4" height="4" fill="white" opacity="0.7"/>
+        <rect x="10" y="10" width="4" height="4" fill="white" opacity="0.9"/>
+        <rect x="16" y="10" width="4" height="4" fill="white" opacity="0.5"/>
+        <rect x="10" y="16" width="4" height="4" fill="white" opacity="0.5"/>
+      </svg>
+    </div>
+    <!-- Glow effect on hover -->
+    <div class="absolute inset-0 bg-indigo-500 rounded-lg blur-xl opacity-0 
+                group-hover:opacity-30 transition-opacity duration-300"></div>
+  </div>
+  
+  <!-- Logo Text -->
+  <div class="flex flex-col">
+    <span class="text-lg font-bold tracking-tight text-white leading-none">
+      Be<span class="text-indigo-400">Mind</span>
+    </span>
+    <span class="text-xs font-semibold tracking-widest text-indigo-300/70 uppercase">
+      Power
+    </span>
+  </div>
+</a>

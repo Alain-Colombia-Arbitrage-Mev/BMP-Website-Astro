@@ -1,0 +1,76 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const navItems = [
+  { href: '/', label: 'Inicio', key: 'nav.home', isActive: true },
+  { href: '/about', label: 'Sobre nosotros', key: 'nav.about', isActive: false },
+  { href: '/contact', label: 'Contacto', key: 'nav.contact', isActive: false }
+];
+---
+
+<header class="absolute left-0 right-0 top-0 z-10 px-[5%] py-6 2xl:px-[7%] 2xl:py-10 max-lg:px-[4%] max-lg:py-5 max-sm:py-4">
+  <div class="relative flex items-center justify-between max-sm:flex-row max-sm:items-center max-sm:gap-3 max-sm:rounded-2xl max-sm:bg-black/30 max-sm:px-3 max-sm:py-3 max-sm:backdrop-blur-md">
+    <a href="/" class="flex items-center gap-2.5 no-underline">
+      <img
+        src="/Logo_Be-Mind%20night.svg"
+        alt="BeMind Power"
+        class="h-12 w-auto 2xl:h-[52px] max-lg:h-[42px]"
+      />
+    </a>
+
+    <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block" aria-label="Primary">
+      <div class="flex flex-nowrap items-center justify-center gap-6 max-lg:gap-3">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'whitespace-nowrap text-[16px] text-white max-lg:text-[13px] max-sm:text-[12px] 2xl:text-[18px]',
+              item.isActive ? 'font-black' : 'font-normal'
+            ]}
+            data-i18n={item.key}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <div class="hidden sm:flex">
+      <LanguageSwitcher />
+    </div>
+
+    <button
+      class="glass flex items-center justify-center p-2 text-white transition hover:bg-white/20 sm:hidden"
+      type="button"
+      aria-label="Open menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      data-menu-toggle
+    >
+      <span class="block h-0.5 w-5 bg-white/90"></span>
+      <span class="mt-1.5 block h-0.5 w-5 bg-white/90"></span>
+      <span class="mt-1.5 block h-0.5 w-5 bg-white/90"></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden w-full flex-col items-center gap-4 pt-4 sm:hidden">
+    <nav class="w-full" aria-label="Mobile">
+      <div class="flex flex-col items-center justify-center gap-4 text-center">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'whitespace-nowrap text-[13px] text-white',
+              item.isActive ? 'font-black' : 'font-normal'
+            ]}
+            data-i18n={item.key}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <LanguageSwitcher size="sm" />
+  </div>
+</header>

@@ -1,0 +1,38 @@
+---
+const languages = [
+  { label: 'English', code: 'en', active: false },
+  { label: 'Español', code: 'es', active: true }
+];
+
+const {
+  size = 'md'
+}: {
+  size?: 'md' | 'sm';
+} = Astro.props;
+
+const baseButton =
+  'whitespace-nowrap rounded-full text-white transition hover:bg-white/20';
+const sizeClass = size === 'sm' ? 'text-[12px] px-4 py-1.5 min-w-[120px]' : 'text-[14px] px-3 py-1.5';
+---
+
+<div class:list={['flex items-center gap-2', size === 'sm' ? 'flex-col' : 'flex-row']}>
+  {languages.map((lang, index) => (
+    <>
+      <button
+        class:list={[
+          'glass',
+          baseButton,
+          sizeClass,
+          lang.active ? 'font-black' : 'font-normal'
+        ]}
+        data-lang={lang.code}
+        aria-pressed={lang.active ? 'true' : 'false'}
+      >
+        {lang.label}
+      </button>
+      {size !== 'sm' && index === 0 && (
+        <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
+      )}
+    </>
+  ))}
+</div>

@@ -1,0 +1,96 @@
+---
+const features = [
+  {
+    icon: '🧠',
+    title: 'Entrenamiento Mental',
+    description: 'Ejercicios diseñados para potenciar tu capacidad cognitiva.',
+  },
+  {
+    icon: '📊',
+    title: 'Seguimiento de Progreso',
+    description: 'Visualiza tu evolución con métricas detalladas.',
+  },
+  {
+    icon: '🎯',
+    title: 'Objetivos Personalizados',
+    description: 'Metas adaptadas a tu ritmo de aprendizaje.',
+  },
+];
+---
+
+<section class="relative py-32 px-6">
+  <!-- Background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950"></div>
+  
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+        Potencia tu <span class="text-gradient">mente</span>
+      </h2>
+      <p class="text-white/60 text-lg max-w-2xl mx-auto">
+        Herramientas diseñadas para maximizar tu rendimiento cognitivo
+      </p>
+    </div>
+    
+    <!-- Features grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {features.map((feature, index) => (
+        <div 
+          class="feature-card group relative p-8 rounded-3xl glass
+                 border border-white/5 hover:border-indigo-500/30
+                 transition-all duration-500 hover:-translate-y-2"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Hover glow -->
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <!-- Icon -->
+            <div class="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20
+                        flex items-center justify-center text-3xl
+                        group-hover:scale-110 transition-transform duration-300">
+              {feature.icon}
+            </div>
+            
+            <!-- Content -->
+            <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-indigo-300 transition-colors">
+              {feature.title}
+            </h3>
+            <p class="text-white/60 leading-relaxed">
+              {feature.description}
+            </p>
+            
+            <!-- Learn more link -->
+            <a href="#" class="inline-flex items-center gap-2 mt-6 text-sm font-medium 
+                              text-indigo-400 hover:text-indigo-300 transition-colors">
+              Saber más
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

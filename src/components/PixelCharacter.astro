@@ -1,0 +1,79 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={["pixel-character relative", className]}>
+  <!-- Main character container with float animation -->
+  <div class="character-wrapper animate-float">
+    <!-- Glow effect behind character -->
+    <div class="absolute inset-0 bg-pink-400/20 rounded-full blur-3xl scale-150 animate-pulse-glow"></div>
+    
+    <!-- Pixel art pig character - SVG version -->
+    <svg 
+      viewBox="0 0 120 100" 
+      class="relative w-full h-full drop-shadow-2xl"
+      style="image-rendering: pixelated;"
+    >
+      <!-- Main body -->
+      <rect x="30" y="30" width="60" height="50" fill="#E8A0A0" />
+      
+      <!-- Head top -->
+      <rect x="35" y="20" width="50" height="15" fill="#E8A0A0" />
+      <rect x="40" y="15" width="40" height="10" fill="#E8A0A0" />
+      
+      <!-- Ears -->
+      <rect x="25" y="15" width="15" height="20" fill="#E8A0A0" />
+      <rect x="80" y="15" width="15" height="20" fill="#E8A0A0" />
+      <rect x="28" y="18" width="9" height="14" fill="#D48A8A" />
+      <rect x="83" y="18" width="9" height="14" fill="#D48A8A" />
+      
+      <!-- Eyes -->
+      <rect x="42" y="35" width="8" height="10" fill="#2a2a2a" />
+      <rect x="70" y="35" width="8" height="10" fill="#2a2a2a" />
+      <rect x="44" y="37" width="3" height="3" fill="#ffffff" />
+      <rect x="72" y="37" width="3" height="3" fill="#ffffff" />
+      
+      <!-- Snout -->
+      <rect x="50" y="50" width="20" height="15" fill="#D48A8A" />
+      <rect x="53" y="55" width="5" height="5" fill="#1a1a1a" />
+      <rect x="62" y="55" width="5" height="5" fill="#1a1a1a" />
+      
+      <!-- Legs -->
+      <rect x="35" y="75" width="12" height="20" fill="#E8A0A0" />
+      <rect x="73" y="75" width="12" height="20" fill="#E8A0A0" />
+      <rect x="50" y="75" width="8" height="15" fill="#E8A0A0" />
+      <rect x="62" y="75" width="8" height="15" fill="#E8A0A0" />
+      
+      <!-- Hooves -->
+      <rect x="35" y="90" width="12" height="5" fill="#D48A8A" />
+      <rect x="73" y="90" width="12" height="5" fill="#D48A8A" />
+    </svg>
+  </div>
+  
+  <!-- Shadow -->
+  <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-4 
+              bg-black/30 rounded-full blur-md animate-pulse"></div>
+</div>
+
+<style>
+  .pixel-character {
+    filter: drop-shadow(0 20px 40px rgba(232, 160, 160, 0.3));
+  }
+  
+  .character-wrapper {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+</style>
