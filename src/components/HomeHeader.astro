@@ -9,8 +9,9 @@ const navItems = [
 ---
 
 <header class="absolute left-0 right-0 top-0 z-10 px-[5%] py-6 2xl:px-[7%] 2xl:py-10 max-lg:px-[4%] max-lg:py-5 max-sm:py-4">
-  <div class="relative flex items-center justify-between max-sm:flex-row max-sm:items-center max-sm:gap-3 max-sm:rounded-2xl max-sm:bg-black/30 max-sm:px-3 max-sm:py-3 max-sm:backdrop-blur-md">
-    <a href="/" class="flex items-center gap-2.5 no-underline">
+  <div class="relative flex items-center justify-between max-sm:justify-center max-sm:gap-4">
+    <!-- Logo - visible en desktop, oculto en móvil cuando hay menú -->
+    <a href="/" class="flex items-center gap-2.5 no-underline max-sm:hidden">
       <img
         src="/Logo_Be-Mind%20night.svg"
         alt="BeMind Power"
@@ -18,13 +19,14 @@ const navItems = [
       />
     </a>
 
+    <!-- Navegación Desktop - centrada -->
     <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block" aria-label="Primary">
       <div class="flex flex-nowrap items-center justify-center gap-6 max-lg:gap-3">
         {navItems.map((item) => (
           <a
             href={item.href}
             class:list={[
-              'whitespace-nowrap text-[16px] text-white max-lg:text-[13px] max-sm:text-[12px] 2xl:text-[18px]',
+              'whitespace-nowrap text-[16px] text-white max-lg:text-[13px] 2xl:text-[18px]',
               item.isActive ? 'font-black' : 'font-normal'
             ]}
           >
@@ -34,47 +36,165 @@ const navItems = [
       </div>
     </nav>
 
+    <!-- Selector de idioma Desktop -->
     <div class="hidden sm:flex">
       <LanguageSwitcher />
     </div>
 
-    <button
-      class="menu-button glass flex items-center justify-center p-2 text-white transition hover:bg-white/20 sm:hidden max-sm:absolute max-sm:left-1/2 max-sm:-translate-x-1/2"
-      type="button"
-      aria-label="Open menu"
-      aria-controls="mobile-menu"
-      aria-expanded="false"
-      data-menu-toggle
-    >
-      <span class="menu-line block h-0.5 w-5 bg-white/90"></span>
-      <span class="menu-line mt-1.5 block h-0.5 w-5 bg-white/90"></span>
-      <span class="menu-line mt-1.5 block h-0.5 w-5 bg-white/90"></span>
-    </button>
-  </div>
-
-  <div
-    id="mobile-menu"
-    data-open="false"
-    class="mobile-menu-panel absolute left-1/2 top-full mt-4 w-[min(92vw,360px)] -translate-x-1/2 origin-top
-           flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-black/50 px-4 py-5
-           opacity-0 translate-y-2 scale-95 pointer-events-none transition duration-200 sm:hidden"
-  >
-    <nav class="w-full" aria-label="Mobile">
-      <div class="flex flex-col items-center justify-center gap-4 text-center">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              'mobile-menu-item whitespace-nowrap text-[13px] text-white',
-              item.isActive ? 'font-black' : 'font-normal'
-            ]}
+    <!-- Contenedor móvil centrado con logo, hamburguesa y todo -->
+    <div class="sm:hidden flex flex-col items-center w-full">
+      <!-- Fila superior: Logo centrado con botón hamburguesa -->
+      <div class="flex items-center justify-center gap-4 w-full">
+        <a href="/" class="flex items-center gap-2 no-underline">
+          <img
+            src="/Logo_Be-Mind%20night.svg"
+            alt="BeMind Power"
+            class="h-10 w-auto"
+          />
+        </a>
+        
+        <!-- Botón hamburguesa -->
+        <button
+          id="hamburger-btn"
+          class="hamburger-button glass flex items-center justify-center w-10 h-10 text-white transition-all hover:bg-white/20"
+          type="button"
+          aria-label="Abrir menú"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <!-- Icono hamburguesa (3 líneas) -->
+          <svg 
+            class="hamburger-icon w-5 h-5 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            aria-hidden="true"
           >
-            <span data-i18n={item.key}>{item.label}</span>
-          </a>
-        ))}
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icono X (cerrar) -->
+          <svg 
+            class="close-icon w-5 h-5 hidden transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </div>
-    </nav>
 
-    <LanguageSwitcher size="sm" />
+      <!-- Menú desplegable móvil -->
+      <div
+        id="mobile-menu"
+        data-open="false"
+        class="mobile-menu-panel w-full mt-4 origin-top
+               flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl px-6 py-5
+               opacity-0 translate-y-[-10px] scale-95 pointer-events-none transition-all duration-300 ease-out
+               max-h-0 overflow-hidden"
+      >
+        <nav class="w-full" aria-label="Mobile">
+          <div class="flex flex-col items-center justify-center gap-4 text-center">
+            {navItems.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  'mobile-menu-item whitespace-nowrap text-[15px] text-white py-2 px-4 rounded-lg hover:bg-white/10 transition-colors',
+                  item.isActive ? 'font-black' : 'font-normal'
+                ]}
+              >
+                <span data-i18n={item.key}>{item.label}</span>
+              </a>
+            ))}
+          </div>
+        </nav>
+
+        <div class="w-full h-px bg-white/10 my-2"></div>
+
+        <LanguageSwitcher size="sm" />
+      </div>
+    </div>
   </div>
 </header>
+
+<style>
+  /* Estado abierto del menú */
+  .mobile-menu-panel[data-open='true'] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    max-height: 400px;
+  }
+
+  /* Alternar iconos del hamburger */
+  .hamburger-button[aria-expanded='true'] .hamburger-icon {
+    display: none;
+  }
+  
+  .hamburger-button[aria-expanded='true'] .close-icon {
+    display: block;
+  }
+</style>
+
+<script>
+  import { $menuOpen, toggleMenu, closeMenu } from '../stores';
+
+  // Inicializar menú cuando el DOM esté listo
+  function initMobileMenu(): void {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (!hamburgerBtn || !mobileMenu) return;
+
+    // Suscribirse a cambios del store
+    $menuOpen.subscribe((isOpen) => {
+      mobileMenu.setAttribute('data-open', String(isOpen));
+      hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Click en hamburguesa
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Cerrar menú al hacer click en un enlace
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => closeMenu());
+    });
+
+    // Cerrar menú al hacer click fuera
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      if (!hamburgerBtn.contains(target) && !mobileMenu.contains(target)) {
+        closeMenu();
+      }
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && $menuOpen.get()) {
+        closeMenu();
+      }
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+</script>

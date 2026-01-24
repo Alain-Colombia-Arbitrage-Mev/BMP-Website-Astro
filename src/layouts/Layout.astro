@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import i18nUrl from '../scripts/i18n.ts?url';
 
 interface Props {
   title: string;
@@ -30,6 +29,10 @@ const { title, description = 'BeMind Power' } = Astro.props;
   </head>
   <body>
     <slot />
-    <script type="module" src={i18nUrl}></script>
+    <script>
+      // Importar stores para inicializarlos
+      import '../stores/language';
+      import '../stores/menu';
+    </script>
   </body>
 </html>

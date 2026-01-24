@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import HomeHeader from '../components/HomeHeader.astro';
 import VideoHeroBackground from '../components/VideoHeroBackground.astro';
-import homeMenuUrl from '../scripts/home-menu.ts?url';
 ---
 
 <Layout title="BeMind Power" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva.">
@@ -23,6 +22,4 @@ import homeMenuUrl from '../scripts/home-menu.ts?url';
       </svg>
     </button>
   </main>
-
-  <script type="module" src={homeMenuUrl}></script>
 </Layout>

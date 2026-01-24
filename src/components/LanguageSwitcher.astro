@@ -1,33 +1,38 @@
 ---
-const languages = [
-  { label: 'English', code: 'en', active: false },
-  { label: 'Español', code: 'es', active: true }
-];
-
-const {
-  size = 'md'
-}: {
+interface Props {
   size?: 'md' | 'sm';
-} = Astro.props;
+}
 
-const baseButton =
-  'whitespace-nowrap rounded-full text-white transition hover:bg-white/20';
-const sizeClass = size === 'sm' ? 'text-[12px] px-4 py-1.5 min-w-[120px]' : 'text-[14px] px-3 py-1.5';
+const { size = 'md' } = Astro.props;
+
+const languages = [
+  { label: 'English', code: 'en' },
+  { label: 'Español', code: 'es' }
+] as const;
+
+const baseButton = 'lang-button whitespace-nowrap rounded-full text-white transition-all duration-200 cursor-pointer';
+const sizeClass = size === 'sm' 
+  ? 'text-[13px] px-5 py-2 min-w-[100px]' 
+  : 'text-[14px] px-4 py-1.5';
 ---
 
-<div class:list={['lang-switcher flex items-center gap-2', size === 'sm' ? 'flex-col' : 'flex-row']}>
+<div 
+  class:list={[
+    'lang-switcher flex items-center gap-2', 
+    size === 'sm' ? 'flex-row justify-center' : 'flex-row'
+  ]}
+>
   {languages.map((lang, index) => (
     <>
       <button
+        type="button"
         class:list={[
           'glass',
-          'lang-button',
           baseButton,
-          sizeClass,
-          lang.active ? 'font-black' : 'font-normal'
+          sizeClass
         ]}
         data-lang={lang.code}
-        aria-pressed={lang.active ? 'true' : 'false'}
+        aria-pressed="false"
       >
         {lang.label}
       </button>
@@ -37,3 +42,70 @@ const sizeClass = size === 'sm' ? 'text-[12px] px-4 py-1.5 min-w-[120px]' : 'tex
     </>
   ))}
 </div>
+
+<style>
+  .lang-button {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+  }
+
+  .lang-button[aria-pressed='true'],
+  .lang-button.is-active {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 30px rgba(129, 140, 248, 0.45);
+    font-weight: 900;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .lang-button[aria-pressed='false']:not(.is-active) {
+    font-weight: 400;
+  }
+</style>
+
+<script>
+  import { $lang, setLanguage, type Lang } from '../stores';
+
+  function initLanguageSwitcher(): void {
+    const langButtons = document.querySelectorAll<HTMLButtonElement>('[data-lang]');
+    
+    if (langButtons.length === 0) return;
+
+    // Función para actualizar estado visual de botones
+    const updateButtons = (currentLang: Lang): void => {
+      langButtons.forEach((btn) => {
+        const btnLang = btn.getAttribute('data-lang');
+        const isActive = btnLang === currentLang;
+        btn.setAttribute('aria-pressed', String(isActive));
+        btn.classList.toggle('is-active', isActive);
+      });
+    };
+
+    // Suscribirse a cambios del idioma
+    $lang.subscribe(updateButtons);
+
+    // Agregar listeners a los botones
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const lang = btn.getAttribute('data-lang') as Lang;
+        if (lang === 'es' || lang === 'en') {
+          setLanguage(lang);
+        }
+      });
+    });
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+</script>
