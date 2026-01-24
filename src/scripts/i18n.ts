@@ -96,3 +96,15 @@ export const initI18n = (): void => {
     });
   });
 };
+
+const start = () => {
+  initI18n();
+};
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+}
