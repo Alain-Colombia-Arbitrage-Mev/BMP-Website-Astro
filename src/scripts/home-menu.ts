@@ -23,3 +23,15 @@ export const initHomeMenu = (): void => {
     link.addEventListener('click', () => setExpanded(false));
   });
 };
+
+const start = () => {
+  initHomeMenu();
+};
+
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+}

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HomeHeader from '../components/HomeHeader.astro';
 import VideoHeroBackground from '../components/VideoHeroBackground.astro';
+import homeMenuUrl from '../scripts/home-menu.ts?url';
 ---
 
 <Layout title="BeMind Power" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva.">
@@ -23,17 +24,5 @@ import VideoHeroBackground from '../components/VideoHeroBackground.astro';
     </button>
   </main>
 
-  <script type="module" lang="ts">
-    import { initHomeMenu } from '../scripts/home-menu';
-
-    const start = () => {
-      initHomeMenu();
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start, { once: true });
-    } else {
-      start();
-    }
-  </script>
+  <script type="module" src={homeMenuUrl}></script>
 </Layout>
