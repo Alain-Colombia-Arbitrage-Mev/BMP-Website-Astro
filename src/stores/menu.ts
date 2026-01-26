@@ -1,4 +1,5 @@
 import { atom } from 'nanostores';
+import { t, $lang } from './language';
 
 // Store para el estado del menú móvil
 export const $menuOpen = atom<boolean>(false);
@@ -16,6 +17,16 @@ export const toggleMenu = (): void => {
   $menuOpen.set(!$menuOpen.get());
 };
 
+// Función helper para actualizar el aria-label del botón hamburguesa
+const updateHamburgerAriaLabel = (): void => {
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  if (hamburgerBtn) {
+    const isOpen = $menuOpen.get();
+    const label = isOpen ? t('menu.close') : t('menu.open');
+    hamburgerBtn.setAttribute('aria-label', label);
+  }
+};
+
 // Sincronizar con el DOM cuando cambia el estado
 if (typeof window !== 'undefined') {
   $menuOpen.subscribe((isOpen) => {
@@ -28,10 +39,12 @@ if (typeof window !== 'undefined') {
 
     if (hamburgerBtn) {
       hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-      
-      // Actualizar aria-label basado en el idioma actual
-      const label = isOpen ? 'Cerrar menú' : 'Abrir menú';
-      hamburgerBtn.setAttribute('aria-label', label);
+      updateHamburgerAriaLabel();
     }
+  });
+
+  // Actualizar aria-label cuando cambia el idioma
+  $lang.subscribe(() => {
+    updateHamburgerAriaLabel();
   });
 }
