@@ -4,9 +4,10 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  bodyClass?: string;
 }
 
-const { title, description = 'BeMind Power' } = Astro.props;
+const { title, description = 'BeMind Power', bodyClass = '' } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,7 +30,7 @@ const { title, description = 'BeMind Power' } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body>
+  <body class={bodyClass}>
     <slot />
     <script>
       // Importar stores para inicializarlos

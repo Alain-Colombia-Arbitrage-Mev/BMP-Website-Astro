@@ -1,0 +1,213 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+// Datos de las tarjetas del slider
+const features = [
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Chat',
+    description: 'Comunicación segura, instantánea e inteligente.',
+    titleKey: 'features.chat.title',
+    descriptionKey: 'features.chat.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Streaming',
+    description: 'Contenido en vivo de alta calidad sin interrupciones.',
+    titleKey: 'features.streaming.title',
+    descriptionKey: 'features.streaming.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Gaming',
+    description: 'Experiencias inmersivas y juegos colaborativos.',
+    titleKey: 'features.gaming.title',
+    descriptionKey: 'features.gaming.description'
+  }
+];
+---
+
+<section class="feature-slider relative w-full py-16">
+  <div class="relative max-w-7xl mx-auto px-6">
+    <!-- Contenedor del slider -->
+    <div class="slider-container relative overflow-hidden">
+      <div 
+        id="slider-track" 
+        class="slider-track flex gap-8 transition-transform duration-500 ease-out"
+      >
+        {features.map((feature, index) => (
+          <div class="slider-item flex-shrink-0 pt-12" data-index={index}>
+            <FeatureCard {...feature} />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Controles de navegación -->
+    <div class="flex items-center justify-center gap-4 mt-12">
+      <!-- Botón anterior -->
+      <button 
+        id="prev-btn"
+        class="nav-btn glass w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        aria-label="Anterior"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Indicadores -->
+      <div id="slider-dots" class="flex items-center gap-3">
+        {features.map((_, index) => (
+          <button 
+            class="slider-dot w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-white/50"
+            data-index={index}
+            aria-label={`Ir a slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <!-- Botón siguiente -->
+      <button 
+        id="next-btn"
+        class="nav-btn glass w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        aria-label="Siguiente"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slider-container {
+    /* Permitir que las tarjetas sobresalgan */
+    padding-top: 2rem;
+  }
+
+  .slider-dot.active {
+    background-color: rgb(139, 92, 246);
+    width: 2rem;
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Centrar la tarjeta activa en pantallas grandes */
+  @media (min-width: 768px) {
+    .slider-track {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  function initSlider(): void {
+    const track = document.getElementById('slider-track');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('.slider-dot');
+    const items = document.querySelectorAll('.slider-item');
+
+    if (!track || !prevBtn || !nextBtn || items.length === 0) return;
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+
+    const updateSlider = (): void => {
+      // Calcular el desplazamiento
+      const itemWidth = items[0].getBoundingClientRect().width;
+      const gap = 32; // gap-8 = 2rem = 32px
+      const offset = currentIndex * (itemWidth + gap);
+
+      // En pantallas grandes, centrar
+      const containerWidth = track.parentElement?.getBoundingClientRect().width || 0;
+      const centerOffset = (containerWidth - itemWidth) / 2;
+
+      track.style.transform = `translateX(${centerOffset - offset}px)`;
+
+      // Actualizar dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+
+      // Actualizar botones
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === totalItems - 1;
+    };
+
+    const goToSlide = (index: number): void => {
+      currentIndex = Math.max(0, Math.min(index, totalItems - 1));
+      updateSlider();
+    };
+
+    const nextSlide = (): void => {
+      if (currentIndex < totalItems - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    };
+
+    const prevSlide = (): void => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    };
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Soporte para gestos táctiles
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }, { passive: true });
+
+    // Soporte para teclado
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Inicializar
+    updateSlider();
+
+    // Re-calcular en resize
+    window.addEventListener('resize', updateSlider);
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSlider);
+  } else {
+    initSlider();
+  }
+</script>

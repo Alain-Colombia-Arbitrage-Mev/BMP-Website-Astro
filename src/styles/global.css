@@ -7,7 +7,14 @@
 
   html,
   body {
-    @apply w-full h-full overflow-hidden font-sans;
+    @apply w-full min-h-full font-sans;
+    background-color: #020617;
+    color: white;
+  }
+
+  /* Solo ocultar overflow en la página de intro */
+  body.intro-page {
+    @apply overflow-hidden h-full;
   }
 }
 

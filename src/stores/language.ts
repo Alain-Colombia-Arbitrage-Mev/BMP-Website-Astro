@@ -12,7 +12,14 @@ const translations = {
     'nav.contact': 'Contacto',
     'skip': 'Omitir Intro',
     'menu.open': 'Abrir menú',
-    'menu.close': 'Cerrar menú'
+    'menu.close': 'Cerrar menú',
+    // Features
+    'features.chat.title': 'Chat',
+    'features.chat.description': 'Comunicación segura, instantánea e inteligente.',
+    'features.streaming.title': 'Streaming',
+    'features.streaming.description': 'Contenido en vivo de alta calidad sin interrupciones.',
+    'features.gaming.title': 'Gaming',
+    'features.gaming.description': 'Experiencias inmersivas y juegos colaborativos.'
   },
   en: {
     'nav.home': 'Home',
@@ -20,7 +27,14 @@ const translations = {
     'nav.contact': 'Contact',
     'skip': 'Skip Intro',
     'menu.open': 'Open menu',
-    'menu.close': 'Close menu'
+    'menu.close': 'Close menu',
+    // Features
+    'features.chat.title': 'Chat',
+    'features.chat.description': 'Secure, instant, and intelligent communication.',
+    'features.streaming.title': 'Streaming',
+    'features.streaming.description': 'High-quality live content without interruptions.',
+    'features.gaming.title': 'Gaming',
+    'features.gaming.description': 'Immersive experiences and collaborative games.'
   }
 } as const;
 
