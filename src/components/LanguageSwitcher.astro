@@ -5,107 +5,176 @@ interface Props {
 
 const { size = 'md' } = Astro.props;
 
+// Lista de idiomas con banderas
 const languages = [
-  { label: 'English', code: 'en' },
-  { label: 'Español', code: 'es' }
-] as const;
-
-const baseButton = 'lang-button whitespace-nowrap rounded-full text-white transition-all duration-200 cursor-pointer';
-const sizeClass = size === 'sm' 
-  ? 'text-[13px] px-5 py-2 min-w-[100px]' 
-  : 'text-[14px] px-4 py-1.5';
+  { code: 'en', label: 'English', flag: '🇺🇸' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'pt', label: 'Português', flag: '🇧🇷' },
+  { code: 'zh', label: '中文', flag: '🇨🇳' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦' }
+];
 ---
 
-<div 
-  class:list={[
-    'lang-switcher flex items-center gap-2', 
-    size === 'sm' ? 'flex-row justify-center' : 'flex-row'
-  ]}
->
-  {languages.map((lang, index) => (
-    <>
+<div class="lang-dropdown relative" data-dropdown>
+  <!-- Botón que muestra el idioma actual -->
+  <button
+    type="button"
+    class:list={[
+      'lang-trigger glass flex items-center gap-2 text-white transition-all duration-200 cursor-pointer hover:bg-white/20',
+      size === 'sm' ? 'text-[13px] px-4 py-2' : 'text-[14px] px-4 py-2'
+    ]}
+    aria-expanded="false"
+    aria-haspopup="listbox"
+  >
+    <span class="current-flag text-lg">🇺🇸</span>
+    <span class="current-label hidden sm:inline">English</span>
+    <svg class="dropdown-arrow w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <!-- Lista desplegable -->
+  <div 
+    class="lang-menu absolute right-0 top-full mt-2 min-w-[180px] rounded-2xl border border-white/10 bg-slate-900/95 backdrop-blur-xl shadow-2xl overflow-hidden opacity-0 invisible translate-y-2 transition-all duration-200 z-50"
+    role="listbox"
+  >
+    {languages.map((lang) => (
       <button
         type="button"
-        class:list={[
-          'glass',
-          baseButton,
-          sizeClass
-        ]}
+        class="lang-option w-full flex items-center gap-3 px-4 py-3 text-left text-white/80 hover:bg-white/10 hover:text-white transition-colors"
         data-lang={lang.code}
-        aria-pressed="false"
+        role="option"
+        aria-selected="false"
       >
-        {lang.label}
+        <span class="text-xl">{lang.flag}</span>
+        <span class="flex-1">{lang.label}</span>
+        <svg class="check-icon w-4 h-4 opacity-0 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
       </button>
-      {size !== 'sm' && index === 0 && (
-        <span class="h-4 w-px bg-white/30" aria-hidden="true"></span>
-      )}
-    </>
-  ))}
+    ))}
+  </div>
 </div>
 
 <style>
-  .lang-button {
+  .lang-trigger {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
   }
 
-  .lang-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+  .lang-dropdown[data-open="true"] .lang-trigger {
+    background: rgba(255, 255, 255, 0.15);
   }
 
-  .lang-button[aria-pressed='true'],
-  .lang-button.is-active {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 30px rgba(129, 140, 248, 0.45);
-    font-weight: 900;
-    border-color: rgba(255, 255, 255, 0.4);
+  .lang-dropdown[data-open="true"] .dropdown-arrow {
+    transform: rotate(180deg);
   }
 
-  .lang-button[aria-pressed='false']:not(.is-active) {
-    font-weight: 400;
+  .lang-dropdown[data-open="true"] .lang-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-option[aria-selected="true"] {
+    background: rgba(139, 92, 246, 0.15);
+    color: white;
+  }
+
+  .lang-option[aria-selected="true"] .check-icon {
+    opacity: 1;
+  }
+
+  .lang-option:first-child {
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .lang-option:last-child {
+    border-radius: 0 0 1rem 1rem;
   }
 </style>
 
 <script>
-  import { $lang, setLanguage, type Lang } from '../stores';
+  import { $lang, setLanguage, languages, type Lang } from '../stores';
 
-  function initLanguageSwitcher(): void {
-    const langButtons = document.querySelectorAll<HTMLButtonElement>('[data-lang]');
+  // Función para inicializar todos los dropdowns de idioma
+  function initLanguageDropdowns(): void {
+    const dropdowns = document.querySelectorAll<HTMLElement>('.lang-dropdown');
     
-    if (langButtons.length === 0) return;
+    dropdowns.forEach((dropdown) => {
+      // Evitar inicialización duplicada
+      if (dropdown.hasAttribute('data-initialized')) return;
+      dropdown.setAttribute('data-initialized', 'true');
 
-    // Función para actualizar estado visual de botones
-    const updateButtons = (currentLang: Lang): void => {
-      langButtons.forEach((btn) => {
-        const btnLang = btn.getAttribute('data-lang');
-        const isActive = btnLang === currentLang;
-        btn.setAttribute('aria-pressed', String(isActive));
-        btn.classList.toggle('is-active', isActive);
-      });
-    };
+      const trigger = dropdown.querySelector<HTMLButtonElement>('.lang-trigger');
+      const menu = dropdown.querySelector<HTMLElement>('.lang-menu');
+      const options = dropdown.querySelectorAll<HTMLButtonElement>('.lang-option');
+      const currentFlag = dropdown.querySelector<HTMLElement>('.current-flag');
+      const currentLabel = dropdown.querySelector<HTMLElement>('.current-label');
 
-    // Suscribirse a cambios del idioma
-    $lang.subscribe(updateButtons);
+      if (!trigger || !menu) return;
 
-    // Agregar listeners a los botones
-    langButtons.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      // Actualizar UI con el idioma actual
+      const updateUI = (lang: Lang): void => {
+        const langInfo = languages.find(l => l.code === lang);
+        if (langInfo) {
+          if (currentFlag) currentFlag.textContent = langInfo.flag;
+          if (currentLabel) currentLabel.textContent = langInfo.label;
+        }
+
+        options.forEach((opt) => {
+          const optLang = opt.getAttribute('data-lang');
+          opt.setAttribute('aria-selected', String(optLang === lang));
+        });
+      };
+
+      // Suscribirse a cambios
+      $lang.subscribe(updateUI);
+
+      // Toggle dropdown
+      const toggle = (open?: boolean): void => {
+        const isOpen = open ?? dropdown.getAttribute('data-open') !== 'true';
+        dropdown.setAttribute('data-open', String(isOpen));
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      const close = (): void => toggle(false);
+
+      // Event listeners
+      trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        
-        const lang = btn.getAttribute('data-lang') as Lang;
-        if (lang === 'es' || lang === 'en') {
-          setLanguage(lang);
-        }
+        toggle();
+      });
+
+      options.forEach((opt) => {
+        opt.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const lang = opt.getAttribute('data-lang') as Lang;
+          if (lang) {
+            setLanguage(lang);
+            close();
+          }
+        });
+      });
+
+      // Cerrar al click fuera
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target as Node)) close();
+      });
+
+      // Cerrar con Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
       });
     });
   }
 
-  // Ejecutar cuando el DOM esté listo
+  // Inicializar
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+    document.addEventListener('DOMContentLoaded', initLanguageDropdowns);
   } else {
-    initLanguageSwitcher();
+    initLanguageDropdowns();
   }
 </script>
