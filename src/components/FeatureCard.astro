@@ -11,9 +11,9 @@ interface Props {
 const { image, logo, title, description, titleKey, descriptionKey } = Astro.props;
 ---
 
-<div class="feature-card group relative w-[300px] sm:w-[340px] h-[440px] flex flex-col rounded-3xl overflow-visible cursor-pointer transition-all duration-500 hover:scale-105">
+<div class="feature-card group relative w-[280px] sm:w-[300px] h-[480px] flex flex-col rounded-3xl overflow-visible cursor-pointer transition-all duration-500 hover:scale-105">
   <!-- Imagen que sobresale de la tarjeta -->
-  <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-[95%] h-[260px] z-10 transition-transform duration-500 group-hover:-translate-y-2">
+  <div class="absolute -top-8 left-1/2 -translate-x-1/2 w-[92%] h-[300px] z-10 transition-transform duration-500 group-hover:-translate-y-2">
     <img 
       src={image} 
       alt={title}
@@ -25,25 +25,31 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
   <div class="card-bg absolute inset-0 rounded-3xl border border-white/10 shadow-xl"></div>
 
   <!-- Contenido inferior -->
-  <div class="relative mt-auto p-5 pt-4 z-20">
-    <!-- Logo -->
-    <div class="mb-2">
-      <img 
-        src={logo} 
-        alt="Logo"
-        class="h-5 w-auto opacity-90"
-      />
+  <div class="relative mt-auto p-5 pb-6 z-20">
+    <!-- Fila con Logo a la derecha -->
+    <div class="flex items-start justify-between mb-3">
+      <!-- Texto izquierda -->
+      <div class="flex-1 pr-3">
+        <!-- Título -->
+        <h3 class="text-xl font-black text-white mb-1">
+          <span data-i18n={titleKey}>{title}</span>
+        </h3>
+
+        <!-- Descripción -->
+        <p class="text-sm text-white/60 leading-relaxed">
+          <span data-i18n={descriptionKey}>{description}</span>
+        </p>
+      </div>
+
+      <!-- Logo a la derecha -->
+      <div class="flex-shrink-0">
+        <img 
+          src={logo} 
+          alt="Logo"
+          class="h-8 w-auto opacity-90"
+        />
+      </div>
     </div>
-
-    <!-- Título -->
-    <h3 class="text-xl font-black text-white mb-1">
-      <span data-i18n={titleKey}>{title}</span>
-    </h3>
-
-    <!-- Descripción -->
-    <p class="text-sm text-white/60 leading-relaxed">
-      <span data-i18n={descriptionKey}>{description}</span>
-    </p>
   </div>
 
   <!-- Efecto de brillo en hover -->
@@ -57,9 +63,9 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   .card-bg {
     background: linear-gradient(180deg, 
-      rgba(88, 28, 135, 0.4) 0%, 
-      rgba(59, 7, 100, 0.6) 50%,
-      rgba(46, 16, 101, 0.8) 100%
+      rgba(88, 28, 135, 0.3) 0%, 
+      rgba(59, 7, 100, 0.5) 50%,
+      rgba(46, 16, 101, 0.7) 100%
     );
     backdrop-filter: blur(8px);
   }
