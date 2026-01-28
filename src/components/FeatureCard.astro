@@ -35,12 +35,12 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   <!-- PARTE INFERIOR -->
   <div class="card-bottom relative rounded-b-[10px] p-3 sm:p-4 pb-4 sm:pb-5 overflow-hidden">
-    <!-- Título con Logo -->
-    <div class="flex items-center gap-2 mb-1">
-      <h3 class="card-title text-white flex-shrink-0">
+    <!-- Título y Logo distribuidos en extremos -->
+    <div class="flex items-center justify-between mb-1">
+      <h3 class="card-title text-white">
         <span data-i18n={titleKey}>{title}</span>
       </h3>
-      <!-- Logo al lado del título -->
+      <!-- Logo alineado a la derecha -->
       <img 
         src={logo} 
         alt="Logo"
@@ -61,22 +61,22 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 <style>
   .feature-card {
     perspective: 1000px;
-    padding-top: 80px; /* Espacio para que la imagen sobresalga */
+    padding-top: 40px; /* Espacio reducido para que la imagen sobresalga menos */
   }
 
   @media (min-width: 640px) {
     .feature-card {
-      padding-top: 120px;
+      padding-top: 60px;
     }
   }
 
-  /* CONTENEDOR DE IMAGEN (sobresale hacia arriba) */
+  /* CONTENEDOR DE IMAGEN (sobresale ligeramente hacia arriba) */
   .card-image-container {
     position: absolute;
-    top: -20px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 110%;
+    width: 95%;
     z-index: 5;
     display: flex;
     justify-content: center;
@@ -85,22 +85,22 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   @media (min-width: 640px) {
     .card-image-container {
-      top: -40px;
-      width: 115%;
+      top: 0;
+      width: 100%;
     }
   }
 
   .card-image {
     width: 100%;
     height: auto;
-    max-height: 240px;
+    max-height: 200px;
     object-fit: contain;
     object-position: center bottom;
   }
 
   @media (min-width: 640px) {
     .card-image {
-      max-height: 380px;
+      max-height: 320px;
     }
   }
 
@@ -135,15 +135,18 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
   }
 
   .card-logo {
-    height: 20px;
+    height: 18px;
     width: auto;
-    opacity: 0.8;
+    opacity: 0.9;
     flex-shrink: 0;
+    max-width: 80px;
+    object-fit: contain;
   }
 
   @media (min-width: 640px) {
     .card-logo {
-      height: 32px;
+      height: 28px;
+      max-width: 120px;
     }
   }
 
