@@ -35,8 +35,8 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   <!-- PARTE INFERIOR -->
   <div class="card-bottom relative rounded-b-[10px] p-3 sm:p-4 pb-4 sm:pb-5 overflow-hidden">
-    <!-- Título y Logo distribuidos en extremos -->
-    <div class="flex items-center justify-between mb-1">
+    <!-- Título (izquierda) y Logo (derecha) distribuidos en extremos -->
+    <div class="title-row">
       <h3 class="card-title text-white">
         <span data-i18n={titleKey}>{title}</span>
       </h3>
@@ -119,34 +119,42 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
     border-top: none;
   }
 
+  /* Fila de título y logo - distribuidos en extremos */
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4px;
+    gap: 8px;
+  }
+
   .card-title {
     font-family: 'OPTIFutura', sans-serif;
     font-weight: 900;
     text-transform: capitalize;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 1.1;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   @media (min-width: 640px) {
     .card-title {
-      font-size: 40px;
-      line-height: 44px;
+      font-size: 32px;
     }
   }
 
   .card-logo {
-    height: 18px;
+    height: 16px;
     width: auto;
     opacity: 0.9;
     flex-shrink: 0;
-    max-width: 80px;
-    object-fit: contain;
   }
 
   @media (min-width: 640px) {
     .card-logo {
       height: 28px;
-      max-width: 120px;
     }
   }
 
