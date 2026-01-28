@@ -1,71 +1,243 @@
 ---
-// Botón flotante de soporte por chat
+// Botón flotante de soporte por chat con tooltip animado y modal personalizado
 ---
 
-<button 
-  id="support-btn"
-  class="support-button"
-  aria-label="Abrir chat de soporte"
-  title="Chat de soporte"
->
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="28" 
-    height="28" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="2" 
-    stroke-linecap="round" 
-    stroke-linejoin="round"
-    class="support-icon"
+<div class="support-container">
+  <!-- Tooltip con mensaje de ayuda -->
+  <div class="support-tooltip" id="support-tooltip">
+    <span class="tooltip-text">¿Necesitas ayuda?</span>
+    <div class="tooltip-arrow"></div>
+  </div>
+
+  <!-- Botón principal -->
+  <button 
+    id="support-btn"
+    class="support-button"
+    aria-label="Abrir chat de soporte"
   >
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-  </svg>
-</button>
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="28" 
+      height="28" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      class="support-icon"
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    
+    <!-- Indicador de disponibilidad -->
+    <span class="availability-dot"></span>
+  </button>
+</div>
+
+<!-- Modal de soporte personalizado -->
+<div class="support-modal-overlay" id="support-modal">
+  <div class="support-modal">
+    <!-- Header del modal -->
+    <div class="modal-header">
+      <div class="modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Contenido del modal -->
+    <div class="modal-content">
+      <h3 class="modal-title">¡Hola! Gracias por contactarnos</h3>
+      <p class="modal-message">
+        Estamos aquí para ayudarte. Nuestro chat de soporte estará disponible muy pronto.
+      </p>
+      <p class="modal-submessage">
+        Mientras tanto, puedes escribirnos directamente:
+      </p>
+      
+      <!-- Email con botón de copiar -->
+      <div class="email-container">
+        <div class="email-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="email-text">info@be.mindpower.net</span>
+        </div>
+        <button class="copy-btn" id="copy-email" title="Copiar email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Acciones del modal -->
+    <div class="modal-actions">
+      <button class="btn-secondary" id="modal-cancel">Cerrar</button>
+      <a href="mailto:info@be.mindpower.net?subject=Consulta desde BeMind Power" class="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        Enviar email
+      </a>
+    </div>
+  </div>
+</div>
 
 <style>
-  .support-button {
+  .support-container {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
     z-index: 9999;
-    width: 56px;
-    height: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* Tooltip animado */
+  .support-tooltip {
+    background: linear-gradient(135deg, rgba(40, 54, 233, 0.95) 0%, rgba(99, 102, 241, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    box-shadow: 
+      0 4px 20px rgba(40, 54, 233, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+  }
+
+  .support-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    bottom: -6px;
+    left: 24px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.95) 0%, rgba(99, 102, 241, 0.95) 100%);
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+
+  .tooltip-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Botón principal con glass effect */
+  .support-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    background: linear-gradient(
+      135deg, 
+      rgba(40, 54, 233, 0.7) 0%, 
+      rgba(99, 102, 241, 0.6) 50%,
+      rgba(40, 54, 233, 0.7) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: white;
     box-shadow: 
-      0 4px 15px rgba(40, 54, 233, 0.4),
-      0 2px 8px rgba(0, 0, 0, 0.2);
+      0 4px 20px rgba(40, 54, 233, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .support-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
   .support-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
+    border-color: rgba(255, 255, 255, 0.4);
     box-shadow: 
-      0 6px 20px rgba(40, 54, 233, 0.5),
-      0 4px 12px rgba(0, 0, 0, 0.3);
+      0 8px 30px rgba(40, 54, 233, 0.5),
+      0 4px 15px rgba(0, 0, 0, 0.3),
+      inset 0 1px 2px rgba(255, 255, 255, 0.4),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.15);
   }
 
   .support-button:active {
     transform: scale(0.95);
   }
 
+  /* Icono animado */
   .support-icon {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .support-button:hover .support-icon {
-    transform: rotate(-10deg);
+    transform: scale(1.1) rotate(-10deg);
   }
 
-  /* Animación de pulso sutil */
+  /* Indicador de disponibilidad (punto verde) */
+  .availability-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #22c55e;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+  }
+
+  /* Animación de pulso del botón */
   @keyframes pulse-ring {
     0% {
       box-shadow: 
@@ -77,7 +249,7 @@
       box-shadow: 
         0 4px 15px rgba(40, 54, 233, 0.4),
         0 2px 8px rgba(0, 0, 0, 0.2),
-        0 0 0 12px rgba(40, 54, 233, 0);
+        0 0 0 15px rgba(40, 54, 233, 0);
     }
     100% {
       box-shadow: 
@@ -87,39 +259,367 @@
     }
   }
 
+  /* Animación de flotación suave */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
   .support-button {
-    animation: pulse-ring 3s infinite;
+    animation: 
+      pulse-ring 3s infinite,
+      float 4s ease-in-out infinite;
   }
 
   .support-button:hover {
     animation: none;
   }
 
-  /* Responsive - más pequeño en móviles */
+  /* ============ MODAL STYLES ============ */
+  .support-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(11, 0, 64, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .support-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .support-modal {
+    background: linear-gradient(
+      145deg,
+      rgba(20, 10, 80, 0.95) 0%,
+      rgba(11, 0, 64, 0.98) 100%
+    );
+    border: 1px solid rgba(40, 54, 233, 0.3);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 100px rgba(40, 54, 233, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .support-modal-overlay.visible .support-modal {
+    transform: scale(1) translateY(0);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 0;
+  }
+
+  .modal-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 8px 20px rgba(40, 54, 233, 0.4);
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 12px;
+    line-height: 1.3;
+  }
+
+  .modal-message {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+
+  .modal-submessage {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 16px;
+  }
+
+  .email-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(40, 54, 233, 0.15);
+    border: 1px solid rgba(40, 54, 233, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+
+  .email-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    color: white;
+  }
+
+  .email-box svg {
+    color: #6366f1;
+    flex-shrink: 0;
+  }
+
+  .email-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .copy-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover {
+    background: rgba(40, 54, 233, 0.4);
+    color: white;
+  }
+
+  .copy-btn.copied {
+    background: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 0 24px 24px;
+  }
+
+  .btn-secondary {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-primary {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(40, 54, 233, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 54, 233, 0.5);
+  }
+
+  /* Responsive */
   @media (max-width: 640px) {
-    .support-button {
-      width: 48px;
-      height: 48px;
+    .support-container {
       bottom: 16px;
-      right: 16px;
+      left: 16px;
+    }
+
+    .support-button {
+      width: 52px;
+      height: 52px;
     }
 
     .support-button svg {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .support-tooltip {
+      font-size: 13px;
+      padding: 8px 14px;
+    }
+
+    .availability-dot {
+      width: 12px;
+      height: 12px;
+    }
+
+    .support-modal {
+      max-width: 100%;
+      border-radius: 20px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+    }
+
+    .modal-actions {
+      flex-direction: column;
+    }
+
+    .btn-secondary,
+    .btn-primary {
+      width: 100%;
     }
   }
 </style>
 
 <script>
   const supportBtn = document.getElementById('support-btn');
+  const tooltip = document.getElementById('support-tooltip');
+  const modal = document.getElementById('support-modal');
+  const modalClose = document.getElementById('modal-close');
+  const modalCancel = document.getElementById('modal-cancel');
+  const copyBtn = document.getElementById('copy-email');
   
-  supportBtn?.addEventListener('click', () => {
-    // Por ahora muestra una alerta, después se puede conectar a un chat real
-    alert('Chat de soporte próximamente disponible');
+  // Mostrar tooltip después de 2 segundos
+  setTimeout(() => {
+    tooltip?.classList.add('visible');
     
-    // Alternativa: abrir WhatsApp o email
-    // window.open('https://wa.me/TUNUMERO', '_blank');
-    // window.location.href = 'mailto:soporte@bemindpower.com';
+    // Ocultar tooltip después de 5 segundos
+    setTimeout(() => {
+      tooltip?.classList.remove('visible');
+    }, 5000);
+  }, 2000);
+
+  // Mostrar tooltip al hover
+  supportBtn?.addEventListener('mouseenter', () => {
+    tooltip?.classList.add('visible');
+  });
+
+  supportBtn?.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      tooltip?.classList.remove('visible');
+    }, 300);
+  });
+
+  // Abrir modal
+  supportBtn?.addEventListener('click', () => {
+    modal?.classList.add('visible');
+    tooltip?.classList.remove('visible');
+  });
+
+  // Cerrar modal
+  const closeModal = () => {
+    modal?.classList.remove('visible');
+  };
+
+  modalClose?.addEventListener('click', closeModal);
+  modalCancel?.addEventListener('click', closeModal);
+
+  // Cerrar al hacer clic fuera del modal
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('visible')) {
+      closeModal();
+    }
+  });
+
+  // Copiar email
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('info@be.mindpower.net');
+      copyBtn.classList.add('copied');
+      
+      // Cambiar icono temporalmente a check
+      copyBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      `;
+      
+      setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        copyBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        `;
+      }, 2000);
+    } catch (err) {
+      console.error('Error al copiar:', err);
+    }
   });
 </script>
