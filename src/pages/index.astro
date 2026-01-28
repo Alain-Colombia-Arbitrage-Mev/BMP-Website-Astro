@@ -6,7 +6,7 @@ import VideoHeroBackground from '../components/VideoHeroBackground.astro';
 
 <Layout title="BeMind Power" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="intro-page">
   <!-- Contenedor fullscreen -->
-  <main class="relative h-screen w-screen min-h-[100svh] overflow-hidden">
+  <main class="relative h-[100dvh] w-screen overflow-hidden">
     <!-- Video Background -->
     <VideoHeroBackground
       videoSrc="https://video.veltlix.com/Prehome%20Bmp%20-%20Presentacio%CC%81n%2002.mp4"
@@ -14,17 +14,80 @@ import VideoHeroBackground from '../components/VideoHeroBackground.astro';
 
     <HomeHeader />
 
-    <!-- Skip Button -->
+    <!-- Skip Button - optimizado para móviles pequeños -->
     <button 
       id="skip-intro-btn"
-      class="glass absolute z-10 bottom-[clamp(16px,4vw,48px)] right-[clamp(16px,5vw,64px)] flex items-center gap-2 px-4 py-2 text-[20px] font-black text-[#e3e3e3] hover:bg-white/10 hover:text-white max-lg:text-[16px] max-sm:px-3 max-sm:text-[14px] 2xl:text-[24px] transition-all"
+      class="skip-btn glass absolute z-10 flex items-center gap-1.5 sm:gap-2 text-[#e3e3e3] hover:bg-white/10 hover:text-white transition-all"
     >
       <span data-i18n="skip">Omitir Intro</span>
-      <svg class="h-5 w-5 max-sm:h-4 max-sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <svg class="skip-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
       </svg>
     </button>
   </main>
+
+  <style>
+    .skip-btn {
+      bottom: 16px;
+      right: 16px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 9999px;
+    }
+
+    .skip-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* iPhone 6/7/8 y similares (375px+) */
+    @media (min-width: 375px) {
+      .skip-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .skip-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    /* Tablets y pantallas medianas */
+    @media (min-width: 640px) {
+      .skip-btn {
+        bottom: 32px;
+        right: 32px;
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+
+      .skip-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      .skip-btn {
+        bottom: 48px;
+        right: 64px;
+        padding: 12px 24px;
+        font-size: 20px;
+      }
+    }
+
+    /* Desktop grande */
+    @media (min-width: 1536px) {
+      .skip-btn {
+        font-size: 24px;
+      }
+    }
+  </style>
 
   <script>
     function initVideoNavigation(): void {

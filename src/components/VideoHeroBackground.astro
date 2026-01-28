@@ -6,16 +6,86 @@ interface Props {
 const { videoSrc } = Astro.props;
 ---
 
-<div class="absolute inset-0">
+<div class="video-hero-container absolute inset-0 overflow-hidden">
   <video
-    class="absolute inset-0 h-full w-full object-cover"
+    id="intro-video"
+    class="video-element"
     autoplay
     muted
-    loop
     playsinline
-    preload="metadata"
+    preload="auto"
   >
     <source src={videoSrc} type="video/mp4" />
   </video>
   <div class="pointer-events-none absolute inset-0 bg-black/35"></div>
 </div>
+
+<style>
+  .video-hero-container {
+    background: #000;
+  }
+
+  .video-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+
+  /* Optimizaciones para iPhone 6 y móviles pequeños (320px-375px) */
+  @media (max-width: 375px) {
+    .video-element {
+      width: 100%;
+      height: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      object-position: center center;
+    }
+  }
+
+  /* Pantallas pequeñas en general */
+  @media (max-width: 480px) {
+    .video-element {
+      /* Forzar cobertura completa en móviles */
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+</style>
+
+<script>
+  // Optimizar reproducción de video en móviles
+  function initVideoOptimization(): void {
+    const video = document.getElementById('intro-video') as HTMLVideoElement;
+    if (!video) return;
+
+    // Intentar reproducir inmediatamente
+    const playVideo = () => {
+      video.play().catch(() => {
+        // Si falla autoplay, esperar interacción del usuario
+        document.addEventListener('touchstart', () => {
+          video.play();
+        }, { once: true });
+      });
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', playVideo, { once: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVideoOptimization);
+  } else {
+    initVideoOptimization();
+  }
+</script>
