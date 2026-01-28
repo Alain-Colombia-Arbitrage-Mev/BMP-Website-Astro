@@ -1,0 +1,125 @@
+---
+// Botón flotante de soporte por chat
+---
+
+<button 
+  id="support-btn"
+  class="support-button"
+  aria-label="Abrir chat de soporte"
+  title="Chat de soporte"
+>
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="28" 
+    height="28" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    class="support-icon"
+  >
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+</button>
+
+<style>
+  .support-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    color: white;
+    box-shadow: 
+      0 4px 15px rgba(40, 54, 233, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .support-button:hover {
+    transform: scale(1.1);
+    box-shadow: 
+      0 6px 20px rgba(40, 54, 233, 0.5),
+      0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .support-button:active {
+    transform: scale(0.95);
+  }
+
+  .support-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .support-button:hover .support-icon {
+    transform: rotate(-10deg);
+  }
+
+  /* Animación de pulso sutil */
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 
+        0 4px 15px rgba(40, 54, 233, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 0 rgba(40, 54, 233, 0.4);
+    }
+    70% {
+      box-shadow: 
+        0 4px 15px rgba(40, 54, 233, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 12px rgba(40, 54, 233, 0);
+    }
+    100% {
+      box-shadow: 
+        0 4px 15px rgba(40, 54, 233, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 0 0 0 rgba(40, 54, 233, 0);
+    }
+  }
+
+  .support-button {
+    animation: pulse-ring 3s infinite;
+  }
+
+  .support-button:hover {
+    animation: none;
+  }
+
+  /* Responsive - más pequeño en móviles */
+  @media (max-width: 640px) {
+    .support-button {
+      width: 48px;
+      height: 48px;
+      bottom: 16px;
+      right: 16px;
+    }
+
+    .support-button svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+</style>
+
+<script>
+  const supportBtn = document.getElementById('support-btn');
+  
+  supportBtn?.addEventListener('click', () => {
+    // Por ahora muestra una alerta, después se puede conectar a un chat real
+    alert('Chat de soporte próximamente disponible');
+    
+    // Alternativa: abrir WhatsApp o email
+    // window.open('https://wa.me/TUNUMERO', '_blank');
+    // window.location.href = 'mailto:soporte@bemindpower.com';
+  });
+</script>

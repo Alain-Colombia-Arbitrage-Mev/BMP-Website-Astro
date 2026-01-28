@@ -51,7 +51,19 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.education.cta': 'Aprende\ncon nosotros',
     'features.marketplace.title': 'Marketplace',
     'features.marketplace.description': 'Compra y vende de forma segura.',
-    'features.marketplace.cta': 'Explora el\nmarketplace'
+    'features.marketplace.cta': 'Explora el\nmarketplace',
+    'features.apps.title': 'Apps',
+    'features.apps.description': 'Una sola puerta a cientos de soluciones.',
+    'features.apps.cta': 'Experimenta\nnuestras apps',
+    'features.nutrition.title': 'Nutrition',
+    'features.nutrition.description': 'Alimentación inteligente para tu bienestar.',
+    'features.nutrition.cta': 'Mejora tu\nnutrición',
+    'features.communities.title': 'Comunidades',
+    'features.communities.description': 'Conecta con personas afines a ti.',
+    'features.communities.cta': 'Únete a las\ncomunidades',
+    'features.music.title': 'Música',
+    'features.music.description': 'Tu soundtrack personalizado.',
+    'features.music.cta': 'Escucha tu\nmúsica'
   },
   en: {
     'nav.home': 'Home',
@@ -89,7 +101,19 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.education.cta': 'Learn\nwith us',
     'features.marketplace.title': 'Marketplace',
     'features.marketplace.description': 'Buy and sell securely.',
-    'features.marketplace.cta': 'Explore the\nmarketplace'
+    'features.marketplace.cta': 'Explore the\nmarketplace',
+    'features.apps.title': 'Apps',
+    'features.apps.description': 'One door to hundreds of solutions.',
+    'features.apps.cta': 'Experience\nour apps',
+    'features.nutrition.title': 'Nutrition',
+    'features.nutrition.description': 'Smart nutrition for your wellbeing.',
+    'features.nutrition.cta': 'Improve your\nnutrition',
+    'features.communities.title': 'Communities',
+    'features.communities.description': 'Connect with like-minded people.',
+    'features.communities.cta': 'Join the\ncommunities',
+    'features.music.title': 'Music',
+    'features.music.description': 'Your personalized soundtrack.',
+    'features.music.cta': 'Listen to\nyour music'
   },
   pt: {
     'nav.home': 'Início',
@@ -127,7 +151,19 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.education.cta': 'Aprenda\nconosco',
     'features.marketplace.title': 'Marketplace',
     'features.marketplace.description': 'Compre e venda com segurança.',
-    'features.marketplace.cta': 'Explore o\nmarketplace'
+    'features.marketplace.cta': 'Explore o\nmarketplace',
+    'features.apps.title': 'Apps',
+    'features.apps.description': 'Uma porta para centenas de soluções.',
+    'features.apps.cta': 'Experimente\nnossos apps',
+    'features.nutrition.title': 'Nutrição',
+    'features.nutrition.description': 'Alimentação inteligente para seu bem-estar.',
+    'features.nutrition.cta': 'Melhore sua\nnutrição',
+    'features.communities.title': 'Comunidades',
+    'features.communities.description': 'Conecte-se com pessoas afins.',
+    'features.communities.cta': 'Junte-se às\ncomunidades',
+    'features.music.title': 'Música',
+    'features.music.description': 'Sua trilha sonora personalizada.',
+    'features.music.cta': 'Ouça sua\nmúsica'
   },
   zh: {
     'nav.home': '首页',
@@ -165,7 +201,19 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.education.cta': '与我们\n一起学习',
     'features.marketplace.title': '市场',
     'features.marketplace.description': '安全买卖。',
-    'features.marketplace.cta': '探索\n市场'
+    'features.marketplace.cta': '探索\n市场',
+    'features.apps.title': '应用',
+    'features.apps.description': '通往数百种解决方案的大门。',
+    'features.apps.cta': '体验\n我们的应用',
+    'features.nutrition.title': '营养',
+    'features.nutrition.description': '为您的健康提供智能营养。',
+    'features.nutrition.cta': '改善你的\n营养',
+    'features.communities.title': '社区',
+    'features.communities.description': '与志同道合的人联系。',
+    'features.communities.cta': '加入\n社区',
+    'features.music.title': '音乐',
+    'features.music.description': '您的个性化音乐。',
+    'features.music.cta': '听你的\n音乐'
   },
   ar: {
     'nav.home': 'الرئيسية',
@@ -203,7 +251,19 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.education.cta': 'تعلم\nمعنا',
     'features.marketplace.title': 'السوق',
     'features.marketplace.description': 'اشترِ وبِع بأمان.',
-    'features.marketplace.cta': 'استكشف\nالسوق'
+    'features.marketplace.cta': 'استكشف\nالسوق',
+    'features.apps.title': 'التطبيقات',
+    'features.apps.description': 'باب واحد لمئات الحلول.',
+    'features.apps.cta': 'جرب\nتطبيقاتنا',
+    'features.nutrition.title': 'التغذية',
+    'features.nutrition.description': 'تغذية ذكية لرفاهيتك.',
+    'features.nutrition.cta': 'حسّن\nتغذيتك',
+    'features.communities.title': 'المجتمعات',
+    'features.communities.description': 'تواصل مع أشخاص متشابهين.',
+    'features.communities.cta': 'انضم إلى\nالمجتمعات',
+    'features.music.title': 'الموسيقى',
+    'features.music.description': 'موسيقاك المخصصة.',
+    'features.music.cta': 'استمع إلى\nموسيقاك'
   }
 };
 

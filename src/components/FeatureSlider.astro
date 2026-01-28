@@ -1,31 +1,17 @@
 ---
 import FeatureCard from './FeatureCard.astro';
 
-// Datos de las tarjetas del slider - 9 tarjetas, Chat en el centro (índice 4)
+// Datos de las tarjetas del slider - 9 tarjetas
+// Orden: Chat (centro), Wallet, Marketplace, Apps, Nutrition, Comunidades, Música, Salud Mental, AI Finanzas
 const features = [
   {
-    image: '/images/Chat.png',
+    // CHAT - índice 0, activo primero
+    image: '/images/Chat.svg',
     logo: '/images/logohorizontal.svg',
-    title: 'Comunidad',
-    description: 'Conecta con personas afines a ti.',
-    titleKey: 'features.community.title',
-    descriptionKey: 'features.community.description'
-  },
-  {
-    image: '/images/Chat.png',
-    logo: '/images/logohorizontal.svg',
-    title: 'Salud Mental',
-    description: 'Bienestar emocional con apoyo inteligente.',
-    titleKey: 'features.mentalHealth.title',
-    descriptionKey: 'features.mentalHealth.description'
-  },
-  {
-    image: '/images/Chat.png',
-    logo: '/images/logohorizontal.svg',
-    title: 'A.I. Finanzas',
-    description: 'Gestión financiera inteligente y personalizada.',
-    titleKey: 'features.finance.title',
-    descriptionKey: 'features.finance.description'
+    title: 'Chat',
+    description: 'Comunicación segura, instantánea e inteligente.',
+    titleKey: 'features.chat.title',
+    descriptionKey: 'features.chat.description'
   },
   {
     image: '/images/wallet.svg',
@@ -36,50 +22,65 @@ const features = [
     descriptionKey: 'features.wallet.description'
   },
   {
-    // CHAT - Siempre en el centro (índice 4)
-    image: '/images/Chat.svg',
-    logo: '/images/logohorizontal.svg',
-    title: 'Chat',
-    description: 'Comunicación segura, instantánea e inteligente.',
-    titleKey: 'features.chat.title',
-    descriptionKey: 'features.chat.description'
-  },
-  {
-    image: '/images/Community.svg',
-    logo: '/images/logohorizontal.svg',
-    title: 'Streaming',
-    description: 'Contenido en vivo de alta calidad sin interrupciones.',
-    titleKey: 'features.streaming.title',
-    descriptionKey: 'features.streaming.description'
-  },
-  {
-    image: '/images/Chat.png',
-    logo: '/images/logohorizontal.svg',
-    title: 'Gaming',
-    description: 'Experiencias inmersivas y juegos colaborativos.',
-    titleKey: 'features.gaming.title',
-    descriptionKey: 'features.gaming.description'
-  },
-  {
-    image: '/images/Chat.png',
-    logo: '/images/logohorizontal.svg',
-    title: 'Educación',
-    description: 'Aprende y crece con contenido personalizado.',
-    titleKey: 'features.education.title',
-    descriptionKey: 'features.education.description'
-  },
-  {
     image: '/images/marketplace.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Marketplace',
     description: 'Compra y vende de forma segura.',
     titleKey: 'features.marketplace.title',
     descriptionKey: 'features.marketplace.description'
+  },
+  {
+    image: '/images/apps.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'Apps',
+    description: 'Una sola puerta a cientos de soluciones.',
+    titleKey: 'features.apps.title',
+    descriptionKey: 'features.apps.description'
+  },
+  {
+    image: '/images/nutrition.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'Nutrition',
+    description: 'Alimentación inteligente para tu bienestar.',
+    titleKey: 'features.nutrition.title',
+    descriptionKey: 'features.nutrition.description'
+  },
+  {
+    image: '/images/Community.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'Comunidades',
+    description: 'Conecta con personas afines a ti.',
+    titleKey: 'features.communities.title',
+    descriptionKey: 'features.communities.description'
+  },
+  {
+    image: '/images/musica.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'Música',
+    description: 'Tu soundtrack personalizado.',
+    titleKey: 'features.music.title',
+    descriptionKey: 'features.music.description'
+  },
+  {
+    image: '/images/mental.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'Salud Mental',
+    description: 'Bienestar emocional con apoyo inteligente.',
+    titleKey: 'features.mentalHealth.title',
+    descriptionKey: 'features.mentalHealth.description'
+  },
+  {
+    image: '/images/AiFinanzas.svg',
+    logo: '/images/logohorizontal.svg',
+    title: 'A.I. Finanzas',
+    description: 'Gestión financiera inteligente y personalizada.',
+    titleKey: 'features.finance.title',
+    descriptionKey: 'features.finance.description'
   }
 ];
 
-// Índice inicial - Chat siempre activo primero (posición 4 = centro de 9)
-const CHAT_INDEX = 4;
+// Índice inicial - Chat siempre activo primero (posición 0)
+const CHAT_INDEX = 0;
 ---
 
 <section class="feature-slider relative w-full h-[calc(100dvh-60px)] sm:h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
@@ -219,19 +220,19 @@ const CHAT_INDEX = 4;
 
   // Títulos CTA por índice de slide - debe coincidir con el orden de features (9 tarjetas)
   const ctaKeys = [
-    'features.community.cta',
-    'features.mentalHealth.cta',
-    'features.finance.cta',
+    'features.chat.cta',        // índice 0 - Chat primero
     'features.wallet.cta',
-    'features.chat.cta',        // índice 4 - Chat en el centro
-    'features.streaming.cta',
-    'features.gaming.cta',
-    'features.education.cta',
-    'features.marketplace.cta'
+    'features.marketplace.cta',
+    'features.apps.cta',
+    'features.nutrition.cta',
+    'features.communities.cta',
+    'features.music.cta',
+    'features.mentalHealth.cta',
+    'features.finance.cta'
   ];
 
   // Índice de Chat (debe coincidir con CHAT_INDEX en el frontmatter)
-  const CHAT_INDEX = 4;
+  const CHAT_INDEX = 0;
 
   // Escalas según distancia desde la tarjeta activa (más pronunciadas como en Figma)
   const SCALES = {
@@ -297,13 +298,24 @@ const CHAT_INDEX = 4;
       }
     };
 
+    // Calcular distancia circular (para loop infinito)
+    const getCircularDistance = (index: number, current: number, total: number): number => {
+      const directDistance = index - current;
+      const wrapDistance = directDistance > 0 
+        ? directDistance - total 
+        : directDistance + total;
+      
+      // Retornar la distancia más corta
+      return Math.abs(directDistance) <= Math.abs(wrapDistance) ? directDistance : wrapDistance;
+    };
+
     const updateSlider = (): void => {
       const cardWidth = getCardWidth();
       const gap = getGap();
 
-      // Posicionar cada tarjeta
+      // Posicionar cada tarjeta con distancia circular
       items.forEach((item, index) => {
-        const distance = index - currentIndex;
+        const distance = getCircularDistance(index, currentIndex, totalItems);
         const absDistance = Math.abs(distance);
         
         // Limpiar clases anteriores
@@ -329,7 +341,6 @@ const CHAT_INDEX = 4;
         const opacity = OPACITY[distKey];
 
         // Calcular posición X
-        // Cada tarjeta se posiciona según su distancia del centro
         let xOffset = 0;
         
         for (let i = 0; i < absDistance; i++) {
@@ -351,9 +362,9 @@ const CHAT_INDEX = 4;
       // Actualizar título
       updateTitle();
 
-      // Actualizar botones
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex === totalItems - 1;
+      // En loop infinito, los botones siempre están activos
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
     };
 
     // Actualizar título cuando cambie el idioma
@@ -361,33 +372,24 @@ const CHAT_INDEX = 4;
       updateTitle();
     });
 
+    // Navegación circular (loop infinito)
     const nextSlide = (): void => {
-      if (currentIndex < totalItems - 1) {
-        currentIndex++;
-        updateSlider();
-      }
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateSlider();
     };
 
     const prevSlide = (): void => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      }
+      currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+      updateSlider();
     };
 
-    // Auto-slide cada 5 segundos
+    // Auto-slide cada 5 segundos (loop infinito)
     let autoSlideInterval: ReturnType<typeof setInterval> | null = null;
 
     const startAutoSlide = (): void => {
       stopAutoSlide();
       autoSlideInterval = setInterval(() => {
-        if (currentIndex < totalItems - 1) {
-          currentIndex++;
-        } else {
-          // Volver al inicio cuando llega al final
-          currentIndex = 0;
-        }
-        updateSlider();
+        nextSlide();
       }, 5000);
     };
 
