@@ -28,7 +28,7 @@ const features = [
     descriptionKey: 'features.finance.description'
   },
   {
-    image: '/images/Chat.png',
+    image: '/images/wallet.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Wallet',
     description: 'Tu billetera digital segura y conectada.',
@@ -45,7 +45,7 @@ const features = [
     descriptionKey: 'features.chat.description'
   },
   {
-    image: '/images/Chat.png',
+    image: '/images/Community.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Streaming',
     description: 'Contenido en vivo de alta calidad sin interrupciones.',
@@ -69,7 +69,7 @@ const features = [
     descriptionKey: 'features.education.description'
   },
   {
-    image: '/images/Chat.png',
+    image: '/images/marketplace.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Marketplace',
     description: 'Compra y vende de forma segura.',
@@ -142,7 +142,7 @@ const CHAT_INDEX = 4;
   }
 
   .slider-container {
-    height: 380px;
+    height: 420px;
     position: relative;
   }
 
@@ -164,50 +164,37 @@ const CHAT_INDEX = 4;
 
   /* Tarjetas posicionadas absolutamente */
   .slider-item {
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     transform-origin: center center;
     left: 50%;
     top: 50%;
+    will-change: transform, filter, opacity;
   }
 
-  /* Tarjeta activa - más grande y centrada */
+  /* Z-index según distancia */
   .slider-item.active {
-    opacity: 1;
-    filter: blur(0);
     z-index: 10;
   }
 
-  /* Tarjetas adyacentes (distancia 1) */
   .slider-item.distance-1 {
-    opacity: 0.85;
-    filter: blur(1px);
     z-index: 8;
   }
 
-  /* Tarjetas a distancia 2 */
   .slider-item.distance-2 {
-    opacity: 0.65;
-    filter: blur(2px);
     z-index: 6;
   }
 
-  /* Tarjetas a distancia 3 */
   .slider-item.distance-3 {
-    opacity: 0.45;
-    filter: blur(3px);
     z-index: 4;
   }
 
-  /* Tarjetas más lejanas (distancia 4) */
   .slider-item.distance-4 {
-    opacity: 0.3;
-    filter: blur(4px);
     z-index: 2;
   }
 
   @media (min-width: 768px) {
     .slider-container {
-      height: 450px;
+      height: 500px;
     }
     
     .slider-title {
@@ -218,7 +205,7 @@ const CHAT_INDEX = 4;
   /* Móviles pequeños (iPhone 7 y similares) */
   @media (max-width: 480px) {
     .slider-container {
-      height: 320px;
+      height: 340px;
     }
     
     .slider-title {
@@ -246,13 +233,31 @@ const CHAT_INDEX = 4;
   // Índice de Chat (debe coincidir con CHAT_INDEX en el frontmatter)
   const CHAT_INDEX = 4;
 
-  // Escalas según distancia desde la tarjeta activa
+  // Escalas según distancia desde la tarjeta activa (más pronunciadas como en Figma)
   const SCALES = {
+    0: 1.0,    // activa - tamaño completo
+    1: 0.75,   // adyacente - notablemente más pequeña
+    2: 0.58,   // distancia 2 - mucho más pequeña
+    3: 0.45,   // distancia 3 - muy pequeña
+    4: 0.35    // distancia 4+ - mínima
+  };
+
+  // Blur según distancia (en píxeles)
+  const BLUR = {
+    0: 0,      // activa - sin blur
+    1: 2,      // adyacente - blur leve
+    2: 4,      // distancia 2 - blur medio
+    3: 6,      // distancia 3 - blur fuerte
+    4: 8       // distancia 4+ - blur máximo
+  };
+
+  // Opacidad según distancia
+  const OPACITY = {
     0: 1.0,    // activa
     1: 0.85,   // adyacente
-    2: 0.72,   // distancia 2
-    3: 0.62,   // distancia 3
-    4: 0.52    // distancia 4+
+    2: 0.6,    // distancia 2
+    3: 0.4,    // distancia 3
+    4: 0.25    // distancia 4+
   };
 
   function initSlider(): void {
@@ -317,9 +322,11 @@ const CHAT_INDEX = 4;
           item.classList.add('distance-4');
         }
 
-        // Calcular escala
-        const scaleKey = Math.min(absDistance, 4) as keyof typeof SCALES;
-        const scale = SCALES[scaleKey];
+        // Obtener valores según distancia
+        const distKey = Math.min(absDistance, 4) as keyof typeof SCALES;
+        const scale = SCALES[distKey];
+        const blur = BLUR[distKey];
+        const opacity = OPACITY[distKey];
 
         // Calcular posición X
         // Cada tarjeta se posiciona según su distancia del centro
@@ -335,8 +342,10 @@ const CHAT_INDEX = 4;
 
         if (distance < 0) xOffset = -xOffset;
 
-        // Aplicar transformación
+        // Aplicar transformación, blur y opacidad
         item.style.transform = `translate(-50%, -50%) translateX(${xOffset}px) scale(${scale})`;
+        item.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+        item.style.opacity = String(opacity);
       });
 
       // Actualizar título

@@ -12,13 +12,17 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 ---
 
 <div class="feature-card group relative w-[220px] sm:w-[320px] flex flex-col overflow-visible cursor-pointer transition-all duration-500 hover:scale-105">
-  <!-- PARTE SUPERIOR -->
-  <div class="card-top relative rounded-t-[10px] h-[200px] sm:h-[320px] overflow-hidden">
+  <!-- IMAGEN SUPERIOR (sobresale hacia arriba) -->
+  <div class="card-image-container">
     <img 
       src={image} 
       alt={title}
-      class="w-full h-full object-cover"
+      class="card-image"
     />
+  </div>
+
+  <!-- PARTE SUPERIOR (fondo de la tarjeta) -->
+  <div class="card-top relative rounded-t-[10px] h-[160px] sm:h-[260px]">
   </div>
 
   <!-- VIÑETAS (entre parte superior e inferior) -->
@@ -64,6 +68,47 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 <style>
   .feature-card {
     perspective: 1000px;
+    padding-top: 80px; /* Espacio para que la imagen sobresalga */
+  }
+
+  @media (min-width: 640px) {
+    .feature-card {
+      padding-top: 120px;
+    }
+  }
+
+  /* CONTENEDOR DE IMAGEN (sobresale hacia arriba) */
+  .card-image-container {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  @media (min-width: 640px) {
+    .card-image-container {
+      top: -40px;
+      width: 115%;
+    }
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  @media (min-width: 640px) {
+    .card-image {
+      max-height: 380px;
+    }
   }
 
   /* PARTE SUPERIOR */
@@ -71,6 +116,7 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
     background: rgba(134, 20, 190, 0.5);
     border: 1px solid rgba(82, 25, 191, 0.5);
     border-bottom: none;
+    overflow: hidden;
   }
 
   /* PARTE INFERIOR */
