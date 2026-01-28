@@ -375,15 +375,50 @@ const CHAT_INDEX = 4;
       }
     };
 
+    // Auto-slide cada 5 segundos
+    let autoSlideInterval: ReturnType<typeof setInterval> | null = null;
+
+    const startAutoSlide = (): void => {
+      stopAutoSlide();
+      autoSlideInterval = setInterval(() => {
+        if (currentIndex < totalItems - 1) {
+          currentIndex++;
+        } else {
+          // Volver al inicio cuando llega al final
+          currentIndex = 0;
+        }
+        updateSlider();
+      }, 5000);
+    };
+
+    const stopAutoSlide = (): void => {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+      }
+    };
+
+    const resetAutoSlide = (): void => {
+      startAutoSlide();
+    };
+
     // Event listeners
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
 
     // Soporte para gestos táctiles
     let touchStartX = 0;
 
     track.parentElement?.addEventListener('touchstart', (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
+      stopAutoSlide();
     }, { passive: true });
 
     track.parentElement?.addEventListener('touchend', (e: TouchEvent) => {
@@ -397,19 +432,34 @@ const CHAT_INDEX = 4;
           prevSlide();
         }
       }
+      resetAutoSlide();
     }, { passive: true });
 
     // Soporte para teclado
     document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+        resetAutoSlide();
+      }
+      if (e.key === 'ArrowRight') {
+        nextSlide();
+        resetAutoSlide();
+      }
     });
+
+    // Pausar auto-slide cuando el usuario hace hover
+    track.parentElement?.addEventListener('mouseenter', stopAutoSlide);
+    track.parentElement?.addEventListener('mouseleave', startAutoSlide);
 
     // Inicializar
     updateSlider();
+    startAutoSlide();
 
     // Re-calcular en resize
     window.addEventListener('resize', updateSlider);
+
+    // Limpiar interval cuando se desmonta
+    window.addEventListener('beforeunload', stopAutoSlide);
   }
 
   // Ejecutar cuando el DOM esté listo
