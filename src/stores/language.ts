@@ -22,14 +22,36 @@ const translations: Record<Lang, Record<string, string>> = {
     'skip': 'Omitir Intro',
     'menu.open': 'Abrir menú',
     'menu.close': 'Cerrar menú',
+    'menu.selectLanguage': 'Seleccionar idioma',
     'lang.select': 'Idioma',
     // Features
+    'features.community.title': 'Comunidad',
+    'features.community.description': 'Conecta con personas afines a ti.',
+    'features.community.cta': 'Únete a la\ncomunidad',
+    'features.mentalHealth.title': 'Salud Mental',
+    'features.mentalHealth.description': 'Bienestar emocional con apoyo inteligente.',
+    'features.mentalHealth.cta': 'Cuida tu\nsalud mental',
+    'features.finance.title': 'A.I. Finanzas',
+    'features.finance.description': 'Gestión financiera inteligente y personalizada.',
+    'features.finance.cta': 'Gestiona tus\nfinanzas',
+    'features.wallet.title': 'Wallet',
+    'features.wallet.description': 'Tu billetera digital segura y conectada.',
+    'features.wallet.cta': 'Descubre tu\nnueva wallet',
     'features.chat.title': 'Chat',
     'features.chat.description': 'Comunicación segura, instantánea e inteligente.',
+    'features.chat.cta': 'Conoce el\nnuevo chat',
     'features.streaming.title': 'Streaming',
     'features.streaming.description': 'Contenido en vivo de alta calidad sin interrupciones.',
+    'features.streaming.cta': 'Descubre el\nnuevo streaming',
     'features.gaming.title': 'Gaming',
-    'features.gaming.description': 'Experiencias inmersivas y juegos colaborativos.'
+    'features.gaming.description': 'Experiencias inmersivas y juegos colaborativos.',
+    'features.gaming.cta': 'Explora el\nnuevo gaming',
+    'features.education.title': 'Educación',
+    'features.education.description': 'Aprende y crece con contenido personalizado.',
+    'features.education.cta': 'Aprende\ncon nosotros',
+    'features.marketplace.title': 'Marketplace',
+    'features.marketplace.description': 'Compra y vende de forma segura.',
+    'features.marketplace.cta': 'Explora el\nmarketplace'
   },
   en: {
     'nav.home': 'Home',
@@ -38,14 +60,36 @@ const translations: Record<Lang, Record<string, string>> = {
     'skip': 'Skip Intro',
     'menu.open': 'Open menu',
     'menu.close': 'Close menu',
+    'menu.selectLanguage': 'Select language',
     'lang.select': 'Language',
     // Features
+    'features.community.title': 'Community',
+    'features.community.description': 'Connect with like-minded people.',
+    'features.community.cta': 'Join the\ncommunity',
+    'features.mentalHealth.title': 'Mental Health',
+    'features.mentalHealth.description': 'Emotional wellbeing with intelligent support.',
+    'features.mentalHealth.cta': 'Care for your\nmental health',
+    'features.finance.title': 'A.I. Finance',
+    'features.finance.description': 'Smart and personalized financial management.',
+    'features.finance.cta': 'Manage your\nfinances',
+    'features.wallet.title': 'Wallet',
+    'features.wallet.description': 'Your secure and connected digital wallet.',
+    'features.wallet.cta': 'Discover your\nnew wallet',
     'features.chat.title': 'Chat',
     'features.chat.description': 'Secure, instant, and intelligent communication.',
+    'features.chat.cta': 'Discover the\nnew chat',
     'features.streaming.title': 'Streaming',
     'features.streaming.description': 'High-quality live content without interruptions.',
+    'features.streaming.cta': 'Discover the\nnew streaming',
     'features.gaming.title': 'Gaming',
-    'features.gaming.description': 'Immersive experiences and collaborative games.'
+    'features.gaming.description': 'Immersive experiences and collaborative games.',
+    'features.gaming.cta': 'Explore the\nnew gaming',
+    'features.education.title': 'Education',
+    'features.education.description': 'Learn and grow with personalized content.',
+    'features.education.cta': 'Learn\nwith us',
+    'features.marketplace.title': 'Marketplace',
+    'features.marketplace.description': 'Buy and sell securely.',
+    'features.marketplace.cta': 'Explore the\nmarketplace'
   },
   pt: {
     'nav.home': 'Início',
@@ -54,14 +98,36 @@ const translations: Record<Lang, Record<string, string>> = {
     'skip': 'Pular Intro',
     'menu.open': 'Abrir menu',
     'menu.close': 'Fechar menu',
+    'menu.selectLanguage': 'Selecionar idioma',
     'lang.select': 'Idioma',
     // Features
+    'features.community.title': 'Comunidade',
+    'features.community.description': 'Conecte-se com pessoas afins.',
+    'features.community.cta': 'Junte-se à\ncomunidade',
+    'features.mentalHealth.title': 'Saúde Mental',
+    'features.mentalHealth.description': 'Bem-estar emocional com apoio inteligente.',
+    'features.mentalHealth.cta': 'Cuide da sua\nsaúde mental',
+    'features.finance.title': 'A.I. Finanças',
+    'features.finance.description': 'Gestão financeira inteligente e personalizada.',
+    'features.finance.cta': 'Gerencie suas\nfinanças',
+    'features.wallet.title': 'Wallet',
+    'features.wallet.description': 'Sua carteira digital segura e conectada.',
+    'features.wallet.cta': 'Descubra sua\nnova wallet',
     'features.chat.title': 'Chat',
     'features.chat.description': 'Comunicação segura, instantânea e inteligente.',
+    'features.chat.cta': 'Conheça o\nnovo chat',
     'features.streaming.title': 'Streaming',
     'features.streaming.description': 'Conteúdo ao vivo de alta qualidade sem interrupções.',
+    'features.streaming.cta': 'Descubra o\nnovo streaming',
     'features.gaming.title': 'Gaming',
-    'features.gaming.description': 'Experiências imersivas e jogos colaborativos.'
+    'features.gaming.description': 'Experiências imersivas e jogos colaborativos.',
+    'features.gaming.cta': 'Explore o\nnovo gaming',
+    'features.education.title': 'Educação',
+    'features.education.description': 'Aprenda e cresça com conteúdo personalizado.',
+    'features.education.cta': 'Aprenda\nconosco',
+    'features.marketplace.title': 'Marketplace',
+    'features.marketplace.description': 'Compre e venda com segurança.',
+    'features.marketplace.cta': 'Explore o\nmarketplace'
   },
   zh: {
     'nav.home': '首页',
@@ -70,14 +136,36 @@ const translations: Record<Lang, Record<string, string>> = {
     'skip': '跳过介绍',
     'menu.open': '打开菜单',
     'menu.close': '关闭菜单',
+    'menu.selectLanguage': '选择语言',
     'lang.select': '语言',
     // Features
+    'features.community.title': '社区',
+    'features.community.description': '与志同道合的人联系。',
+    'features.community.cta': '加入\n社区',
+    'features.mentalHealth.title': '心理健康',
+    'features.mentalHealth.description': '智能支持的情感健康。',
+    'features.mentalHealth.cta': '关爱你的\n心理健康',
+    'features.finance.title': 'A.I. 金融',
+    'features.finance.description': '智能化个性化财务管理。',
+    'features.finance.cta': '管理你的\n财务',
+    'features.wallet.title': '钱包',
+    'features.wallet.description': '您的安全数字钱包。',
+    'features.wallet.cta': '发现你的\n新钱包',
     'features.chat.title': '聊天',
     'features.chat.description': '安全、即时、智能的通讯。',
+    'features.chat.cta': '了解\n新聊天',
     'features.streaming.title': '流媒体',
     'features.streaming.description': '高质量无中断的直播内容。',
+    'features.streaming.cta': '发现\n新流媒体',
     'features.gaming.title': '游戏',
-    'features.gaming.description': '沉浸式体验和协作游戏。'
+    'features.gaming.description': '沉浸式体验和协作游戏。',
+    'features.gaming.cta': '探索\n新游戏',
+    'features.education.title': '教育',
+    'features.education.description': '通过个性化内容学习和成长。',
+    'features.education.cta': '与我们\n一起学习',
+    'features.marketplace.title': '市场',
+    'features.marketplace.description': '安全买卖。',
+    'features.marketplace.cta': '探索\n市场'
   },
   ar: {
     'nav.home': 'الرئيسية',
@@ -86,14 +174,36 @@ const translations: Record<Lang, Record<string, string>> = {
     'skip': 'تخطي المقدمة',
     'menu.open': 'فتح القائمة',
     'menu.close': 'إغلاق القائمة',
+    'menu.selectLanguage': 'اختر اللغة',
     'lang.select': 'اللغة',
     // Features
+    'features.community.title': 'المجتمع',
+    'features.community.description': 'تواصل مع أشخاص متشابهين.',
+    'features.community.cta': 'انضم إلى\nالمجتمع',
+    'features.mentalHealth.title': 'الصحة النفسية',
+    'features.mentalHealth.description': 'رفاهية عاطفية بدعم ذكي.',
+    'features.mentalHealth.cta': 'اعتن بـ\nصحتك النفسية',
+    'features.finance.title': 'A.I. المالية',
+    'features.finance.description': 'إدارة مالية ذكية وشخصية.',
+    'features.finance.cta': 'أدر\nأموالك',
+    'features.wallet.title': 'المحفظة',
+    'features.wallet.description': 'محفظتك الرقمية الآمنة والمتصلة.',
+    'features.wallet.cta': 'اكتشف\nمحفظتك الجديدة',
     'features.chat.title': 'الدردشة',
     'features.chat.description': 'تواصل آمن وفوري وذكي.',
+    'features.chat.cta': 'اكتشف\nالدردشة الجديدة',
     'features.streaming.title': 'البث المباشر',
     'features.streaming.description': 'محتوى مباشر عالي الجودة بدون انقطاع.',
+    'features.streaming.cta': 'اكتشف\nالبث الجديد',
     'features.gaming.title': 'الألعاب',
-    'features.gaming.description': 'تجارب غامرة وألعاب تعاونية.'
+    'features.gaming.description': 'تجارب غامرة وألعاب تعاونية.',
+    'features.gaming.cta': 'استكشف\nالألعاب الجديدة',
+    'features.education.title': 'التعليم',
+    'features.education.description': 'تعلم وانمو مع محتوى مخصص.',
+    'features.education.cta': 'تعلم\nمعنا',
+    'features.marketplace.title': 'السوق',
+    'features.marketplace.description': 'اشترِ وبِع بأمان.',
+    'features.marketplace.cta': 'استكشف\nالسوق'
   }
 };
 
@@ -142,12 +252,11 @@ export const getCurrentLanguage = () => {
 export const setLanguage = (lang: Lang): void => {
   if (isValidLang(lang)) {
     $lang.set(lang);
-    // Actualizar atributo lang del documento
+    // Actualizar atributo lang del documento (sin cambiar dirección)
     if (typeof document !== 'undefined') {
       document.documentElement.lang = lang;
-      // Actualizar dirección del texto para árabe
-      const langInfo = languages.find(l => l.code === lang);
-      document.documentElement.dir = langInfo?.dir || 'ltr';
+      // Mantener siempre LTR para no romper el diseño
+      document.documentElement.dir = 'ltr';
     }
   }
 };
@@ -156,10 +265,9 @@ export const setLanguage = (lang: Lang): void => {
 if (typeof window !== 'undefined') {
   // Suscribirse a cambios del idioma
   $lang.subscribe((lang) => {
-    // Actualizar lang y dir del documento
+    // Actualizar lang del documento (mantener siempre LTR)
     document.documentElement.lang = lang;
-    const langInfo = languages.find(l => l.code === lang);
-    document.documentElement.dir = langInfo?.dir || 'ltr';
+    document.documentElement.dir = 'ltr';
     
     // Actualizar todos los elementos con data-i18n
     document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {

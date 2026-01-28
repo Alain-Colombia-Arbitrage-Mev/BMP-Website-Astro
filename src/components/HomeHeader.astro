@@ -8,7 +8,7 @@ const navItems = [
 ];
 ---
 
-<header class="absolute left-0 right-0 top-0 z-50 px-[5%] py-6 2xl:px-[7%] 2xl:py-10 max-lg:px-[4%] max-lg:py-5 max-sm:py-4">
+<header class="absolute left-0 right-0 top-0 z-50 px-[5%] py-6 2xl:px-[7%] 2xl:py-10 max-lg:px-[4%] max-lg:py-5 max-sm:px-4 max-sm:py-3">
   <div class="relative flex items-center justify-between">
     <!-- Logo - visible en desktop, oculto en móvil cuando hay menú -->
     <a href="/" class="flex items-center gap-2.5 no-underline max-sm:hidden">
@@ -49,14 +49,14 @@ const navItems = [
           <img
             src="/Logo_Be-Mind%20night.svg"
             alt="BeMind Power"
-            class="h-10 w-auto"
+            class="h-8 w-auto"
           />
         </a>
         
         <!-- Botón hamburguesa -->
         <button
           id="hamburger-btn"
-          class="hamburger-button glass flex items-center justify-center w-11 h-11 text-white transition-all hover:bg-white/20"
+          class="hamburger-button glass flex items-center justify-center w-10 h-10 text-white transition-all hover:bg-white/20"
           type="button"
           aria-label="Abrir menú"
           aria-controls="mobile-menu"
@@ -95,23 +95,23 @@ const navItems = [
         </button>
       </div>
 
-      <!-- Menú desplegable móvil -->
+      <!-- Menú desplegable móvil - optimizado para iPhone 7 -->
       <div
         id="mobile-menu"
         data-open="false"
-        class="mobile-menu-panel w-full mt-4 origin-top
-               flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl px-6 py-5
+        class="mobile-menu-panel w-full mt-3 origin-top
+               flex flex-col items-center justify-center rounded-xl border border-white/10 bg-black/70 backdrop-blur-xl px-4 py-4
                opacity-0 translate-y-[-10px] scale-95 pointer-events-none transition-all duration-300 ease-out
                max-h-0 overflow-hidden"
       >
         <nav class="w-full" aria-label="Mobile">
-          <div class="flex flex-col items-center justify-center gap-4 text-center">
+          <div class="flex flex-col items-center justify-center gap-2 text-center">
             {navItems.map((item) => (
               <a
                 href={item.href}
                 class:list={[
-                  'mobile-menu-item whitespace-nowrap text-[15px] text-white py-2 px-4 rounded-lg hover:bg-white/10 transition-colors',
-                  item.isActive ? 'font-black' : 'font-normal'
+                  'mobile-menu-item whitespace-nowrap text-sm text-white py-2 px-4 rounded-lg hover:bg-white/10 transition-colors w-full',
+                  item.isActive ? 'font-bold' : 'font-normal'
                 ]}
               >
                 <span data-i18n={item.key}>{item.label}</span>
@@ -120,9 +120,29 @@ const navItems = [
           </div>
         </nav>
 
-        <div class="w-full h-px bg-white/10 my-2"></div>
+        <div class="w-full h-px bg-white/10 my-3"></div>
 
-        <LanguageSwitcher size="sm" />
+        <!-- Selector de idiomas inline para móvil -->
+        <div class="language-grid w-full">
+          <p class="text-white/50 text-[11px] text-center mb-2" data-i18n="menu.selectLanguage">Seleccionar idioma</p>
+          <div class="flex items-center justify-center gap-3">
+            <button type="button" class="mobile-lang-btn" data-lang="en" aria-label="English">
+              <span class="text-xl">🇺🇸</span>
+            </button>
+            <button type="button" class="mobile-lang-btn" data-lang="es" aria-label="Español">
+              <span class="text-xl">🇪🇸</span>
+            </button>
+            <button type="button" class="mobile-lang-btn" data-lang="pt" aria-label="Português">
+              <span class="text-xl">🇧🇷</span>
+            </button>
+            <button type="button" class="mobile-lang-btn" data-lang="zh" aria-label="中文">
+              <span class="text-xl">🇨🇳</span>
+            </button>
+            <button type="button" class="mobile-lang-btn" data-lang="ar" aria-label="العربية">
+              <span class="text-xl">🇸🇦</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -134,7 +154,8 @@ const navItems = [
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
-    max-height: 400px;
+    max-height: 320px;
+    overflow: hidden;
   }
 
   /* Alternar iconos del hamburger */
@@ -145,10 +166,36 @@ const navItems = [
   .hamburger-button[aria-expanded='true'] .close-icon {
     display: block;
   }
+
+  /* Botones de idioma en móvil - optimizado para iPhone 7 */
+  .mobile-lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-lang-btn:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.95);
+  }
+
+  .mobile-lang-btn[aria-selected="true"] {
+    background: rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.6);
+  }
 </style>
 
 <script>
   import { $menuOpen, toggleMenu, closeMenu } from '../stores';
+  import { $lang, setLanguage, type Lang } from '../stores';
 
   // Inicializar menú cuando el DOM esté listo
   function initMobileMenu(): void {
@@ -156,6 +203,10 @@ const navItems = [
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (!hamburgerBtn || !mobileMenu) return;
+    
+    // Evitar inicialización duplicada
+    if (hamburgerBtn.hasAttribute('data-initialized')) return;
+    hamburgerBtn.setAttribute('data-initialized', 'true');
 
     // Suscribirse a cambios del store
     $menuOpen.subscribe((isOpen) => {
@@ -189,6 +240,47 @@ const navItems = [
         closeMenu();
       }
     });
+
+    // Inicializar botones de idioma en móvil
+    initMobileLangButtons();
+  }
+
+  function initMobileLangButtons(): void {
+    const langButtons = document.querySelectorAll<HTMLButtonElement>('.mobile-lang-btn');
+    
+    if (langButtons.length === 0) return;
+    
+    // Evitar inicialización duplicada
+    const firstBtn = langButtons[0];
+    if (firstBtn.hasAttribute('data-initialized')) return;
+    firstBtn.setAttribute('data-initialized', 'true');
+    
+    // Actualizar estado visual de los botones
+    const updateLangButtons = (currentLang: Lang): void => {
+      langButtons.forEach((btn) => {
+        const btnLang = btn.getAttribute('data-lang');
+        btn.setAttribute('aria-selected', String(btnLang === currentLang));
+      });
+    };
+
+    // Inicializar con el idioma actual
+    updateLangButtons($lang.get());
+
+    // Suscribirse a cambios de idioma
+    $lang.subscribe(updateLangButtons);
+
+    // Agregar click handlers a cada botón
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const lang = this.getAttribute('data-lang') as Lang;
+        console.log('Language button clicked:', lang);
+        if (lang) {
+          setLanguage(lang);
+        }
+      });
+    });
   }
 
   // Ejecutar cuando el DOM esté listo
@@ -197,4 +289,7 @@ const navItems = [
   } else {
     initMobileMenu();
   }
+
+  // También para View Transitions de Astro
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>

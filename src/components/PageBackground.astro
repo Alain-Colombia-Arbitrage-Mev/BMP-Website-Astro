@@ -1,0 +1,61 @@
+---
+/**
+ * PageBackground - Componente de fondo con brillo azul central
+ * 
+ * Especificaciones de Figma:
+ * - Fondo: #000000 (negro)
+ * - Elipse central: 836x836px, #2836E9, mix-blend-mode: hard-light, blur: 113.2px
+ * 
+ * Uso:
+ * <PageBackground />
+ */
+---
+
+<div class="page-background">
+  <!-- Elipse azul central con efecto -->
+  <div class="ellipse-glow"></div>
+</div>
+
+<style>
+  .page-background {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    z-index: -30;
+    overflow: hidden;
+  }
+
+  /* Elipse azul central - especificaciones de Figma (reducido) */
+  .ellipse-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 650px;
+    border-radius: 650px;
+    background: #2836E9;
+    mix-blend-mode: hard-light;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  /* Responsive para móviles - escalar proporcionalmente */
+  @media (max-width: 768px) {
+    .ellipse-glow {
+      width: 400px;
+      height: 400px;
+      border-radius: 400px;
+      filter: blur(70px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ellipse-glow {
+      width: 320px;
+      height: 320px;
+      border-radius: 320px;
+      filter: blur(50px);
+    }
+  }
+</style>

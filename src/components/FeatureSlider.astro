@@ -1,10 +1,43 @@
 ---
 import FeatureCard from './FeatureCard.astro';
 
-// Datos de las tarjetas del slider
+// Datos de las tarjetas del slider - 9 tarjetas, Chat en el centro (índice 4)
 const features = [
   {
     image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Comunidad',
+    description: 'Conecta con personas afines a ti.',
+    titleKey: 'features.community.title',
+    descriptionKey: 'features.community.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Salud Mental',
+    description: 'Bienestar emocional con apoyo inteligente.',
+    titleKey: 'features.mentalHealth.title',
+    descriptionKey: 'features.mentalHealth.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'A.I. Finanzas',
+    description: 'Gestión financiera inteligente y personalizada.',
+    titleKey: 'features.finance.title',
+    descriptionKey: 'features.finance.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Wallet',
+    description: 'Tu billetera digital segura y conectada.',
+    titleKey: 'features.wallet.title',
+    descriptionKey: 'features.wallet.description'
+  },
+  {
+    // CHAT - Siempre en el centro (índice 4)
+    image: '/images/Chat.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Chat',
     description: 'Comunicación segura, instantánea e inteligente.',
@@ -26,57 +59,76 @@ const features = [
     description: 'Experiencias inmersivas y juegos colaborativos.',
     titleKey: 'features.gaming.title',
     descriptionKey: 'features.gaming.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Educación',
+    description: 'Aprende y crece con contenido personalizado.',
+    titleKey: 'features.education.title',
+    descriptionKey: 'features.education.description'
+  },
+  {
+    image: '/images/Chat.png',
+    logo: '/images/logohorizontal.svg',
+    title: 'Marketplace',
+    description: 'Compra y vende de forma segura.',
+    titleKey: 'features.marketplace.title',
+    descriptionKey: 'features.marketplace.description'
   }
 ];
+
+// Índice inicial - Chat siempre activo primero (posición 4 = centro de 9)
+const CHAT_INDEX = 4;
 ---
 
-<section class="feature-slider relative w-full py-16">
-  <div class="relative max-w-7xl mx-auto px-6">
-    <!-- Contenedor del slider -->
-    <div class="slider-container relative overflow-hidden">
+<section class="feature-slider relative w-full h-[calc(100dvh-60px)] sm:h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
+  <div class="slider-wrapper relative w-full flex flex-col items-center justify-center">
+    <!-- Contenedor del slider con overflow visible -->
+    <div class="slider-container relative w-full overflow-visible">
       <div 
         id="slider-track" 
-        class="slider-track flex gap-8 transition-transform duration-500 ease-out"
+        class="slider-track flex items-center justify-center"
+        data-initial-index={CHAT_INDEX}
       >
         {features.map((feature, index) => (
-          <div class="slider-item flex-shrink-0 pt-12" data-index={index}>
+          <div 
+            class="slider-item absolute" 
+            data-index={index}
+            style={`--item-index: ${index};`}
+          >
             <FeatureCard {...feature} />
           </div>
         ))}
       </div>
     </div>
 
-    <!-- Controles de navegación -->
-    <div class="flex items-center justify-center gap-4 mt-12">
+    <!-- Título y controles de navegación -->
+    <div class="flex items-center justify-center gap-3 sm:gap-8 mt-4 sm:mt-8">
       <!-- Botón anterior -->
       <button 
         id="prev-btn"
-        class="nav-btn glass w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        class="nav-btn w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center text-white/60 hover:text-white transition-all"
         aria-label="Anterior"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
-      <!-- Indicadores -->
-      <div id="slider-dots" class="flex items-center gap-3">
-        {features.map((_, index) => (
-          <button 
-            class="slider-dot w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-white/50"
-            data-index={index}
-            aria-label={`Ir a slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      <!-- Título dinámico -->
+      <h2 id="slider-title" class="slider-title text-white text-center">
+        <span class="block text-lg sm:text-3xl md:text-4xl font-bold">Conoce el</span>
+        <span class="block text-lg sm:text-3xl md:text-4xl font-bold">nuevo chat</span>
+      </h2>
 
       <!-- Botón siguiente -->
       <button 
         id="next-btn"
-        class="nav-btn glass w-12 h-12 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+        class="nav-btn w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center text-white/60 hover:text-white transition-all"
         aria-label="Siguiente"
       >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
@@ -85,68 +137,220 @@ const features = [
 </section>
 
 <style>
-  .slider-container {
-    /* Permitir que las tarjetas sobresalgan */
-    padding-top: 2rem;
+  .slider-wrapper {
+    padding: 2rem 0;
   }
 
-  .slider-dot.active {
-    background-color: rgb(139, 92, 246);
-    width: 2rem;
+  .slider-container {
+    height: 380px;
+    position: relative;
+  }
+
+  .slider-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slider-title {
+    font-family: 'Inter', sans-serif;
+    min-width: 160px;
   }
 
   .nav-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.2;
     cursor: not-allowed;
   }
 
-  /* Centrar la tarjeta activa en pantallas grandes */
+  /* Tarjetas posicionadas absolutamente */
+  .slider-item {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    left: 50%;
+    top: 50%;
+  }
+
+  /* Tarjeta activa - más grande y centrada */
+  .slider-item.active {
+    opacity: 1;
+    filter: blur(0);
+    z-index: 10;
+  }
+
+  /* Tarjetas adyacentes (distancia 1) */
+  .slider-item.distance-1 {
+    opacity: 0.85;
+    filter: blur(1px);
+    z-index: 8;
+  }
+
+  /* Tarjetas a distancia 2 */
+  .slider-item.distance-2 {
+    opacity: 0.65;
+    filter: blur(2px);
+    z-index: 6;
+  }
+
+  /* Tarjetas a distancia 3 */
+  .slider-item.distance-3 {
+    opacity: 0.45;
+    filter: blur(3px);
+    z-index: 4;
+  }
+
+  /* Tarjetas más lejanas (distancia 4) */
+  .slider-item.distance-4 {
+    opacity: 0.3;
+    filter: blur(4px);
+    z-index: 2;
+  }
+
   @media (min-width: 768px) {
-    .slider-track {
-      justify-content: center;
+    .slider-container {
+      height: 450px;
+    }
+    
+    .slider-title {
+      min-width: 280px;
+    }
+  }
+
+  /* Móviles pequeños (iPhone 7 y similares) */
+  @media (max-width: 480px) {
+    .slider-container {
+      height: 320px;
+    }
+    
+    .slider-title {
+      min-width: 140px;
     }
   }
 </style>
 
 <script>
+  import { t, $lang } from '../stores';
+
+  // Títulos CTA por índice de slide - debe coincidir con el orden de features (9 tarjetas)
+  const ctaKeys = [
+    'features.community.cta',
+    'features.mentalHealth.cta',
+    'features.finance.cta',
+    'features.wallet.cta',
+    'features.chat.cta',        // índice 4 - Chat en el centro
+    'features.streaming.cta',
+    'features.gaming.cta',
+    'features.education.cta',
+    'features.marketplace.cta'
+  ];
+
+  // Índice de Chat (debe coincidir con CHAT_INDEX en el frontmatter)
+  const CHAT_INDEX = 4;
+
+  // Escalas según distancia desde la tarjeta activa
+  const SCALES = {
+    0: 1.0,    // activa
+    1: 0.85,   // adyacente
+    2: 0.72,   // distancia 2
+    3: 0.62,   // distancia 3
+    4: 0.52    // distancia 4+
+  };
+
   function initSlider(): void {
-    const track = document.getElementById('slider-track');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const dots = document.querySelectorAll('.slider-dot');
-    const items = document.querySelectorAll('.slider-item');
+    const track = document.getElementById('slider-track') as HTMLElement;
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement;
+    const sliderTitle = document.getElementById('slider-title');
+    const items = document.querySelectorAll<HTMLElement>('.slider-item');
 
     if (!track || !prevBtn || !nextBtn || items.length === 0) return;
 
-    let currentIndex = 0;
+    // Evitar reinicialización
+    if (track.hasAttribute('data-initialized')) return;
+    track.setAttribute('data-initialized', 'true');
+
+    // Iniciar en Chat (siempre activo primero - índice 4)
+    let currentIndex = CHAT_INDEX;
     const totalItems = items.length;
 
+    // Obtener dimensiones base de la tarjeta
+    const getCardWidth = () => {
+      return window.innerWidth < 640 ? 220 : 320;
+    };
+
+    const getGap = () => {
+      return window.innerWidth < 640 ? 20 : 40;
+    };
+
+    // Actualizar el título CTA
+    const updateTitle = (): void => {
+      if (sliderTitle) {
+        const ctaText = t(ctaKeys[currentIndex]);
+        const lines = ctaText.split('\n');
+        sliderTitle.innerHTML = lines.map(line => 
+          `<span class="block text-lg sm:text-3xl md:text-4xl font-bold">${line}</span>`
+        ).join('');
+      }
+    };
+
     const updateSlider = (): void => {
-      // Calcular el desplazamiento
-      const itemWidth = items[0].getBoundingClientRect().width;
-      const gap = 32; // gap-8 = 2rem = 32px
-      const offset = currentIndex * (itemWidth + gap);
+      const cardWidth = getCardWidth();
+      const gap = getGap();
 
-      // En pantallas grandes, centrar
-      const containerWidth = track.parentElement?.getBoundingClientRect().width || 0;
-      const centerOffset = (containerWidth - itemWidth) / 2;
+      // Posicionar cada tarjeta
+      items.forEach((item, index) => {
+        const distance = index - currentIndex;
+        const absDistance = Math.abs(distance);
+        
+        // Limpiar clases anteriores
+        item.classList.remove('active', 'distance-1', 'distance-2', 'distance-3', 'distance-4');
+        
+        // Agregar clase según distancia
+        if (absDistance === 0) {
+          item.classList.add('active');
+        } else if (absDistance === 1) {
+          item.classList.add('distance-1');
+        } else if (absDistance === 2) {
+          item.classList.add('distance-2');
+        } else if (absDistance === 3) {
+          item.classList.add('distance-3');
+        } else {
+          item.classList.add('distance-4');
+        }
 
-      track.style.transform = `translateX(${centerOffset - offset}px)`;
+        // Calcular escala
+        const scaleKey = Math.min(absDistance, 4) as keyof typeof SCALES;
+        const scale = SCALES[scaleKey];
 
-      // Actualizar dots
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+        // Calcular posición X
+        // Cada tarjeta se posiciona según su distancia del centro
+        let xOffset = 0;
+        
+        for (let i = 0; i < absDistance; i++) {
+          const prevScaleKey = Math.min(i, 4) as keyof typeof SCALES;
+          const nextScaleKey = Math.min(i + 1, 4) as keyof typeof SCALES;
+          const prevScale = SCALES[prevScaleKey];
+          const nextScale = SCALES[nextScaleKey];
+          xOffset += (cardWidth * prevScale / 2) + gap + (cardWidth * nextScale / 2);
+        }
+
+        if (distance < 0) xOffset = -xOffset;
+
+        // Aplicar transformación
+        item.style.transform = `translate(-50%, -50%) translateX(${xOffset}px) scale(${scale})`;
       });
+
+      // Actualizar título
+      updateTitle();
 
       // Actualizar botones
       prevBtn.disabled = currentIndex === 0;
       nextBtn.disabled = currentIndex === totalItems - 1;
     };
 
-    const goToSlide = (index: number): void => {
-      currentIndex = Math.max(0, Math.min(index, totalItems - 1));
-      updateSlider();
-    };
+    // Actualizar título cuando cambie el idioma
+    $lang.subscribe(() => {
+      updateTitle();
+    });
 
     const nextSlide = (): void => {
       if (currentIndex < totalItems - 1) {
@@ -166,20 +370,15 @@ const features = [
     prevBtn.addEventListener('click', prevSlide);
     nextBtn.addEventListener('click', nextSlide);
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => goToSlide(index));
-    });
-
     // Soporte para gestos táctiles
     let touchStartX = 0;
-    let touchEndX = 0;
 
-    track.addEventListener('touchstart', (e: TouchEvent) => {
+    track.parentElement?.addEventListener('touchstart', (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    track.addEventListener('touchend', (e: TouchEvent) => {
-      touchEndX = e.changedTouches[0].screenX;
+    track.parentElement?.addEventListener('touchend', (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].screenX;
       const diff = touchStartX - touchEndX;
       
       if (Math.abs(diff) > 50) {
@@ -210,4 +409,13 @@ const features = [
   } else {
     initSlider();
   }
+
+  // Para View Transitions de Astro
+  document.addEventListener('astro:page-load', () => {
+    const track = document.getElementById('slider-track');
+    if (track) {
+      track.removeAttribute('data-initialized');
+    }
+    initSlider();
+  });
 </script>

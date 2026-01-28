@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'OPTIFutura';
+  src: url('/font/OPTIFutura-ExtraBlackCond.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply m-0 p-0 box-border;
@@ -8,7 +16,7 @@
   html,
   body {
     @apply w-full min-h-full font-sans;
-    background-color: #020617;
+    background-color: transparent;
     color: white;
   }
 

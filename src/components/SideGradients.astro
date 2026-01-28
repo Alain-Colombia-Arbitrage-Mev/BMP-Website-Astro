@@ -1,0 +1,43 @@
+---
+/**
+ * SideGradients - Componente de gradientes laterales
+ * 
+ * Uso:
+ * <SideGradients />
+ * 
+ * Este componente crea dos gradientes suaves en los lados izquierdo y derecho
+ * que se desvanecen hacia el centro, creando un efecto de viñeta lateral.
+ */
+---
+
+<div class="side-fade side-fade-left"></div>
+<div class="side-fade side-fade-right"></div>
+
+<style>
+  /* Gradientes laterales suaves */
+  .side-fade {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    z-index: -20;
+    pointer-events: none;
+  }
+
+  .side-fade-left {
+    left: 0;
+    background: linear-gradient(to right, #0B0040 0%, rgba(11, 0, 64, 0.8) 30%, rgba(11, 0, 64, 0) 100%);
+  }
+
+  .side-fade-right {
+    right: 0;
+    background: linear-gradient(to left, #0B0040 0%, rgba(11, 0, 64, 0.8) 30%, rgba(11, 0, 64, 0) 100%);
+  }
+
+  /* Responsive para móviles */
+  @media (max-width: 768px) {
+    .side-fade {
+      width: 30%;
+    }
+  }
+</style>
