@@ -1,125 +1,24 @@
 ---
+// Primera hoja / primera página del sitio.
+// Diseño de referencia: home1.pen (frame "Home 11").
 import Layout from '../layouts/Layout.astro';
-import HomeHeader from '../components/HomeHeader.astro';
-import VideoHeroBackground from '../components/VideoHeroBackground.astro';
+import WelcomeHeader from '../components/WelcomeHeader.astro';
+import GeometricBackground from '../components/GeometricBackground.astro';
 ---
 
-<Layout title="BeMind Power" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="intro-page">
-  <!-- Contenedor fullscreen -->
-  <main class="relative h-[100dvh] w-screen overflow-hidden">
-    <!-- Video Background -->
-    <VideoHeroBackground
-      videoSrc="https://video.veltlix.com/Prehome%20Bmp%20-%20Presentacio%CC%81n%2002.mp4"
-    />
-
-    <HomeHeader />
-
-    <!-- Skip Button - optimizado para móviles pequeños -->
-    <button 
-      id="skip-intro-btn"
-      class="skip-btn glass absolute z-10 flex items-center gap-1.5 sm:gap-2 text-[#e3e3e3] hover:bg-white/10 hover:text-white transition-all"
-    >
-      <span data-i18n="skip">Omitir Intro</span>
-      <svg class="skip-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-      </svg>
-    </button>
-  </main>
-
-  <style>
-    .skip-btn {
-      bottom: 16px;
-      right: 16px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 9999px;
-    }
-
-    .skip-icon {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* iPhone 6/7/8 y similares (375px+) */
-    @media (min-width: 375px) {
-      .skip-btn {
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 16px;
-        font-size: 13px;
-      }
-
-      .skip-icon {
-        width: 16px;
-        height: 16px;
-      }
-    }
-
-    /* Tablets y pantallas medianas */
-    @media (min-width: 640px) {
-      .skip-btn {
-        bottom: 32px;
-        right: 32px;
-        padding: 12px 20px;
-        font-size: 16px;
-      }
-
-      .skip-icon {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    /* Desktop */
-    @media (min-width: 1024px) {
-      .skip-btn {
-        bottom: 48px;
-        right: 64px;
-        padding: 12px 24px;
-        font-size: 20px;
-      }
-    }
-
-    /* Desktop grande */
-    @media (min-width: 1536px) {
-      .skip-btn {
-        font-size: 24px;
-      }
-    }
-  </style>
-
-  <script>
-    function initVideoNavigation(): void {
-      const video = document.querySelector('video');
-      const skipBtn = document.getElementById('skip-intro-btn');
-
-      const navigateToHome = (): void => {
-        // Transición suave antes de navegar
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.5s ease-out';
-        
-        setTimeout(() => {
-          window.location.href = '/home';
-        }, 500);
-      };
-
-      // Navegar cuando termine el video
-      if (video) {
-        video.addEventListener('ended', navigateToHome);
-      }
-
-      // Navegar al hacer click en "Omitir Intro"
-      if (skipBtn) {
-        skipBtn.addEventListener('click', navigateToHome);
-      }
-    }
-
-    // Ejecutar cuando el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initVideoNavigation);
-    } else {
-      initVideoNavigation();
-    }
-  </script>
+<Layout title="BeMind Power - Bienvenida" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="welcome-page">
+  <!-- Navbar flotante -->
+  <WelcomeHeader />
+  
+  <!-- Hero completo con todos los elementos -->
+  <GeometricBackground />
 </Layout>
+
+<style is:global>
+  body.welcome-page {
+    background: #000000;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+</style>

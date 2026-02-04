@@ -1,0 +1,98 @@
+---
+// Botones de App Store y Google Play
+interface Props {
+  appStoreUrl?: string;
+  googlePlayUrl?: string;
+}
+
+const { 
+  appStoreUrl = "#", 
+  googlePlayUrl = "#" 
+} = Astro.props;
+---
+
+<div class="hero-store-buttons">
+  <a href={appStoreUrl} class="store-btn" aria-label="Download on App Store">
+    <img src="/images/app-store-badge.svg" alt="Download on App Store" />
+  </a>
+  <a href={googlePlayUrl} class="store-btn" aria-label="Get it on Google Play">
+    <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+  </a>
+</div>
+
+<style>
+  .hero-store-buttons {
+    display: flex;
+    gap: 30px;
+  }
+
+  .store-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    box-shadow: 
+      0 0 25px 0px rgba(59, 130, 246, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .store-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 
+      0 0 35px 0px rgba(59, 130, 246, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .store-btn img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 1024px) {
+    .store-btn {
+      width: 200px;
+      height: 58px;
+    }
+
+    .store-btn img {
+      height: 35px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-store-buttons {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .store-btn {
+      width: 200px;
+      height: 55px;
+    }
+
+    .store-btn img {
+      height: 32px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .store-btn {
+      width: 180px;
+      height: 50px;
+    }
+
+    .store-btn img {
+      height: 28px;
+    }
+  }
+</style>

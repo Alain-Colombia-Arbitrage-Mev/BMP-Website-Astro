@@ -1,0 +1,45 @@
+---
+// Contenedor del contenido textual del hero (logo, título, descripción, botones)
+import HeroLogoText from './HeroLogoText.astro';
+import HeroTitle from './HeroTitle.astro';
+import HeroDescription from './HeroDescription.astro';
+import HeroStoreButtons from './HeroStoreButtons.astro';
+---
+
+<div class="hero-content">
+  <HeroLogoText />
+  <HeroTitle />
+  <HeroDescription />
+  <HeroStoreButtons />
+</div>
+
+<style>
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 15vh;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-content {
+      padding-top: 12vh;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding-top: 12vh;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding-top: 10vh;
+    }
+  }
+</style>

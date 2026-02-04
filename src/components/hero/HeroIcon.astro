@@ -1,0 +1,57 @@
+---
+// Icono decorativo individual
+interface Props {
+  src: string;
+  position: 'left-top' | 'left-bottom' | 'right-top' | 'right-mid';
+  blur?: number;
+}
+
+const { src, position, blur = 0 } = Astro.props;
+---
+
+<div class={`hero-icon hero-icon-${position}`} style={blur > 0 ? `filter: blur(${blur}px)` : ''}>
+  <img src={src} alt="" />
+</div>
+
+<style>
+  .hero-icon {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .hero-icon img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-icon-left-top {
+    left: 0;
+    top: 35%;
+    width: min(139px, 10vw);
+  }
+
+  .hero-icon-right-top {
+    right: 0;
+    top: 27%;
+    width: min(139px, 10vw);
+  }
+
+  .hero-icon-right-mid {
+    right: 0;
+    top: 54%;
+    width: min(174px, 12vw);
+  }
+
+  .hero-icon-left-bottom {
+    left: 0;
+    bottom: 0;
+    width: min(185px, 13vw);
+  }
+
+  @media (max-width: 768px) {
+    .hero-icon {
+      display: none;
+    }
+  }
+</style>

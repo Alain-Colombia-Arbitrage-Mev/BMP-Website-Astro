@@ -1,0 +1,63 @@
+---
+// Capa de fondo: negro + resplandor azul
+---
+
+<div class="hero-background">
+  <div class="hero-bg-base"></div>
+  <div class="hero-glow"></div>
+</div>
+
+<style>
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-bg-base {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1284px, 150vw);
+    height: min(1284px, 150vw);
+    background: radial-gradient(
+      circle,
+      rgba(40, 54, 233, 0.89) 0%,
+      rgba(40, 54, 233, 0.5) 40%,
+      transparent 70%
+    );
+    filter: blur(198px);
+  }
+
+  @media (max-width: 1024px) {
+    .hero-glow {
+      width: min(900px, 130vw);
+      height: min(900px, 130vw);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-glow {
+      width: min(700px, 150vw);
+      height: min(700px, 150vw);
+      filter: blur(100px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-glow {
+      width: min(500px, 180vw);
+      height: min(500px, 180vw);
+      filter: blur(60px);
+    }
+  }
+</style>

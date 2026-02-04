@@ -1,0 +1,54 @@
+---
+// Imagen del teléfono con rotación
+interface Props {
+  src?: string;
+  rotation?: number;
+}
+
+const { 
+  src = "/images/telefono.png",
+  rotation = -10
+} = Astro.props;
+---
+
+<div class="hero-phone" style={`--rotation: ${rotation}deg`}>
+  <img src={src} alt="Teléfono BeMind" />
+</div>
+
+<style>
+  .hero-phone {
+    position: absolute;
+    left: 50%;
+    bottom: -20%;
+    transform: translateX(-50%) rotate(var(--rotation, -10deg));
+    width: min(450px, 35vw);
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .hero-phone img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-phone {
+      width: min(400px, 40vw);
+      bottom: -18%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-phone {
+      width: min(320px, 50vw);
+      bottom: -15%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-phone {
+      width: min(260px, 55vw);
+      bottom: -18%;
+    }
+  }
+</style>

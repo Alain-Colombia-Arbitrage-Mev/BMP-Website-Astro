@@ -1,0 +1,20 @@
+---
+// Contenedor de todos los iconos decorativos
+import HeroIcon from './HeroIcon.astro';
+---
+
+<div class="hero-icons">
+  <HeroIcon src="/images/icono2.png" position="left-top" blur={16} />
+  <HeroIcon src="/images/icono2.png" position="right-top" blur={16} />
+  <HeroIcon src="/images/icono5.png" position="right-mid" />
+  <HeroIcon src="/images/icono3.png" position="left-bottom" />
+</div>
+
+<style>
+  .hero-icons {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+</style>

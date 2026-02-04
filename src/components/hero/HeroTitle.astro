@@ -1,0 +1,36 @@
+---
+// Título principal del hero
+interface Props {
+  text?: string;
+}
+
+const { text = "Una experiencia sin precedentes" } = Astro.props;
+---
+
+<h1 class="hero-title">{text}</h1>
+
+<style>
+  .hero-title {
+    color: #ffffff;
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 400;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0 0 1vh 0;
+    padding: 0 5vw;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: clamp(18px, 4vw, 28px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+</style>

@@ -1,0 +1,404 @@
+---
+// Fondo completo de la primera hoja según home1.pen (frame "Home 11" - 1728×1117)
+// Este componente incluye TODOS los elementos visuales del hero
+---
+
+<div class="hero-container">
+  <!-- ========== CAPA 1: FONDO ========== -->
+  <div class="hero-layer hero-layer-bg">
+    <div class="hero-bg-base"></div>
+    <div class="hero-glow"></div>
+  </div>
+
+  <!-- ========== CAPA 2: LOGO GEOMÉTRICO ========== -->
+  <div class="hero-layer hero-layer-logo">
+    <div class="hero-logo-geometric">
+      <img src="/Logo-bmp.svg" alt="BeMind Power Logo" />
+    </div>
+  </div>
+
+  <!-- ========== CAPA 3: CONTENIDO TEXTUAL ========== -->
+  <div class="hero-layer hero-layer-content">
+    <!-- Logo textual BeMind Power -->
+    <div class="hero-logo-text">
+      <img src="/images/LOGOBLANCO.svg" alt="BeMind Power" />
+    </div>
+
+    <!-- Título principal -->
+    <h1 class="hero-title">Una experiencia sin precedentes</h1>
+
+    <!-- Texto descriptivo -->
+    <p class="hero-description">
+      Aquí no solo tienes una app. Tienes tu red sin complicaciones: escribe, compra, paga, explora y transforma tu día… con la claridad de Be Mind Power.
+    </p>
+
+    <!-- Botones de descarga -->
+    <div class="hero-store-buttons">
+      <a href="#" class="store-btn">
+        <img src="/images/app-store-badge.svg" alt="Download on App Store" />
+      </a>
+      <a href="#" class="store-btn">
+        <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+      </a>
+    </div>
+  </div>
+
+  <!-- ========== CAPA 4: ICONOS DECORATIVOS ========== -->
+  <div class="hero-layer hero-layer-icons">
+    <div class="hero-icon hero-icon-left-top">
+      <img src="/images/icono2.png" alt="" />
+    </div>
+    <div class="hero-icon hero-icon-right-top">
+      <img src="/images/icono2.png" alt="" />
+    </div>
+    <div class="hero-icon hero-icon-right-mid">
+      <img src="/images/icono5.png" alt="" />
+    </div>
+    <div class="hero-icon hero-icon-left-bottom">
+      <img src="/images/icono3.png" alt="" />
+    </div>
+  </div>
+
+  <!-- ========== CAPA 5: TELÉFONO ========== -->
+  <div class="hero-layer hero-layer-phone">
+    <div class="hero-phone">
+      <img src="/images/telefono.png" alt="Teléfono BeMind" />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ========== CONTENEDOR PRINCIPAL ========== */
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* ========== CAPAS BASE ========== */
+  .hero-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ========== CAPA 1: FONDO ========== */
+  .hero-layer-bg {
+    z-index: 1;
+  }
+
+  .hero-bg-base {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(1284px, 150vw);
+    height: min(1284px, 150vw);
+    background: radial-gradient(
+      circle,
+      rgba(40, 54, 233, 0.89) 0%,
+      rgba(40, 54, 233, 0.5) 40%,
+      transparent 70%
+    );
+    filter: blur(198px);
+  }
+
+  /* ========== CAPA 2: LOGO GEOMÉTRICO ========== */
+  .hero-layer-logo {
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-logo-geometric {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(590px, 50vw);
+  }
+
+  .hero-logo-geometric img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ========== CAPA 3: CONTENIDO TEXTUAL ========== */
+  .hero-layer-content {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 15vh;
+    pointer-events: none;
+  }
+
+  .hero-logo-text {
+    width: min(275px, 30vw);
+    margin-bottom: 2vh;
+    pointer-events: auto;
+  }
+
+  .hero-logo-text img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 400;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0 0 1vh 0;
+    padding: 0 5vw;
+  }
+
+  .hero-description {
+    color: #ffffff;
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 0 2vh 0;
+    padding: 0 5vw;
+    max-width: 817px;
+  }
+
+  .hero-store-buttons {
+    display: flex;
+    gap: 30px;
+    pointer-events: auto;
+  }
+
+  .store-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    box-shadow: 
+      0 0 25px 0px rgba(59, 130, 246, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .store-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 
+      0 0 35px 0px rgba(59, 130, 246, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .store-btn img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ========== CAPA 4: ICONOS DECORATIVOS ========== */
+  .hero-layer-icons {
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .hero-icon {
+    position: absolute;
+  }
+
+  .hero-icon img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-icon-left-top {
+    left: 0;
+    top: 35%;
+    width: min(139px, 10vw);
+    filter: blur(16px);
+  }
+
+  .hero-icon-right-top {
+    right: 0;
+    top: 27%;
+    width: min(139px, 10vw);
+    filter: blur(16px);
+  }
+
+  .hero-icon-right-mid {
+    right: 0;
+    top: 54%;
+    width: min(174px, 12vw);
+  }
+
+  .hero-icon-left-bottom {
+    left: 0;
+    bottom: 0;
+    width: min(185px, 13vw);
+  }
+
+  /* ========== CAPA 5: TELÉFONO ========== */
+  .hero-layer-phone {
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .hero-phone {
+    position: absolute;
+    left: 50%;
+    bottom: -20%;
+    transform: translateX(-50%) rotate(-10deg);
+    width: min(450px, 35vw);
+  }
+
+  .hero-phone img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ========== RESPONSIVE: TABLET (1024px) ========== */
+  @media (max-width: 1024px) {
+    .hero-logo-geometric {
+      width: min(450px, 45vw);
+    }
+
+    .hero-glow {
+      width: min(900px, 130vw);
+      height: min(900px, 130vw);
+    }
+
+    .hero-phone {
+      width: min(400px, 40vw);
+      bottom: -18%;
+    }
+
+    .hero-layer-content {
+      padding-top: 12vh;
+    }
+
+    .store-btn {
+      width: 200px;
+      height: 58px;
+    }
+
+    .store-btn img {
+      height: 35px;
+    }
+  }
+
+  /* ========== RESPONSIVE: MOBILE GRANDE (768px) ========== */
+  @media (max-width: 768px) {
+    .hero-logo-geometric {
+      width: min(350px, 55vw);
+    }
+
+    .hero-glow {
+      width: min(700px, 150vw);
+      height: min(700px, 150vw);
+      filter: blur(100px);
+    }
+
+    .hero-layer-content {
+      padding-top: 12vh;
+    }
+
+    .hero-logo-text {
+      width: min(220px, 40vw);
+    }
+
+    .hero-title {
+      font-size: clamp(18px, 4vw, 28px);
+    }
+
+    .hero-description {
+      font-size: clamp(13px, 2.5vw, 18px);
+    }
+
+    .hero-store-buttons {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .store-btn {
+      width: 200px;
+      height: 55px;
+    }
+
+    .store-btn img {
+      height: 32px;
+    }
+
+    .hero-phone {
+      width: min(320px, 50vw);
+      bottom: -15%;
+    }
+
+    .hero-icon {
+      display: none;
+    }
+  }
+
+  /* ========== RESPONSIVE: MOBILE (480px) ========== */
+  @media (max-width: 480px) {
+    .hero-logo-geometric {
+      width: min(260px, 65vw);
+    }
+
+    .hero-glow {
+      width: min(500px, 180vw);
+      height: min(500px, 180vw);
+      filter: blur(60px);
+    }
+
+    .hero-layer-content {
+      padding-top: 10vh;
+    }
+
+    .hero-logo-text {
+      width: min(180px, 50vw);
+      margin-bottom: 2vh;
+    }
+
+    .hero-title {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .hero-description {
+      font-size: 14px;
+      padding: 0 8vw;
+    }
+
+    .store-btn {
+      width: 180px;
+      height: 50px;
+    }
+
+    .store-btn img {
+      height: 28px;
+    }
+
+    .hero-phone {
+      width: min(260px, 55vw);
+      bottom: -18%;
+    }
+  }
+</style>
