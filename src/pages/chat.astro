@@ -93,11 +93,15 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     .chat-mobile-layout {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       position: relative;
       width: 100%;
       height: 100dvh;
       height: 100vh; /* Fallback */
       overflow: hidden;
+      padding-top: 80px; /* Espacio para el navbar */
+      padding-bottom: 0;
+      box-sizing: border-box;
     }
 
     /* Video de fondo */
@@ -146,22 +150,23 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       z-index: 2;
     }
 
-    /* Contenido superior: contiene título + botones */
+    /* Contenido: título + botones - centrado verticalmente */
     .chat-mobile-content {
       position: relative;
       z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: min(100px, 13vh);
-      padding-bottom: 0.75rem;
-      flex-shrink: 0;
+      justify-content: center;
+      flex: 1;
+      padding: 1rem 5%;
+      gap: 1rem;
     }
 
     /* Título */
     .chat-mobile-title {
       text-align: center;
-      padding: 0 5% 0.5rem 5%;
+      width: 100%;
     }
 
     .chat-title {
@@ -169,20 +174,20 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       display: flex;
       flex-direction: column;
       gap: 0;
-      margin: 0 0 0.4rem 0;
+      margin: 0 0 0.5rem 0;
       line-height: 1.15;
     }
 
     .chat-title-line1 {
       font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
-      font-size: clamp(32px, 9vw, 48px);
+      font-size: clamp(30px, 8vw, 44px);
       font-weight: 900;
       letter-spacing: 0.01em;
     }
 
     .chat-title-line2 {
       font-family: 'Neometric', 'Inter', sans-serif;
-      font-size: clamp(18px, 5vw, 28px);
+      font-size: clamp(17px, 4.5vw, 26px);
       font-weight: 700;
       letter-spacing: 0.01em;
     }
@@ -190,7 +195,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     .chat-subtitle {
       color: #fff;
       font-family: 'Neometric', 'Inter', sans-serif;
-      font-size: clamp(13px, 3.5vw, 16px);
+      font-size: clamp(12px, 3.2vw, 15px);
       font-weight: 400;
       line-height: 1.35;
       margin: 0;
@@ -204,22 +209,22 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0 5%;
+      gap: 0.5rem;
+      width: 100%;
     }
 
     .chat-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: clamp(48px, 7vh, 56px);
+      height: 50px;
       padding: 0 2rem;
-      width: min(280px, 75vw);
+      width: min(260px, 70vw);
       background: #1929ff;
       color: #fff;
       font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
       font-weight: 900;
-      font-size: clamp(14px, 4vw, 16px);
+      font-size: 15px;
       letter-spacing: 0.02em;
       border-radius: 999px;
       text-decoration: none;
@@ -236,15 +241,15 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.4rem;
     }
 
     .chat-store-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: min(240px, 70vw);
-      height: clamp(44px, 6.5vh, 52px);
+      width: min(220px, 62vw);
+      height: 46px;
       padding: 0 16px;
       background: rgba(0, 0, 0, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -261,22 +266,20 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-store-btn img {
-      height: clamp(22px, 3.5vh, 28px);
+      height: 24px;
       width: auto;
       max-width: 100%;
       object-fit: contain;
     }
 
-    /* Slider - ocupa el resto del espacio inferior */
+    /* Slider - altura fija en la parte inferior */
     .chat-mobile-slider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: relative;
       z-index: 5;
-      height: 42vh;
-      min-height: 280px;
-      max-height: 400px;
+      width: 100%;
+      height: 280px;
+      min-height: 250px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -286,12 +289,10 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     .chat-mobile-slider .feature-slider {
       width: 100%;
       height: 100%;
-      min-height: 260px;
     }
 
     .chat-mobile-slider .slider-container {
-      height: 100%;
-      min-height: 240px;
+      height: 220px;
     }
 
     .chat-mobile-slider .slider-wrapper {
@@ -300,155 +301,108 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-slider .slider-nav {
-      margin-top: 0.35rem;
+      margin-top: 0.25rem;
     }
   }
 
-  /* Tablets pequeñas / móviles grandes (601-768px) - ej: iPad Mini landscape, tablets */
+  /* Tablets pequeñas / móviles grandes (601-768px) */
   @media (max-width: 768px) and (min-width: 601px) {
+    .chat-mobile-layout {
+      padding-top: 90px;
+    }
+
     .chat-mobile-content {
-      padding-top: min(110px, 12vh);
+      gap: 1.25rem;
     }
 
     .chat-title-line1 {
-      font-size: clamp(36px, 7vw, 48px);
+      font-size: clamp(34px, 6vw, 44px);
     }
 
     .chat-title-line2 {
-      font-size: clamp(20px, 4vw, 28px);
+      font-size: clamp(19px, 3.5vw, 26px);
     }
 
     .chat-subtitle {
-      font-size: clamp(14px, 2.5vw, 17px);
+      font-size: clamp(13px, 2.2vw, 16px);
     }
 
     .chat-cta {
-      width: min(300px, 60vw);
-      min-height: 54px;
+      width: min(280px, 55vw);
+      height: 54px;
+      font-size: 16px;
     }
 
     .chat-store-btn {
-      width: min(260px, 55vw);
+      width: min(240px, 50vw);
       height: 50px;
     }
 
+    .chat-store-btn img {
+      height: 26px;
+    }
+
     .chat-mobile-slider {
-      height: 45vh;
-      min-height: 320px;
-      max-height: 420px;
+      height: 320px;
+      min-height: 300px;
+    }
+
+    .chat-mobile-slider .slider-container {
+      height: 260px;
     }
   }
 
-  /* Móviles medianos (481-600px) - ej: iPhone Plus, Pixel XL */
+  /* Móviles medianos (481-600px) */
   @media (max-width: 600px) and (min-width: 481px) {
+    .chat-mobile-layout {
+      padding-top: 85px;
+    }
+
     .chat-mobile-content {
-      padding-top: min(95px, 12vh);
-      padding-bottom: 0.6rem;
+      gap: 1rem;
     }
 
     .chat-title-line1 {
-      font-size: clamp(30px, 8vw, 42px);
+      font-size: clamp(30px, 7vw, 40px);
     }
 
     .chat-title-line2 {
-      font-size: clamp(18px, 4.5vw, 26px);
-    }
-
-    .chat-subtitle {
-      font-size: clamp(13px, 3vw, 15px);
-    }
-
-    .chat-mobile-buttons {
-      gap: 0.35rem;
+      font-size: clamp(17px, 4vw, 24px);
     }
 
     .chat-cta {
-      width: min(270px, 72vw);
-      min-height: 50px;
+      width: min(260px, 60vw);
+      height: 52px;
     }
 
     .chat-store-btn {
-      width: min(230px, 65vw);
+      width: min(225px, 55vw);
       height: 48px;
     }
 
     .chat-mobile-slider {
-      height: 40vh;
-      min-height: 290px;
-      max-height: 360px;
-    }
-  }
-
-  /* Móviles estándar (415-480px) - ej: iPhone 14, Pixel 7 */
-  @media (max-width: 480px) and (min-width: 415px) {
-    .chat-mobile-content {
-      padding-top: min(90px, 12vh);
-      padding-bottom: 0.5rem;
-    }
-
-    .chat-mobile-title {
-      padding-bottom: 0.4rem;
-    }
-
-    .chat-title-line1 {
-      font-size: clamp(28px, 8vw, 38px);
-    }
-
-    .chat-title-line2 {
-      font-size: clamp(17px, 4.5vw, 24px);
-    }
-
-    .chat-subtitle {
-      font-size: clamp(12px, 3.2vw, 14px);
-    }
-
-    .chat-mobile-buttons {
-      gap: 0.3rem;
-    }
-
-    .chat-cta {
-      width: min(260px, 70vw);
-      min-height: 48px;
-      font-size: 15px;
-    }
-
-    .chat-store-btn {
-      width: min(220px, 60vw);
-      height: 46px;
-    }
-
-    .chat-store-btn img {
-      height: 24px;
-    }
-
-    .chat-mobile-slider {
-      height: 42vh;
-      min-height: 270px;
-      max-height: 340px;
+      height: 300px;
+      min-height: 280px;
     }
 
     .chat-mobile-slider .slider-container {
-      min-height: 230px;
+      height: 240px;
     }
   }
 
-  /* Móviles pequeños (381-414px) - ej: iPhone 13 Mini, SE */
-  @media (max-width: 414px) and (min-width: 381px) {
+  /* Móviles estándar (415-480px) - iPhone 14, Pixel 7 */
+  @media (max-width: 480px) and (min-width: 415px) {
+    .chat-mobile-layout {
+      padding-top: 80px;
+    }
+
     .chat-mobile-content {
-      padding-top: min(88px, 11vh);
-      padding-bottom: 0.4rem;
-    }
-
-    .chat-mobile-title {
-      padding-bottom: 0.35rem;
-    }
-
-    .chat-title {
-      margin-bottom: 0.3rem;
+      gap: 0.85rem;
+      padding: 0.75rem 5%;
     }
 
     .chat-title-line1 {
-      font-size: clamp(26px, 7.5vw, 34px);
+      font-size: clamp(28px, 7.5vw, 36px);
     }
 
     .chat-title-line2 {
@@ -456,22 +410,21 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-subtitle {
-      font-size: clamp(11px, 3vw, 13px);
-      max-width: 88%;
+      font-size: clamp(12px, 3vw, 14px);
     }
 
     .chat-mobile-buttons {
-      gap: 0.25rem;
+      gap: 0.45rem;
     }
 
     .chat-cta {
-      width: min(250px, 68vw);
-      min-height: 46px;
+      width: min(250px, 65vw);
+      height: 48px;
       font-size: 14px;
     }
 
     .chat-store-btn {
-      width: min(210px, 58vw);
+      width: min(215px, 58vw);
       height: 44px;
     }
 
@@ -480,37 +433,93 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-slider {
-      height: 44vh;
-      min-height: 260px;
-      max-height: 320px;
+      height: 270px;
+      min-height: 250px;
     }
 
     .chat-mobile-slider .slider-container {
-      min-height: 220px;
+      height: 210px;
     }
   }
 
-  /* Móviles muy pequeños (321-380px) - ej: iPhone SE 1gen, Galaxy S mini */
-  @media (max-width: 380px) and (min-width: 321px) {
-    .chat-mobile-content {
-      padding-top: min(85px, 11vh);
-      padding-bottom: 0.35rem;
+  /* Móviles pequeños (381-414px) - iPhone 13 Mini, SE */
+  @media (max-width: 414px) and (min-width: 381px) {
+    .chat-mobile-layout {
+      padding-top: 75px;
     }
 
-    .chat-mobile-title {
-      padding-bottom: 0.3rem;
+    .chat-mobile-content {
+      gap: 0.75rem;
+      padding: 0.5rem 5%;
     }
 
     .chat-title {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.4rem;
     }
 
     .chat-title-line1 {
-      font-size: clamp(24px, 7vw, 32px);
+      font-size: clamp(26px, 7vw, 34px);
     }
 
     .chat-title-line2 {
       font-size: clamp(15px, 4vw, 20px);
+    }
+
+    .chat-subtitle {
+      font-size: clamp(11px, 2.8vw, 13px);
+      max-width: 88%;
+    }
+
+    .chat-mobile-buttons {
+      gap: 0.4rem;
+    }
+
+    .chat-cta {
+      width: min(240px, 64vw);
+      height: 46px;
+      font-size: 14px;
+    }
+
+    .chat-store-btn {
+      width: min(205px, 56vw);
+      height: 42px;
+    }
+
+    .chat-store-btn img {
+      height: 21px;
+    }
+
+    .chat-mobile-slider {
+      height: 260px;
+      min-height: 240px;
+    }
+
+    .chat-mobile-slider .slider-container {
+      height: 200px;
+    }
+  }
+
+  /* Móviles muy pequeños (321-380px) - iPhone SE 1gen */
+  @media (max-width: 380px) and (min-width: 321px) {
+    .chat-mobile-layout {
+      padding-top: 72px;
+    }
+
+    .chat-mobile-content {
+      gap: 0.6rem;
+      padding: 0.4rem 4%;
+    }
+
+    .chat-title {
+      margin-bottom: 0.35rem;
+    }
+
+    .chat-title-line1 {
+      font-size: clamp(24px, 6.5vw, 30px);
+    }
+
+    .chat-title-line2 {
+      font-size: clamp(14px, 3.8vw, 18px);
     }
 
     .chat-subtitle {
@@ -520,19 +529,19 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-buttons {
-      gap: 0.2rem;
+      gap: 0.35rem;
     }
 
     .chat-cta {
-      width: min(230px, 65vw);
-      min-height: 44px;
+      width: min(220px, 62vw);
+      height: 44px;
       font-size: 13px;
       padding: 0 1.5rem;
     }
 
     .chat-store-btn {
-      width: min(195px, 55vw);
-      height: 42px;
+      width: min(190px, 54vw);
+      height: 40px;
       padding: 0 12px;
     }
 
@@ -541,33 +550,32 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-slider {
-      height: 45vh;
-      min-height: 250px;
-      max-height: 300px;
+      height: 250px;
+      min-height: 230px;
     }
 
     .chat-mobile-slider .slider-container {
-      min-height: 210px;
+      height: 190px;
     }
 
     .chat-mobile-slider .slider-nav {
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
   }
 
-  /* Móviles ultra pequeños (<=320px) - ej: iPhone 5, dispositivos antiguos */
+  /* Móviles ultra pequeños (<=320px) - iPhone 5 */
   @media (max-width: 320px) {
-    .chat-mobile-content {
-      padding-top: min(80px, 10vh);
-      padding-bottom: 0.25rem;
+    .chat-mobile-layout {
+      padding-top: 68px;
     }
 
-    .chat-mobile-title {
-      padding: 0 4% 0.25rem 4%;
+    .chat-mobile-content {
+      gap: 0.5rem;
+      padding: 0.3rem 3%;
     }
 
     .chat-title {
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
     }
 
     .chat-title-line1 {
@@ -575,7 +583,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-title-line2 {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .chat-subtitle {
@@ -585,20 +593,19 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-buttons {
-      gap: 0.15rem;
-      padding: 0 4%;
+      gap: 0.3rem;
     }
 
     .chat-cta {
-      width: min(210px, 70vw);
-      min-height: 40px;
+      width: min(200px, 65vw);
+      height: 40px;
       font-size: 12px;
       padding: 0 1.25rem;
     }
 
     .chat-store-btn {
-      width: min(180px, 60vw);
-      height: 38px;
+      width: min(175px, 58vw);
+      height: 36px;
       padding: 0 10px;
     }
 
@@ -607,40 +614,53 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-slider {
-      height: 48vh;
-      min-height: 230px;
-      max-height: 280px;
+      height: 230px;
+      min-height: 210px;
     }
 
     .chat-mobile-slider .slider-container {
-      min-height: 190px;
+      height: 170px;
     }
 
     .chat-mobile-slider .slider-nav {
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
     }
 
     .chat-mobile-slider .nav-btn {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
     }
   }
 
   /* Landscape mode para móviles */
   @media (max-width: 768px) and (max-height: 500px) and (orientation: landscape) {
-    .chat-mobile-content {
-      padding-top: 70px;
-      padding-bottom: 0.25rem;
+    .chat-mobile-layout {
+      padding-top: 60px;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+    }
+
+    .chat-mobile-content {
+      flex: 1;
+      min-width: 50%;
+      padding: 0.5rem 2%;
+      gap: 0.5rem;
     }
 
     .chat-mobile-title {
-      flex: 1;
-      min-width: 200px;
-      padding: 0 2%;
+      padding: 0;
+    }
+
+    .chat-title-line1 {
+      font-size: clamp(20px, 5vw, 28px);
+    }
+
+    .chat-title-line2 {
+      font-size: clamp(12px, 3vw, 18px);
+    }
+
+    .chat-subtitle {
+      font-size: 11px;
     }
 
     .chat-mobile-buttons {
@@ -655,14 +675,31 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       gap: 0.5rem;
     }
 
+    .chat-cta {
+      height: 38px;
+      width: auto;
+      min-width: 140px;
+      font-size: 12px;
+    }
+
+    .chat-store-btn {
+      height: 36px;
+      width: auto;
+      min-width: 130px;
+    }
+
+    .chat-store-btn img {
+      height: 18px;
+    }
+
     .chat-mobile-slider {
-      height: 55vh;
-      min-height: 180px;
-      max-height: 250px;
+      width: 100%;
+      height: 180px;
+      min-height: 160px;
     }
 
     .chat-mobile-slider .slider-container {
-      min-height: 150px;
+      height: 140px;
     }
   }
 </style>
