@@ -30,4 +30,87 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     right: 0;
     bottom: 0;
   }
+
+  /* Ajustes específicos para móviles en /chat */
+  @media (max-width: 768px) {
+    /* Subir el contenido del hero (título, subtítulo, botones) */
+    body.chat-page .home-hero-overlay {
+      padding-top: max(80px, 10vh);
+      padding-bottom: 0;
+    }
+
+    body.chat-page .hero-home-left {
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+
+    body.chat-page .hero-home-left-content {
+      gap: 0.75rem;
+    }
+
+    /* Subir el slider para que las cards se vean más */
+    body.chat-page .home-hero-slider-layer {
+      bottom: 2vh;
+      height: min(340px, 42vh);
+      min-height: 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Ajustes más compactos para pantallas pequeñas */
+    body.chat-page .home-hero-overlay {
+      padding-top: max(70px, 9vh);
+    }
+
+    body.chat-page .hero-home-left-content {
+      gap: 0.6rem;
+    }
+
+    /* Reducir tamaño de los botones de tienda para dar más espacio */
+    body.chat-page .hero-home-badges {
+      gap: 8px;
+    }
+
+    body.chat-page .hero-home-badges .store-btn {
+      width: 180px;
+      height: 46px;
+      min-height: 44px;
+    }
+
+    body.chat-page .hero-home-badges .store-btn img {
+      height: 24px;
+    }
+
+    /* Slider más arriba */
+    body.chat-page .home-hero-slider-layer {
+      bottom: 3vh;
+      height: min(320px, 44vh);
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    body.chat-page .home-hero-overlay {
+      padding-top: max(65px, 8vh);
+    }
+
+    body.chat-page .hero-home-left-content {
+      gap: 0.5rem;
+    }
+
+    body.chat-page .hero-home-cta {
+      min-height: 46px;
+      width: min(180px, 80vw);
+    }
+
+    body.chat-page .hero-home-badges .store-btn {
+      width: 170px;
+      height: 42px;
+    }
+
+    body.chat-page .home-hero-slider-layer {
+      bottom: 4vh;
+      min-height: 240px;
+    }
+  }
 </style>
