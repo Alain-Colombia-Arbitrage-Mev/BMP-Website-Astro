@@ -286,27 +286,40 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       z-index: 5;
       width: 100%;
       flex: 0 0 auto;
-      height: clamp(260px, 42vh, 380px);
+      height: clamp(280px, 45vh, 400px);
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
       padding: 0 2%;
-      margin-top: -2.5rem;
+      margin-top: -2rem;
+      overflow: visible;
     }
 
     .chat-mobile-slider .feature-slider {
       width: 100%;
       height: 100%;
+      overflow: visible;
     }
 
     .chat-mobile-slider .slider-container {
       height: 100%;
-      min-height: 200px;
+      min-height: 240px;
+      overflow: visible;
     }
 
     .chat-mobile-slider .slider-wrapper {
       padding: 0;
       height: 100%;
+      overflow: visible;
+    }
+
+    .chat-mobile-slider .slider-track {
+      overflow: visible;
+    }
+
+    /* Ajustar posición vertical de las tarjetas para que no se corten */
+    .chat-mobile-slider .slider-item {
+      top: 55% !important;
     }
 
     /* Ocultar flechas de navegación en móvil */
@@ -749,7 +762,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-content {
-      padding-top: 3rem;
+      padding-top: 2rem;
       gap: clamp(0.5rem, 1.1vh, 0.8rem);
     }
 
@@ -758,8 +771,12 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-slider {
-      height: clamp(340px, 42vh, 440px);
-      margin-top: -3rem;
+      height: clamp(340px, 46vh, 480px);
+      margin-top: -1.5rem;
+    }
+
+    .chat-mobile-slider .slider-item {
+      top: 50% !important;
     }
   }
 
@@ -770,13 +787,17 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-mobile-content {
-      padding-top: 3rem;
+      padding-top: 2rem;
       gap: clamp(0.5rem, 1.1vh, 0.8rem);
     }
 
     .chat-mobile-slider {
-      height: clamp(340px, 42vh, 440px);
-      margin-top: -3rem;
+      height: clamp(340px, 46vh, 480px);
+      margin-top: -1.5rem;
+    }
+
+    .chat-mobile-slider .slider-item {
+      top: 50% !important;
     }
   }
 
