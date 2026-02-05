@@ -1,0 +1,33 @@
+---
+// Página chat: compuesta por componentes pequeños e inspeccionables por separado.
+import Layout from '../layouts/Layout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import FeatureSlider from '../components/FeatureSlider.astro';
+---
+
+<Layout title="BeMind Power - Chat" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="chat-page">
+  <div class="chat-page-wrap relative min-h-[100dvh] w-full">
+    <HomeHeader />
+    <div class="chat-bg absolute inset-0 z-0">
+      <HomeHero>
+        <FeatureSlider />
+      </HomeHero>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  body.chat-page {
+    background: #000000;
+    overflow-x: hidden;
+  }
+
+  body.chat-page .chat-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+</style>

@@ -8,55 +8,54 @@ const navItems = [
 ];
 ---
 
-<header class="absolute left-0 right-0 top-0 z-50 px-[5%] py-6 2xl:px-[7%] 2xl:py-10 max-lg:px-[4%] max-lg:py-5 max-sm:px-4 max-sm:py-3">
-  <div class="relative flex items-center justify-between">
-    <!-- Logo - visible en desktop, oculto en móvil cuando hay menú -->
-    <a href="/" class="flex items-center gap-2.5 no-underline max-sm:hidden">
-      <img
-        src="/Logo_Be-Mind%20night.svg"
-        alt="BeMind Power"
-        class="h-12 w-auto 2xl:h-[52px] max-lg:h-[42px]"
-      />
-    </a>
+<header class="site-header absolute left-0 right-0 top-6 z-50 px-[6%] max-lg:px-[5%] max-sm:px-4">
+  <div class="header-glass-wrap mx-auto max-w-[1508px]">
+    <div class="header-glass relative flex items-center justify-between h-[70px] max-lg:h-14 rounded-[46px] px-8 max-lg:px-6 max-sm:rounded-2xl max-sm:px-4 max-sm:h-auto max-sm:py-3">
+      <a href="/" class="flex items-center gap-2.5 no-underline shrink-0 max-sm:hidden" aria-label="BeMind Power - Inicio">
+        <img
+          src="/images/logos/Logo_Be-Mind%20night.svg"
+          alt="BeMind Power"
+          class="site-header-logo h-12 w-auto max-lg:h-10"
+        />
+      </a>
 
-    <!-- Navegación Desktop - centrada -->
-    <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block" aria-label="Primary">
-      <div class="flex flex-nowrap items-center justify-center gap-6 max-lg:gap-3">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              'whitespace-nowrap text-[16px] text-white max-lg:text-[13px] 2xl:text-[18px]',
-              item.isActive ? 'font-black' : 'font-normal'
-            ]}
-          >
-            <span data-i18n={item.key}>{item.label}</span>
-          </a>
-        ))}
+      <!-- Navegación Desktop - centrada (misma que primera hoja) -->
+      <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block" aria-label="Navegación principal">
+        <div class="flex flex-nowrap items-center justify-center gap-9 max-lg:gap-6">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'nav-link text-white no-underline whitespace-nowrap text-[17px] max-lg:text-[15px] transition-opacity hover:opacity-90',
+                item.isActive ? 'font-black' : 'font-normal'
+              ]}
+            >
+              <span data-i18n={item.key}>{item.label}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <!-- Acciones: selector idioma, Registro, Login (misma barra que primera hoja + idiomas) -->
+      <div class="hidden sm:flex items-center gap-3">
+        <LanguageSwitcher />
+        <a href="/registro" class="header-btn header-btn-registro" data-i18n="header.register">Registro</a>
+        <a href="/login" class="header-btn header-btn-login" data-i18n="header.login">Login</a>
       </div>
-    </nav>
 
-    <!-- Selector de idioma Desktop -->
-    <div class="hidden sm:flex">
-      <LanguageSwitcher />
-    </div>
-
-    <!-- Contenedor móvil con logo y hamburguesa en los extremos -->
-    <div class="sm:hidden flex flex-col w-full">
-      <!-- Fila superior: Logo a la izquierda, hamburguesa a la derecha -->
+      <div class="sm:hidden flex flex-col w-full">
       <div class="flex items-center justify-between w-full">
         <a href="/" class="flex items-center gap-2 no-underline">
           <img
-            src="/Logo_Be-Mind%20night.svg"
+            src="/images/logos/Logo_Be-Mind%20night.svg"
             alt="BeMind Power"
             class="h-8 w-auto"
           />
         </a>
         
-        <!-- Botón hamburguesa -->
         <button
           id="hamburger-btn"
-          class="hamburger-button glass flex items-center justify-center w-10 h-10 text-white transition-all hover:bg-white/20"
+          class="hamburger-button flex items-center justify-center w-10 h-10 rounded-xl text-white bg-white/10 border border-white/20 transition-all hover:bg-white/20 backdrop-blur-sm"
           type="button"
           aria-label="Abrir menú"
           aria-controls="mobile-menu"
@@ -95,13 +94,13 @@ const navItems = [
         </button>
       </div>
 
-      <!-- Menú desplegable móvil - optimizado para iPhone 7 -->
+      <!-- Menú desplegable móvil (mismo estilo que primera hoja: glass oscuro) -->
       <div
         id="mobile-menu"
         data-open="false"
         class="mobile-menu-panel w-full mt-3 origin-top
-               flex flex-col items-center justify-center rounded-xl border border-white/10 bg-black/70 backdrop-blur-xl px-4 py-4
-               opacity-0 translate-y-[-10px] scale-95 pointer-events-none transition-all duration-300 ease-out
+               flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl px-4 py-4
+               opacity-0 translate-y-[-8px] scale-[0.98] pointer-events-none transition-all duration-300 ease-out
                max-h-0 overflow-hidden"
       >
         <nav class="w-full" aria-label="Mobile">
@@ -110,7 +109,7 @@ const navItems = [
               <a
                 href={item.href}
                 class:list={[
-                  'mobile-menu-item whitespace-nowrap text-sm text-white py-2 px-4 rounded-lg hover:bg-white/10 transition-colors w-full',
+                  'mobile-menu-item text-white text-[15px] py-2.5 px-4 rounded-xl hover:bg-white/10 transition-colors w-full text-center no-underline',
                   item.isActive ? 'font-bold' : 'font-normal'
                 ]}
               >
@@ -119,6 +118,11 @@ const navItems = [
             ))}
           </div>
         </nav>
+
+        <div class="w-full flex flex-col gap-2 mt-2 sm:hidden">
+          <a href="/registro" class="header-btn header-btn-registro text-center py-3 rounded-full text-[14px] font-semibold" data-i18n="header.register">Registro</a>
+          <a href="/login" class="header-btn header-btn-login text-center py-3 rounded-full text-[14px] font-semibold" data-i18n="header.login">Login</a>
+        </div>
 
         <div class="w-full h-px bg-white/10 my-3"></div>
 
@@ -146,9 +150,30 @@ const navItems = [
       </div>
     </div>
   </div>
+  </div>
 </header>
 
 <style>
+  /* Navbar con glassmorphism */
+  .header-glass-wrap {
+    width: 100%;
+  }
+
+  /* Barra única: colores de la primera hoja (inicio) + efecto glass */
+  .header-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link {
+    text-decoration: none;
+  }
+
   /* Estado abierto del menú */
   .mobile-menu-panel[data-open='true'] {
     opacity: 1;
@@ -162,24 +187,25 @@ const navItems = [
   .hamburger-button[aria-expanded='true'] .hamburger-icon {
     display: none;
   }
-  
+
   .hamburger-button[aria-expanded='true'] .close-icon {
     display: block;
   }
 
-  /* Botones de idioma en móvil - optimizado para iPhone 7 */
+  /* Botones de idioma en móvil con glass */
   .mobile-lang-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid transparent;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.2s ease;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    backdrop-filter: blur(8px);
   }
 
   .mobile-lang-btn:active {
@@ -188,8 +214,100 @@ const navItems = [
   }
 
   .mobile-lang-btn[aria-selected="true"] {
-    background: rgba(139, 92, 246, 0.25);
-    border-color: rgba(139, 92, 246, 0.6);
+    background: rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Botones Registro y Login - según Figma: pill shape, altura ~42px */
+  .header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 24px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .header-btn:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+  }
+
+  .header-btn-registro {
+    background: #a713bf;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(167, 19, 191, 0.45);
+  }
+
+  .header-btn-registro:hover {
+    box-shadow: 0 6px 24px rgba(167, 19, 191, 0.55);
+  }
+
+  .header-btn-login {
+    background: #1929ff;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(25, 41, 255, 0.45);
+  }
+
+  .header-btn-login:hover {
+    box-shadow: 0 6px 24px rgba(25, 41, 255, 0.55);
+  }
+
+  /* Tablet: menos espacio para que no se apriete */
+  @media (max-width: 900px) {
+    .header-glass {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .nav-link {
+      font-size: 14px;
+    }
+  }
+
+  /* Móvil: tap targets y menú */
+  @media (max-width: 640px) {
+    .site-header {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .header-glass {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      min-height: 52px;
+    }
+
+    .hamburger-button {
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .mobile-menu-panel[data-open='true'] {
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .mobile-menu-item {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-btn {
+      min-height: 44px;
+      padding: 0 1.25rem;
+      font-size: 14px;
+    }
   }
 </style>
 

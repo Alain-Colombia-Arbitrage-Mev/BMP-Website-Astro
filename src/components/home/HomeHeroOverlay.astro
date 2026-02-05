@@ -1,0 +1,121 @@
+---
+// Capa delantera del home: bloque izquierdo (título, CTA, tiendas) + smartphone. Inspeccionable por separado.
+import HeroHomeLeft from '../hero/HeroHomeLeft.astro';
+---
+
+<div class="home-hero-overlay">
+  <HeroHomeLeft />
+  <div class="home-hero-phone-wrap">
+    <img src="/images/smartphonehome.png" alt="BeMind Power app" class="home-hero-smartphone" />
+  </div>
+</div>
+
+<style>
+  .home-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    padding-top: max(100px, 10vh);
+    padding-left: 6.4%;
+    padding-right: 6.4%;
+    padding-bottom: 2vh;
+    max-width: 1728px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .home-hero-overlay :global(.hero-home-left),
+  .home-hero-phone-wrap {
+    pointer-events: auto;
+  }
+
+  .home-hero-phone-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  .home-hero-smartphone {
+    width: min(579px, 33.5vw);
+    height: auto;
+    max-height: min(908px, 81.3vh);
+    object-fit: contain;
+    object-position: top right;
+  }
+
+  @media (max-width: 1024px) {
+    .home-hero-overlay {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: max(90px, 9vh);
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-bottom: 2vh;
+    }
+
+    .home-hero-phone-wrap {
+      display: none;
+    }
+
+    .home-hero-overlay :global(.hero-home-left) {
+      max-width: 100%;
+      min-height: min(360px, 50vh);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .home-hero-overlay {
+      padding-top: max(80px, 8vh);
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .home-hero-overlay {
+      padding-top: max(72px, 8vh);
+      padding-left: 4%;
+      padding-right: 4%;
+      padding-bottom: 4vh;
+    }
+
+    .home-hero-overlay :global(.hero-home-left) {
+      text-align: center;
+      align-items: center;
+      max-width: 100%;
+      min-height: min(300px, 45vh);
+    }
+
+    .home-hero-overlay :global(.hero-home-left-content) {
+      align-items: center;
+    }
+
+    .home-hero-overlay :global(.hero-home-subtitle) {
+      text-align: center;
+    }
+
+    .home-hero-overlay :global(.hero-home-badges) {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .home-hero-overlay {
+      padding-top: max(64px, 7vh);
+      padding-left: 3%;
+      padding-right: 3%;
+      padding-bottom: 3vh;
+    }
+
+    .home-hero-overlay :global(.hero-home-left) {
+      min-height: min(280px, 42vh);
+    }
+  }
+</style>

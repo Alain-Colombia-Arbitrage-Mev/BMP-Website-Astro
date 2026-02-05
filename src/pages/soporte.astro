@@ -1,0 +1,274 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import PageBackground from '../components/PageBackground.astro';
+import SideGradients from '../components/SideGradients.astro';
+---
+
+<Layout title="BeMind Power - Soporte" description="Centro de soporte de BeMind Power. Estamos aquí para ayudarte.">
+  <!-- Fondo con brillo central -->
+  <PageBackground />
+
+  <!-- Gradientes laterales suaves -->
+  <SideGradients />
+
+  <!-- Header -->
+  <HomeHeader />
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <div class="support-container">
+      <!-- Icono de soporte -->
+      <div class="support-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+
+      <!-- Título -->
+      <h1 class="support-title">Soporte</h1>
+      
+      <!-- Subtítulo -->
+      <p class="support-subtitle">Estamos aquí para ayudarte</p>
+
+      <!-- Descripción -->
+      <p class="support-description">
+        ¿Tienes alguna pregunta o necesitas asistencia? 
+        Nuestro equipo está listo para atenderte.
+      </p>
+
+      <!-- Card de contacto -->
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <a href="mailto:info@be.mindpower.net" class="contact-value">info@be.mindpower.net</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de acción -->
+      <a href="mailto:info@be.mindpower.net?subject=Consulta de Soporte - BeMind Power" class="support-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        Enviar mensaje
+      </a>
+
+      <!-- Enlace para volver -->
+      <a href="/chat" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Volver al inicio
+      </a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main-content {
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px 40px;
+    z-index: 1;
+  }
+
+  @media (min-width: 640px) {
+    .main-content {
+      padding: 100px 40px 60px;
+    }
+  }
+
+  .support-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .support-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(40, 54, 233, 0.4);
+  }
+
+  @media (min-width: 640px) {
+    .support-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 28px;
+    }
+
+    .support-icon svg {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+  .support-title {
+    font-family: 'OPTIFutura', 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  @media (min-width: 640px) {
+    .support-title {
+      font-size: 56px;
+      letter-spacing: 4px;
+    }
+  }
+
+  .support-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  @media (min-width: 640px) {
+    .support-subtitle {
+      font-size: 20px;
+    }
+  }
+
+  .support-description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 32px;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  @media (min-width: 640px) {
+    .support-description {
+      font-size: 16px;
+    }
+  }
+
+  .contact-card {
+    background: linear-gradient(
+      145deg,
+      rgba(40, 54, 233, 0.15) 0%,
+      rgba(99, 102, 241, 0.1) 100%
+    );
+    border: 1px solid rgba(40, 54, 233, 0.3);
+    border-radius: 16px;
+    padding: 20px 24px;
+    width: 100%;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(40, 54, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6366f1;
+    flex-shrink: 0;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .contact-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-value:hover {
+    color: #6366f1;
+  }
+
+  @media (min-width: 640px) {
+    .contact-value {
+      font-size: 16px;
+    }
+  }
+
+  .support-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2836E9 0%, #6366f1 100%);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(40, 54, 233, 0.4);
+    margin-bottom: 24px;
+  }
+
+  .support-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(40, 54, 233, 0.5);
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: white;
+  }
+</style>

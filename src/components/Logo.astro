@@ -7,7 +7,6 @@ const { class: className = '' } = Astro.props;
 ---
 
 <a href="/" class:list={["flex items-center gap-3 group", className]}>
-  <!-- Logo Icon -->
   <div class="relative">
     <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg 
                 flex items-center justify-center shadow-lg
@@ -26,8 +25,7 @@ const { class: className = '' } = Astro.props;
     <div class="absolute inset-0 bg-indigo-500 rounded-lg blur-xl opacity-0 
                 group-hover:opacity-30 transition-opacity duration-300"></div>
   </div>
-  
-  <!-- Logo Text -->
+
   <div class="flex flex-col">
     <span class="text-lg font-bold tracking-tight text-white leading-none">
       Be<span class="text-indigo-400">Mind</span>

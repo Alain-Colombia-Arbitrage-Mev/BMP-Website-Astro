@@ -11,8 +11,7 @@ interface Props {
 const { image, logo, title, description, titleKey, descriptionKey } = Astro.props;
 ---
 
-<div class="feature-card group relative w-[220px] sm:w-[320px] flex flex-col overflow-visible cursor-pointer transition-all duration-500 hover:scale-105">
-  <!-- IMAGEN SUPERIOR (sobresale hacia arriba) -->
+<div class="feature-card group relative flex flex-col overflow-visible cursor-pointer transition-all duration-500 hover:scale-105">
   <div class="card-image-container">
     <img 
       src={image} 
@@ -21,26 +20,19 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
     />
   </div>
 
-  <!-- PARTE SUPERIOR (fondo de la tarjeta) -->
-  <div class="card-top relative rounded-t-[10px] h-[160px] sm:h-[260px]">
+  <div class="card-top relative rounded-t-[10px] h-[120px] sm:h-[200px]">
   </div>
 
-  <!-- VIÑETAS (entre parte superior e inferior) -->
   <div class="vignettes-container relative h-0">
-    <!-- Viñeta izquierda -->
     <img src="/images/vignette-left.svg" alt="" class="card-vignette card-vignette-left" aria-hidden="true" />
-    <!-- Viñeta derecha -->
     <img src="/images/vignette-right.svg" alt="" class="card-vignette card-vignette-right" aria-hidden="true" />
   </div>
 
-  <!-- PARTE INFERIOR -->
-  <div class="card-bottom relative rounded-b-[10px] p-3 sm:p-4 pb-4 sm:pb-5 overflow-hidden">
-    <!-- Título (izquierda) y Logo (derecha) distribuidos en extremos -->
+  <div class="card-bottom relative rounded-b-[10px] p-2 sm:p-3 pb-3 sm:pb-4 overflow-hidden">
     <div class="title-row">
       <h3 class="card-title text-white">
         <span data-i18n={titleKey}>{title}</span>
       </h3>
-      <!-- Logo alineado a la derecha -->
       <img 
         src={logo} 
         alt="Logo"
@@ -48,7 +40,6 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
       />
     </div>
 
-    <!-- Descripción -->
     <p class="card-description text-white">
       <span data-i18n={descriptionKey}>{description}</span>
     </p>
@@ -61,12 +52,28 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 <style>
   .feature-card {
     perspective: 1000px;
-    padding-top: 40px; /* Espacio reducido para que la imagen sobresalga menos */
+    padding-top: 28px;
+    width: 160px;
+  }
+
+  @media (max-width: 380px) {
+    .feature-card {
+      width: 130px;
+      padding-top: 22px;
+    }
+  }
+
+  @media (min-width: 381px) and (max-width: 479px) {
+    .feature-card {
+      width: 140px;
+      padding-top: 24px;
+    }
   }
 
   @media (min-width: 640px) {
     .feature-card {
-      padding-top: 60px;
+      width: 240px;
+      padding-top: 44px;
     }
   }
 
@@ -93,14 +100,14 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
   .card-image {
     width: 100%;
     height: auto;
-    max-height: 200px;
+    max-height: 140px;
     object-fit: contain;
     object-position: center bottom;
   }
 
   @media (min-width: 640px) {
     .card-image {
-      max-height: 320px;
+      max-height: 220px;
     }
   }
 
@@ -133,7 +140,7 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
     font-family: 'OPTIFutura', sans-serif;
     font-weight: 900;
     text-transform: capitalize;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.1;
     flex-shrink: 1;
     min-width: 0;
@@ -141,12 +148,12 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   @media (min-width: 640px) {
     .card-title {
-      font-size: 32px;
+      font-size: 24px;
     }
   }
 
   .card-logo {
-    height: 16px;
+    height: 12px;
     width: auto;
     opacity: 0.9;
     flex-shrink: 0;
@@ -154,7 +161,7 @@ const { image, logo, title, description, titleKey, descriptionKey } = Astro.prop
 
   @media (min-width: 640px) {
     .card-logo {
-      height: 28px;
+      height: 20px;
     }
   }
 

@@ -1,0 +1,24 @@
+---
+// Página home: hero compuesto por componentes pequeños e inspeccionables por separado.
+import HomeHeroBackground from './HomeHeroBackground.astro';
+import HomeHeroSliderLayer from './HomeHeroSliderLayer.astro';
+import HomeHeroOverlay from './HomeHeroOverlay.astro';
+---
+
+<div class="home-hero">
+  <HomeHeroBackground />
+  <HomeHeroSliderLayer>
+    <slot />
+  </HomeHeroSliderLayer>
+  <HomeHeroOverlay />
+</div>
+
+<style>
+  .home-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+</style>

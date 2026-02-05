@@ -1,0 +1,95 @@
+---
+// Capa trasera del home: contiene el slider (slot). Inspeccionable por separado.
+---
+
+<div class="home-hero-slider-layer">
+  <div class="home-hero-slider-slot">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .home-hero-slider-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: min(467px, 41.8vh);
+    min-height: 380px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 12.2%;
+    box-sizing: border-box;
+  }
+
+  .home-hero-slider-slot {
+    width: 100%;
+    max-width: 1295px;
+    height: 100%;
+    min-height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .home-hero-slider-slot :global(.feature-slider) {
+    height: 100%;
+    min-height: 380px;
+    max-height: 467px;
+  }
+
+  .home-hero-slider-slot :global(.slider-container) {
+    height: 100%;
+    min-height: 380px;
+  }
+
+  @media (max-width: 1024px) {
+    .home-hero-slider-layer {
+      height: min(320px, 38vh);
+      min-height: 280px;
+      padding: 0 6%;
+    }
+
+    .home-hero-slider-slot,
+    .home-hero-slider-slot :global(.feature-slider),
+    .home-hero-slider-slot :global(.slider-container) {
+      min-height: 280px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .home-hero-slider-layer {
+      min-height: 260px;
+      padding: 0 5%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .home-hero-slider-layer {
+      min-height: 240px;
+      padding: 0 4%;
+    }
+
+    .home-hero-slider-slot,
+    .home-hero-slider-slot :global(.feature-slider),
+    .home-hero-slider-slot :global(.slider-container) {
+      min-height: 240px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .home-hero-slider-layer {
+      min-height: 200px;
+      padding: 0 3%;
+    }
+
+    .home-hero-slider-slot,
+    .home-hero-slider-slot :global(.feature-slider),
+    .home-hero-slider-slot :global(.slider-container) {
+      min-height: 200px;
+    }
+  }
+</style>

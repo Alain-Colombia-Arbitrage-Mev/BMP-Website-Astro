@@ -63,7 +63,12 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.communities.cta': 'Únete a las\ncomunidades',
     'features.music.title': 'Música',
     'features.music.description': 'Tu soundtrack personalizado.',
-    'features.music.cta': 'Escucha tu\nmúsica'
+    'features.music.cta': 'Escucha tu\nmúsica',
+    'home.hero.title': 'Todo empieza con una conversación',
+    'home.hero.titleLine1': 'Todo empieza',
+    'home.hero.titleLine2': 'con una conversación',
+    'home.hero.subtitle': 'Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.',
+    'home.hero.cta': 'Ver Más'
   },
   en: {
     'nav.home': 'Home',
@@ -113,7 +118,12 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.communities.cta': 'Join the\ncommunities',
     'features.music.title': 'Music',
     'features.music.description': 'Your personalized soundtrack.',
-    'features.music.cta': 'Listen to\nyour music'
+    'features.music.cta': 'Listen to\nyour music',
+    'home.hero.title': 'It all starts with a conversation',
+    'home.hero.titleLine1': 'It all starts',
+    'home.hero.titleLine2': 'with a conversation',
+    'home.hero.subtitle': 'From there: pay, sell, heal or listen to music. Without leaving the chat.',
+    'home.hero.cta': 'See More'
   },
   pt: {
     'nav.home': 'Início',
@@ -163,7 +173,12 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.communities.cta': 'Junte-se às\ncomunidades',
     'features.music.title': 'Música',
     'features.music.description': 'Sua trilha sonora personalizada.',
-    'features.music.cta': 'Ouça sua\nmúsica'
+    'features.music.cta': 'Ouça sua\nmúsica',
+    'home.hero.title': 'Tudo começa com uma conversa',
+    'home.hero.titleLine1': 'Tudo começa',
+    'home.hero.titleLine2': 'com uma conversa',
+    'home.hero.subtitle': 'E a partir daí: pague, venda, cure ou ouça música. Sem sair do chat.',
+    'home.hero.cta': 'Ver mais'
   },
   zh: {
     'nav.home': '首页',
@@ -213,7 +228,12 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.communities.cta': '加入\n社区',
     'features.music.title': '音乐',
     'features.music.description': '您的个性化音乐。',
-    'features.music.cta': '听你的\n音乐'
+    'features.music.cta': '听你的\n音乐',
+    'home.hero.title': '一切从对话开始',
+    'home.hero.titleLine1': '一切开始',
+    'home.hero.titleLine2': '于对话',
+    'home.hero.subtitle': '从这里：支付、出售、疗愈或听音乐。无需离开聊天。',
+    'home.hero.cta': '了解更多'
   },
   ar: {
     'nav.home': 'الرئيسية',
@@ -263,7 +283,12 @@ const translations: Record<Lang, Record<string, string>> = {
     'features.communities.cta': 'انضم إلى\nالمجتمعات',
     'features.music.title': 'الموسيقى',
     'features.music.description': 'موسيقاك المخصصة.',
-    'features.music.cta': 'استمع إلى\nموسيقاك'
+    'features.music.cta': 'استمع إلى\nموسيقاك',
+    'home.hero.title': 'كل شيء يبدأ بمحادثة',
+    'home.hero.titleLine1': 'كل شيء يبدأ',
+    'home.hero.titleLine2': 'بمحادثة',
+    'home.hero.subtitle': 'ومن هناك: ادفع، بع، عالج أو استمع للموسيقى. دون مغادرة الدردشة.',
+    'home.hero.cta': 'اعرض المزيد'
   }
 };
 

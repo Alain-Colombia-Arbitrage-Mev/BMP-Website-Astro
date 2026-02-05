@@ -1,5 +1,4 @@
 ---
-// Logo textual "BeMind Power" blanco
 ---
 
 <div class="hero-logo-text">
@@ -8,8 +7,10 @@
 
 <style>
   .hero-logo-text {
-    width: min(275px, 30vw);
-    margin-bottom: 2vh;
+    width: min(320px, 35vw);
+    margin-bottom: 1.5vh;
+    position: relative;
+    z-index: 20;
   }
 
   .hero-logo-text img {
@@ -19,13 +20,23 @@
 
   @media (max-width: 768px) {
     .hero-logo-text {
-      width: min(220px, 40vw);
+      width: min(240px, 48vw);
+      margin-bottom: 1.2vh;
     }
   }
 
   @media (max-width: 480px) {
     .hero-logo-text {
-      width: min(180px, 50vw);
+      width: min(200px, 50vw);
+      margin-bottom: 1vh;
+    }
+  }
+
+  /* iPhone SE y pantallas muy pequeñas */
+  @media (max-width: 375px) {
+    .hero-logo-text {
+      width: min(180px, 48vw);
+      margin-bottom: 0.8vh;
     }
   }
 </style>

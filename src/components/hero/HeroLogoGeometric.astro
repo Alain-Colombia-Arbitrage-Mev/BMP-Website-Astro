@@ -1,9 +1,8 @@
 ---
-// Logo BMP geométrico central (diamante azul)
 ---
 
 <div class="hero-logo-geometric">
-  <img src="/Logo-bmp.svg" alt="BeMind Power Logo" />
+  <img src="/images/logos/Logo-bmp.svg" alt="BeMind Power Logo" />
 </div>
 
 <style>
@@ -13,8 +12,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(590px, 50vw);
-    z-index: 2;
+    z-index: 10;
     pointer-events: none;
+    opacity: 0.9;
   }
 
   .hero-logo-geometric img {
@@ -25,18 +25,32 @@
   @media (max-width: 1024px) {
     .hero-logo-geometric {
       width: min(450px, 45vw);
+      top: 48%;
     }
   }
 
   @media (max-width: 768px) {
     .hero-logo-geometric {
-      width: min(350px, 55vw);
+      width: min(280px, 45vw);
+      top: 50%;
+      opacity: 0.7;
     }
   }
 
   @media (max-width: 480px) {
     .hero-logo-geometric {
-      width: min(260px, 65vw);
+      width: min(200px, 50vw);
+      top: 48%;
+      opacity: 0.6;
+    }
+  }
+
+  /* iPhone SE y pantallas muy pequeñas */
+  @media (max-width: 375px) {
+    .hero-logo-geometric {
+      width: min(180px, 48vw);
+      top: 46%;
+      opacity: 0.5;
     }
   }
 </style>

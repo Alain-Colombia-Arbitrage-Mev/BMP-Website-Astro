@@ -23,15 +23,15 @@ const {
 <style>
   .hero-store-buttons {
     display: flex;
-    gap: 30px;
+    gap: 35px;
   }
 
   .store-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    height: 65px;
+    width: 240px;
+    height: 72px;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -53,19 +53,19 @@ const {
   }
 
   .store-btn img {
-    height: 40px;
+    height: 44px;
     width: auto;
     object-fit: contain;
   }
 
   @media (max-width: 1024px) {
     .store-btn {
-      width: 200px;
-      height: 58px;
+      width: 220px;
+      height: 65px;
     }
 
     .store-btn img {
-      height: 35px;
+      height: 40px;
     }
   }
 
@@ -76,8 +76,23 @@ const {
     }
 
     .store-btn {
-      width: 200px;
-      height: 55px;
+      width: 210px;
+      height: 60px;
+    }
+
+    .store-btn img {
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-store-buttons {
+      gap: 14px;
+    }
+
+    .store-btn {
+      width: 190px;
+      height: 56px;
     }
 
     .store-btn img {
@@ -85,14 +100,19 @@ const {
     }
   }
 
-  @media (max-width: 480px) {
+  /* iPhone SE y pantallas muy pequeñas */
+  @media (max-width: 375px) {
+    .hero-store-buttons {
+      gap: 12px;
+    }
+
     .store-btn {
       width: 180px;
-      height: 50px;
+      height: 52px;
     }
 
     .store-btn img {
-      height: 28px;
+      height: 30px;
     }
   }
 </style>

@@ -1,17 +1,13 @@
 ---
-// Primera hoja / primera página del sitio.
-// Diseño de referencia: home1.pen (frame "Home 11").
+// Primera hoja: compuesta por componentes pequeños e inspeccionables por separado.
 import Layout from '../layouts/Layout.astro';
-import WelcomeHeader from '../components/WelcomeHeader.astro';
-import GeometricBackground from '../components/GeometricBackground.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import WelcomeHero from '../components/WelcomeHero.astro';
 ---
 
 <Layout title="BeMind Power - Bienvenida" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="welcome-page">
-  <!-- Navbar flotante -->
-  <WelcomeHeader />
-  
-  <!-- Hero completo con todos los elementos -->
-  <GeometricBackground />
+  <HomeHeader />
+  <WelcomeHero />
 </Layout>
 
 <style is:global>

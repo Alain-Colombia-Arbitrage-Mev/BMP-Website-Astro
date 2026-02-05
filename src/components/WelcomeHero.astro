@@ -1,0 +1,42 @@
+---
+// Página inicial: hero compuesto por componentes pequeños e inspeccionables por separado.
+import HeroBackground from './hero/HeroBackground.astro';
+import HeroLogoGeometric from './hero/HeroLogoGeometric.astro';
+import HeroContent from './hero/HeroContent.astro';
+import HeroIcons from './hero/HeroIcons.astro';
+import HeroPhone from './hero/HeroPhone.astro';
+
+interface Props {
+  welcomeText?: string;
+  mainTitle?: string;
+  description?: string;
+}
+
+const { 
+  welcomeText,
+  mainTitle,
+  description
+} = Astro.props;
+---
+
+<div class="welcome-hero">
+  <HeroBackground />
+  <HeroLogoGeometric />
+  <HeroContent 
+    welcomeText={welcomeText}
+    mainTitle={mainTitle}
+    description={description}
+  />
+  <HeroIcons />
+  <HeroPhone />
+</div>
+
+<style>
+  .welcome-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+</style>

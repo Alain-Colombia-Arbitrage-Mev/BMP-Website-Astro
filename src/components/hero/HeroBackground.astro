@@ -1,5 +1,5 @@
 ---
-// Capa de fondo: negro + resplandor azul
+// Capa de fondo: negro + resplandor azul (sin video)
 ---
 
 <div class="hero-background">
@@ -14,6 +14,7 @@
     z-index: 1;
     overflow: hidden;
     pointer-events: none;
+    background-color: #000000;
   }
 
   .hero-bg-base {
@@ -36,6 +37,7 @@
       transparent 70%
     );
     filter: blur(198px);
+    z-index: 1;
   }
 
   @media (max-width: 1024px) {

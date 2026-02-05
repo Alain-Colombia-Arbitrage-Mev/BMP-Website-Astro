@@ -1,0 +1,120 @@
+---
+// Fondo de la página home: base negro + video + resplandor (tamaño home).
+---
+
+<div class="home-hero-bg">
+  <div class="home-hero-bg-base"></div>
+  
+  <!-- Video de fondo fullscreen -->
+  <video
+    id="home-hero-video"
+    class="home-hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src="https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/1%20(8).mp4" type="video/mp4" />
+  </video>
+  
+  <!-- Overlay oscuro para mejorar legibilidad -->
+  <div class="home-hero-bg-overlay"></div>
+  
+  <div class="home-hero-bg-glow"></div>
+</div>
+
+<style>
+  .home-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .home-hero-bg-base {
+    position: absolute;
+    inset: 0;
+    background-color: #000000;
+  }
+
+  .home-hero-bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    opacity: 0.85;
+  }
+
+  .home-hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+
+  .home-hero-bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(910px, 80vw);
+    height: min(910px, 80vw);
+    background: radial-gradient(
+      circle,
+      rgba(40, 54, 233, 0.89) 0%,
+      rgba(40, 54, 233, 0.5) 40%,
+      transparent 70%
+    );
+    filter: blur(198px);
+    z-index: 3;
+  }
+
+  /* Optimizaciones para móviles */
+  @media (max-width: 768px) {
+    .home-hero-bg-video {
+      width: 100vw;
+      height: 100vh;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+</style>
+
+<script>
+  // Optimizar reproducción de video en home
+  function initHomeHeroVideo(): void {
+    const video = document.getElementById('home-hero-video') as HTMLVideoElement;
+    if (!video) return;
+
+    const playVideo = () => {
+      video.play().catch(() => {
+        // Si falla autoplay, esperar interacción del usuario
+        document.addEventListener('touchstart', () => {
+          video.play();
+        }, { once: true });
+      });
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', playVideo, { once: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHomeHeroVideo);
+  } else {
+    initHomeHeroVideo();
+  }
+</script>
