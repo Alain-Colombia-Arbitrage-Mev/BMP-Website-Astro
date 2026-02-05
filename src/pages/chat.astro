@@ -84,8 +84,8 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     display: none;
   }
 
-  /* Mobile: ocultar desktop, mostrar mobile */
-  @media (max-width: 768px) {
+  /* Mobile + iPad/tablets táctiles: ocultar desktop, mostrar layout móvil */
+  @media (max-width: 768px), (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1366px) {
     body.chat-page {
       /* Evita scroll por 1-2px de rounding en móviles */
       overflow: hidden;
@@ -323,42 +323,33 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
   }
 
-  /* iPad/tablets táctiles (ancho >768): usar layout móvil también */
+  /* iPad/tablets táctiles: ajustes de centrado/tamaños (sin tocar móvil ni desktop con mouse) */
   @media (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1366px) {
-    body.chat-page {
-      overflow: hidden;
-      overscroll-behavior: none;
-    }
-
-    .chat-desktop-layout {
-      display: none;
-    }
-
     .chat-mobile-layout {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      width: 100%;
-      height: 100dvh;
-      height: 100vh;
-      overflow: hidden;
-      box-sizing: border-box;
       justify-content: center;
       padding-top: calc(88px + env(safe-area-inset-top));
       padding-bottom: calc(16px + env(safe-area-inset-bottom));
     }
 
-    .chat-mobile-content {
-      flex: 0 0 auto;
-      padding-top: 0;
-      padding-bottom: 0.85rem;
+    .chat-mobile-title {
+      max-width: 720px;
+    }
+
+    .chat-mobile-buttons {
+      margin-top: clamp(0.9rem, 1.6vh, 1.4rem);
+    }
+
+    .chat-cta {
+      width: min(520px, 60vw);
+    }
+
+    .chat-store-btn {
+      width: min(520px, 60vw);
     }
 
     .chat-mobile-slider {
       height: clamp(320px, 34vh, 420px);
       max-height: 40vh;
-      padding-top: 0;
-      padding-bottom: 0;
     }
   }
 
