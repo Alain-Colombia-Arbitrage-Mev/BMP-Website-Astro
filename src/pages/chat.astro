@@ -714,16 +714,28 @@ import FeatureSlider from '../components/FeatureSlider.astro';
 
   /* iPhone Plus / pantallas altas (ej. iPhone 16 Plus): subir el slider un poco */
   @media (max-width: 480px) and (min-width: 428px) and (min-height: 880px) {
+    /* Centrar el conjunto (texto+botones+slider) para evitar hueco inferior */
+    .chat-mobile-layout {
+      justify-content: center;
+    }
+
+    /* Evitar empujes raros y dejar que el conjunto se centre */
+    .chat-mobile-content {
+      flex: 0 0 auto;
+      padding-bottom: 0.6rem;
+    }
+
     .chat-mobile-slider {
-      /* Un poco más pequeño para que “suba” y no se pegue abajo */
-      height: clamp(220px, 30vh, 300px);
-      max-height: 32vh;
-      padding-bottom: calc(10px + env(safe-area-inset-bottom));
-      margin-top: 6px;
+      /* Alto suficiente para que no se corte la tarjeta */
+      height: clamp(280px, 32vh, 340px);
+      max-height: 36vh;
+      /* Margen inferior pequeño (respetando safe-area) */
+      padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      margin-top: 10px;
     }
 
     .chat-mobile-slider .slider-item {
-      top: 40% !important;
+      top: 42% !important;
     }
   }
 
