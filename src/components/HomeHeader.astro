@@ -426,6 +426,31 @@ const navItems = [
     }
   }
 
+  /* iPad/tablet (coarse pointer): evitar que el panel se salga del viewport */
+  @media (hover: none) and (pointer: coarse) and (min-width: 641px) and (max-width: 1366px) {
+    .mobile-nav-container {
+      position: relative;
+    }
+
+    .mobile-menu-panel {
+      /* Sacar el panel del flujo y anclarlo al viewport */
+      position: fixed;
+      left: max(16px, calc(env(safe-area-inset-left) + 16px));
+      right: max(16px, calc(env(safe-area-inset-right) + 16px));
+      top: calc(env(safe-area-inset-top) + 88px);
+      width: auto !important;
+      box-sizing: border-box;
+      margin-top: 0 !important;
+      z-index: 9999;
+    }
+
+    .mobile-menu-panel[data-open='true'] {
+      /* Alto máximo: viewport - (top + safe-area-bottom) */
+      max-height: calc(100dvh - (env(safe-area-inset-top) + 88px) - (env(safe-area-inset-bottom) + 16px));
+      overflow-y: auto;
+    }
+  }
+
   /* Para pantallas muy pequeñas (375px y menos) */
   @media (max-width: 380px) {
     .site-header {

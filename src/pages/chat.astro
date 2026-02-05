@@ -323,6 +323,45 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
   }
 
+  /* iPad/tablets táctiles (ancho >768): usar layout móvil también */
+  @media (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1366px) {
+    body.chat-page {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    .chat-desktop-layout {
+      display: none;
+    }
+
+    .chat-mobile-layout {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      height: 100vh;
+      overflow: hidden;
+      box-sizing: border-box;
+      justify-content: center;
+      padding-top: calc(88px + env(safe-area-inset-top));
+      padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+
+    .chat-mobile-content {
+      flex: 0 0 auto;
+      padding-top: 0;
+      padding-bottom: 0.85rem;
+    }
+
+    .chat-mobile-slider {
+      height: clamp(320px, 34vh, 420px);
+      max-height: 40vh;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
   /* Tablets pequeñas / móviles grandes (601-768px) */
   @media (max-width: 768px) and (min-width: 601px) {
     .chat-mobile-content {
@@ -376,30 +415,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
   }
 
-  /* iPad (portrait) — centrar el layout móvil sin afectar mobile/desktop */
-  @media (max-width: 768px) and (min-width: 744px) {
-    .chat-mobile-layout {
-      justify-content: center;
-      /* Reservar espacio real del navbar (hamburger) en iPad, sin empujar el contenido fuera del centro */
-      padding-top: calc(88px + env(safe-area-inset-top));
-      padding-bottom: calc(16px + env(safe-area-inset-bottom));
-    }
-
-    .chat-mobile-content {
-      flex: 0 0 auto;
-      padding-top: 0;
-      padding-bottom: 0.85rem;
-    }
-
-    .chat-mobile-slider {
-      margin-top: 0;
-      height: clamp(320px, 34vh, 420px);
-      max-height: 40vh;
-      /* Evitar que el padding interno rompa el centrado */
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
+  /* (Deprecated) iPad portrait: el layout tablet táctil lo cubre arriba */
 
   /* Móviles medianos (481-600px) */
   @media (max-width: 600px) and (min-width: 481px) {
