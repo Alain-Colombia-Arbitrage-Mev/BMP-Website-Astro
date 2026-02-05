@@ -91,7 +91,6 @@ const features = [
   <div class="slider-wrapper relative w-full flex flex-col items-center justify-center flex-1 min-h-0">
     <div class="slider-container relative w-full flex-1 overflow-visible min-h-[320px]">
       <div 
-        id="slider-track" 
         class="slider-track flex items-center justify-center"
         data-initial-index={initialIndex}
       >
@@ -107,9 +106,8 @@ const features = [
       </div>
     </div>
 
-    <div class="flex items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-6">
+    <div class="slider-nav flex items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-6">
       <button 
-        id="prev-btn"
         class="nav-btn w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center text-white/60 hover:text-white transition-all"
         aria-label="Anterior"
       >
@@ -118,7 +116,6 @@ const features = [
         </svg>
       </button>
       <button 
-        id="next-btn"
         class="nav-btn w-9 h-9 sm:w-12 sm:h-12 flex items-center justify-center text-white/60 hover:text-white transition-all"
         aria-label="Siguiente"
       >
@@ -256,13 +253,10 @@ const features = [
     4: 0.25    // distancia 4+
   };
 
-  function initSlider(): void {
-    const root = document.querySelector<HTMLElement>('[data-feature-slider]');
-    if (!root) return;
-
-    const track = root.querySelector<HTMLElement>('#slider-track');
-    const prevBtn = root.querySelector<HTMLButtonElement>('#prev-btn');
-    const nextBtn = root.querySelector<HTMLButtonElement>('#next-btn');
+  function initSliderInstance(root: HTMLElement): void {
+    const track = root.querySelector<HTMLElement>('.slider-track');
+    const prevBtn = root.querySelector<HTMLButtonElement>('.nav-btn[aria-label="Anterior"]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('.nav-btn[aria-label="Siguiente"]');
     const items = root.querySelectorAll<HTMLElement>('.slider-item');
 
     if (!track || !prevBtn || !nextBtn || items.length === 0) return;
@@ -448,10 +442,27 @@ const features = [
     window.addEventListener('beforeunload', stopAutoSlide);
   }
 
+  function initAllSliders(): void {
+    // Inicializar todos los sliders visibles en la página
+    const sliders = document.querySelectorAll<HTMLElement>('[data-feature-slider]');
+    sliders.forEach((slider) => {
+      // Solo inicializar si el slider es visible
+      const style = window.getComputedStyle(slider);
+      const parentStyle = slider.parentElement ? window.getComputedStyle(slider.parentElement) : null;
+      const isVisible = style.display !== 'none' && 
+                       style.visibility !== 'hidden' && 
+                       (!parentStyle || parentStyle.display !== 'none');
+      
+      if (isVisible) {
+        initSliderInstance(slider);
+      }
+    });
+  }
+
   function runInit(): void {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        initSlider();
+        initAllSliders();
       });
     });
   }
@@ -463,9 +474,18 @@ const features = [
   }
 
   document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('[data-feature-slider] #slider-track').forEach((el) => {
+    document.querySelectorAll('[data-feature-slider] .slider-track').forEach((el) => {
       el.removeAttribute('data-initialized');
     });
     runInit();
+  });
+
+  // Re-inicializar cuando cambia el tamaño de pantalla (por si cambia de desktop a mobile)
+  let resizeTimeout: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      initAllSliders();
+    }, 250);
   });
 </script>
