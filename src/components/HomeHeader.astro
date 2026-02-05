@@ -11,7 +11,7 @@ const navItems = [
 <header class="site-header absolute left-0 right-0 top-6 z-50 px-[6%] max-lg:px-[5%] max-sm:px-4">
   <div class="header-glass-wrap mx-auto max-w-[1508px]">
     <div class="header-glass relative flex items-center justify-between h-[70px] max-lg:h-14 rounded-[46px] px-8 max-lg:px-6 max-sm:rounded-2xl max-sm:px-4 max-sm:h-auto max-sm:py-3">
-      <a href="/" class="flex items-center gap-2.5 no-underline shrink-0 max-sm:hidden" aria-label="BeMind Power - Inicio">
+      <a href="/" class="hidden lg:flex items-center gap-2.5 no-underline shrink-0" aria-label="BeMind Power - Inicio">
         <img
           src="/images/logos/Logo_Be-Mind%20night.svg"
           alt="BeMind Power"
@@ -20,7 +20,7 @@ const navItems = [
       </a>
 
       <!-- Navegación Desktop - centrada (misma que primera hoja) -->
-      <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block" aria-label="Navegación principal">
+      <nav class="absolute left-1/2 -translate-x-1/2 hidden lg:block" aria-label="Navegación principal">
         <div class="flex flex-nowrap items-center justify-center gap-9 max-lg:gap-6">
           {navItems.map((item) => (
             <a
@@ -37,25 +37,25 @@ const navItems = [
       </nav>
 
       <!-- Acciones: selector idioma, Registro, Login (misma barra que primera hoja + idiomas) -->
-      <div class="hidden sm:flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-3">
         <LanguageSwitcher />
         <a href="/registro" class="header-btn header-btn-registro" data-i18n="header.register">Registro</a>
         <a href="/login" class="header-btn header-btn-login" data-i18n="header.login">Login</a>
       </div>
 
-      <div class="sm:hidden flex flex-col w-full">
-      <div class="flex items-center justify-between w-full">
-        <a href="/" class="flex items-center gap-2 no-underline">
+      <div class="lg:hidden flex flex-col w-full mobile-nav-container">
+      <div class="flex items-center justify-between w-full mobile-nav-row">
+        <a href="/" class="flex items-center gap-2 no-underline mobile-logo-link">
           <img
             src="/images/logos/Logo_Be-Mind%20night.svg"
             alt="BeMind Power"
-            class="h-8 w-auto"
+            class="mobile-logo-img"
           />
         </a>
         
         <button
           id="hamburger-btn"
-          class="hamburger-button flex items-center justify-center w-10 h-10 rounded-xl text-white bg-white/10 border border-white/20 transition-all hover:bg-white/20 backdrop-blur-sm"
+          class="hamburger-button"
           type="button"
           aria-label="Abrir menú"
           aria-controls="mobile-menu"
@@ -273,69 +273,191 @@ const navItems = [
     }
   }
 
-  /* Móvil: tap targets y menú */
+  /* Móvil: navbar compacto */
   @media (max-width: 640px) {
     .site-header {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      top: 1rem;
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+      top: 0.5rem;
+    }
+
+    /* Hacer la barra menos ancha en móvil */
+    .header-glass-wrap {
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .header-glass {
-      padding-left: 0.65rem;
-      padding-right: 0.65rem;
-      min-height: 48px;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding: 8px 12px !important;
+      min-height: unset !important;
+      height: auto !important;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
     }
 
-    .hamburger-button {
-      min-width: 40px;
-      min-height: 40px;
-      width: 40px;
+    /* Contenedor móvil compacto */
+    .mobile-nav-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
       height: 40px;
     }
 
-    .site-header-logo {
-      height: 1.75rem !important;
+    .mobile-logo-link {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      line-height: 0;
+    }
+
+    .mobile-logo-img {
+      height: 30px;
+      width: auto;
+    }
+
+    .hamburger-button {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .hamburger-button:hover,
+    .hamburger-button:active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .hamburger-button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* El mt-3 del panel suma altura incluso cerrado: neutralizarlo */
+    .mobile-menu-panel {
+      margin-top: 0 !important;
+      /* Importante: aunque tenga max-height:0, el padding/borde lo hace ocupar alto.
+         Colapsamos el panel cerrado para que el navbar se centre verticalmente. */
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      border-width: 0 !important;
     }
 
     .mobile-menu-panel[data-open='true'] {
+      margin-top: 0.75rem !important;
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      border-width: 1px !important;
       max-height: 85vh;
       overflow-y: auto;
     }
 
     .mobile-menu-item {
-      min-height: 44px;
+      min-height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 14px;
     }
 
     .header-btn {
-      min-height: 44px;
-      padding: 0 1.25rem;
-      font-size: 14px;
+      min-height: 40px;
+      padding: 0 1rem;
+      font-size: 13px;
     }
   }
 
-  /* Para pantallas muy pequeñas */
-  @media (max-width: 380px) {
-    .header-glass {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      min-height: 46px;
+  /* iPad / tablets: también usan navbar con hamburger (hasta <lg) */
+  @media (max-width: 1023px) and (min-width: 641px) {
+    .mobile-nav-row {
+      height: 44px;
     }
 
-    .site-header-logo {
-      height: 1.65rem !important;
+    .mobile-logo-img {
+      height: 34px;
+      width: auto;
     }
 
     .hamburger-button {
-      min-width: 38px;
-      min-height: 38px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 12px;
+    }
+
+    .hamburger-button svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* Evitar que el panel cerrado añada altura (mismo fix que móvil) */
+    .mobile-menu-panel {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      border-width: 0 !important;
+    }
+
+    .mobile-menu-panel[data-open='true'] {
+      margin-top: 0.9rem !important;
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      border-width: 1px !important;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+  }
+
+  /* Para pantallas muy pequeñas (375px y menos) */
+  @media (max-width: 380px) {
+    .site-header {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      top: 0.4rem;
+    }
+
+    .header-glass {
+      padding: 7px 10px !important;
+      border-radius: 16px;
+    }
+
+    .mobile-nav-row {
+      height: 38px;
+    }
+
+    .mobile-logo-img {
+      height: 28px;
+    }
+
+    .hamburger-button {
       width: 38px;
       height: 38px;
+      min-width: 38px;
+      min-height: 38px;
+      border-radius: 10px;
+    }
+
+    .hamburger-button svg {
+      width: 19px;
+      height: 19px;
     }
   }
 </style>
