@@ -755,49 +755,75 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
   }
 
-  /* Samsung S25 Ultra (Android grande ~412x9xx) */
+  /* Samsung S25 Ultra (Android grande ~412x915) */
   @media (max-width: 425px) and (min-width: 390px) and (min-height: 880px) and (hover: none) and (pointer: coarse) {
     .chat-mobile-layout {
-      padding-top: calc(80px + env(safe-area-inset-top));
+      padding-top: calc(75px + env(safe-area-inset-top));
+      padding-bottom: 0;
+      overflow: visible;
     }
 
     .chat-mobile-content {
-      padding-top: 2rem;
-      gap: clamp(0.5rem, 1.1vh, 0.8rem);
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+      gap: clamp(0.4rem, 1vh, 0.7rem);
+      flex: 0 0 auto;
     }
 
     .chat-mobile-buttons {
-      margin-top: clamp(0.5rem, 1.2vh, 0.9rem);
+      margin-top: clamp(0.4rem, 1vh, 0.8rem);
     }
 
     .chat-mobile-slider {
-      height: clamp(340px, 46vh, 480px);
-      margin-top: -1.5rem;
+      height: clamp(380px, 50vh, 520px);
+      margin-top: -1rem;
+      flex: 1 1 auto;
+      min-height: 350px;
+      overflow: visible;
+    }
+
+    .chat-mobile-slider .slider-container {
+      min-height: 320px;
     }
 
     .chat-mobile-slider .slider-item {
-      top: 50% !important;
+      top: 45% !important;
     }
   }
 
-  /* iPhone Plus / pantallas altas (ej. iPhone 16 Plus) */
-  @media (max-width: 480px) and (min-width: 428px) and (min-height: 880px) {
+  /* iPhone Plus / pantallas altas (ej. iPhone 16 Plus ~430x932) */
+  @media (max-width: 480px) and (min-width: 426px) and (min-height: 880px) {
     .chat-mobile-layout {
-      padding-top: calc(80px + env(safe-area-inset-top));
+      padding-top: calc(75px + env(safe-area-inset-top));
+      padding-bottom: 0;
+      overflow: visible;
     }
 
     .chat-mobile-content {
-      padding-top: 2rem;
-      gap: clamp(0.5rem, 1.1vh, 0.8rem);
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+      gap: clamp(0.4rem, 1vh, 0.7rem);
+      flex: 0 0 auto;
+    }
+
+    .chat-mobile-buttons {
+      margin-top: clamp(0.4rem, 1vh, 0.8rem);
     }
 
     .chat-mobile-slider {
-      height: clamp(340px, 46vh, 480px);
-      margin-top: -1.5rem;
+      height: clamp(380px, 50vh, 520px);
+      margin-top: -1rem;
+      flex: 1 1 auto;
+      min-height: 350px;
+      overflow: visible;
+    }
+
+    .chat-mobile-slider .slider-container {
+      min-height: 320px;
     }
 
     .chat-mobile-slider .slider-item {
-      top: 50% !important;
+      top: 45% !important;
     }
   }
 
