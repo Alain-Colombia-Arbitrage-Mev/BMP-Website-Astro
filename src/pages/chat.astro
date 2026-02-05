@@ -294,7 +294,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       justify-content: center;
       /* Más “aire” inferior y leve separación superior para que no quede pegado */
       padding: clamp(6px, 1vh, 12px) 2% calc(22px + env(safe-area-inset-bottom)) 2%;
-      margin-top: auto;
+      margin-top: clamp(8px, 1.5vh, 16px);
     }
 
     .chat-mobile-slider .feature-slider {
@@ -709,6 +709,19 @@ import FeatureSlider from '../components/FeatureSlider.astro';
 
     .chat-mobile-buttons {
       margin-top: 0.7rem;
+    }
+  }
+
+  /* iPhone Plus / pantallas altas (ej. iPhone 16 Plus): subir el slider un poco */
+  @media (max-width: 480px) and (min-width: 428px) and (min-height: 880px) {
+    .chat-mobile-slider {
+      max-height: 36vh;
+      padding-bottom: calc(14px + env(safe-area-inset-bottom));
+      margin-top: 10px;
+    }
+
+    .chat-mobile-slider .slider-item {
+      top: 44% !important;
     }
   }
 
