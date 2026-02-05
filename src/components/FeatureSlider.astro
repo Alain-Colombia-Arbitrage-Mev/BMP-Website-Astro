@@ -222,6 +222,17 @@ const features = [
       min-height: 40px;
     }
   }
+
+  /* Móvil / táctil: ocultar flechas (no deben ocupar espacio) */
+  @media (hover: none) and (pointer: coarse) {
+    .slider-nav {
+      display: none !important;
+    }
+
+    .slider-wrapper {
+      padding-bottom: 0;
+    }
+  }
 </style>
 
 <script>
