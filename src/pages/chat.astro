@@ -9,10 +9,58 @@ import FeatureSlider from '../components/FeatureSlider.astro';
 <Layout title="BeMind Power - Chat" description="BeMind Power: transformación personal y bienestar con tecnología inmersiva." bodyClass="chat-page">
   <div class="chat-page-wrap relative min-h-[100dvh] w-full">
     <HomeHeader />
-    <div class="chat-bg absolute inset-0 z-0">
+    
+    <!-- Layout Desktop: usa HomeHero normal -->
+    <div class="chat-desktop-layout">
       <HomeHero videoSrc="https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/1%20(8).mp4">
         <FeatureSlider />
       </HomeHero>
+    </div>
+
+    <!-- Layout Mobile: estructura separada para mejor control -->
+    <div class="chat-mobile-layout">
+      <!-- Video de fondo -->
+      <div class="chat-mobile-bg">
+        <video
+          class="chat-mobile-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        >
+          <source src="https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/1%20(8).mp4" type="video/mp4" />
+        </video>
+        <div class="chat-mobile-overlay"></div>
+        <div class="chat-mobile-glow"></div>
+      </div>
+
+      <!-- Título arriba -->
+      <div class="chat-mobile-title">
+        <h1 class="chat-title">
+          <span class="chat-title-line1" data-i18n="home.hero.titleLine1">Todo empieza</span>
+          <span class="chat-title-line2" data-i18n="home.hero.titleLine2">con una conversación</span>
+        </h1>
+        <p class="chat-subtitle" data-i18n="home.hero.subtitle">Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.</p>
+      </div>
+
+      <!-- Botones en el medio -->
+      <div class="chat-mobile-buttons">
+        <a href="#slider" class="chat-cta" data-i18n="home.hero.cta">Ver Más</a>
+        <div class="chat-badges">
+          <a href="#" class="chat-store-btn" aria-label="Download on the App Store">
+            <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+          </a>
+          <a href="#" class="chat-store-btn" aria-label="Get it on Google Play">
+            <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Slider abajo -->
+      <div class="chat-mobile-slider">
+        <FeatureSlider />
+      </div>
     </div>
   </div>
 </Layout>
@@ -23,94 +71,330 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     overflow-x: hidden;
   }
 
-  body.chat-page .chat-bg {
+  /* Desktop: mostrar layout normal, ocultar mobile */
+  .chat-desktop-layout {
+    display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
+    z-index: 0;
   }
 
-  /* Ajustes específicos para móviles en /chat */
+  .chat-mobile-layout {
+    display: none;
+  }
+
+  /* Mobile: ocultar desktop, mostrar mobile */
   @media (max-width: 768px) {
-    /* Subir el contenido del hero (título, subtítulo, botones) */
-    body.chat-page .home-hero-overlay {
-      padding-top: max(80px, 10vh);
-      padding-bottom: 0;
+    .chat-desktop-layout {
+      display: none;
     }
 
-    body.chat-page .hero-home-left {
-      justify-content: flex-start;
-      padding-top: 0;
+    .chat-mobile-layout {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      overflow: hidden;
     }
 
-    body.chat-page .hero-home-left-content {
+    /* Video de fondo */
+    .chat-mobile-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .chat-mobile-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.85;
+    }
+
+    .chat-mobile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .chat-mobile-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(
+        circle,
+        rgba(40, 54, 233, 0.89) 0%,
+        rgba(40, 54, 233, 0.5) 40%,
+        transparent 70%
+      );
+      filter: blur(198px);
+      z-index: 2;
+    }
+
+    /* Título - zona superior */
+    .chat-mobile-title {
+      position: relative;
+      z-index: 10;
+      padding: max(80px, 11vh) 5% 0 5%;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .chat-title {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.2;
+    }
+
+    .chat-title-line1 {
+      font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
+      font-size: clamp(28px, 8vw, 44px);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+    }
+
+    .chat-title-line2 {
+      font-family: 'Neometric', 'Inter', sans-serif;
+      font-size: clamp(18px, 5vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .chat-subtitle {
+      color: #fff;
+      font-family: 'Neometric', 'Inter', sans-serif;
+      font-size: clamp(13px, 3.5vw, 16px);
+      font-weight: 400;
+      line-height: 1.4;
+      margin: 0;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botones - zona media */
+    .chat-mobile-buttons {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 0.75rem;
+      padding: 1rem 5%;
+      flex-shrink: 0;
     }
 
-    /* Subir el slider para que las cards se vean más */
-    body.chat-page .home-hero-slider-layer {
-      bottom: 2vh;
-      height: min(340px, 42vh);
-      min-height: 280px;
+    .chat-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 2rem;
+      width: 220px;
+      background: #1929ff;
+      color: #fff;
+      font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-  }
 
-  @media (max-width: 480px) {
-    /* Ajustes más compactos para pantallas pequeñas */
-    body.chat-page .home-hero-overlay {
-      padding-top: max(70px, 9vh);
+    .chat-cta:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 24px rgba(25, 41, 255, 0.5);
     }
 
-    body.chat-page .hero-home-left-content {
-      gap: 0.6rem;
-    }
-
-    /* Reducir tamaño de los botones de tienda para dar más espacio */
-    body.chat-page .hero-home-badges {
+    .chat-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 8px;
     }
 
-    body.chat-page .hero-home-badges .store-btn {
-      width: 180px;
-      height: 46px;
-      min-height: 44px;
+    .chat-store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 50px;
+      padding: 0 16px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      box-shadow: 0 4px 14px rgba(55, 27, 190, 0.25), 0 -4px 14px rgba(25, 41, 255, 0.2);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    body.chat-page .hero-home-badges .store-btn img {
-      height: 24px;
+    .chat-store-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(55, 27, 190, 0.35);
     }
 
-    /* Slider más arriba */
-    body.chat-page .home-hero-slider-layer {
-      bottom: 3vh;
-      height: min(320px, 44vh);
+    .chat-store-btn img {
+      height: 26px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    /* Slider - zona inferior */
+    .chat-mobile-slider {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      min-height: 280px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 3% 2vh 3%;
+    }
+
+    .chat-mobile-slider .feature-slider {
+      height: 100%;
       min-height: 260px;
+    }
+
+    .chat-mobile-slider .slider-container {
+      height: 240px;
+      min-height: 220px;
     }
   }
 
+  /* Ajustes para móviles pequeños */
+  @media (max-width: 480px) {
+    .chat-mobile-title {
+      padding-top: max(75px, 10vh);
+    }
+
+    .chat-title-line1 {
+      font-size: clamp(24px, 7vw, 36px);
+    }
+
+    .chat-title-line2 {
+      font-size: clamp(16px, 4.5vw, 24px);
+    }
+
+    .chat-subtitle {
+      font-size: clamp(12px, 3.2vw, 14px);
+    }
+
+    .chat-mobile-buttons {
+      gap: 0.6rem;
+      padding: 0.75rem 5%;
+    }
+
+    .chat-cta {
+      min-height: 48px;
+      width: 200px;
+      font-size: 14px;
+    }
+
+    .chat-store-btn {
+      width: 180px;
+      height: 46px;
+    }
+
+    .chat-store-btn img {
+      height: 24px;
+    }
+
+    .chat-mobile-slider {
+      min-height: 260px;
+    }
+
+    .chat-mobile-slider .slider-container {
+      height: 220px;
+    }
+  }
+
+  /* Ajustes para móviles muy pequeños */
   @media (max-width: 380px) {
-    body.chat-page .home-hero-overlay {
-      padding-top: max(65px, 8vh);
+    .chat-mobile-title {
+      padding-top: max(70px, 9vh);
     }
 
-    body.chat-page .hero-home-left-content {
+    .chat-title-line1 {
+      font-size: clamp(22px, 6.5vw, 32px);
+    }
+
+    .chat-title-line2 {
+      font-size: clamp(14px, 4vw, 22px);
+    }
+
+    .chat-mobile-buttons {
       gap: 0.5rem;
+      padding: 0.5rem 5%;
     }
 
-    body.chat-page .hero-home-cta {
-      min-height: 46px;
-      width: min(180px, 80vw);
+    .chat-cta {
+      min-height: 44px;
+      width: 180px;
+      font-size: 13px;
     }
 
-    body.chat-page .hero-home-badges .store-btn {
+    .chat-store-btn {
       width: 170px;
       height: 42px;
     }
 
-    body.chat-page .home-hero-slider-layer {
-      bottom: 4vh;
+    .chat-store-btn img {
+      height: 22px;
+    }
+
+    .chat-mobile-slider {
       min-height: 240px;
+    }
+
+    .chat-mobile-slider .slider-container {
+      height: 200px;
     }
   }
 </style>
+
+<script>
+  // Optimizar reproducción de video en mobile
+  function initChatMobileVideo(): void {
+    const video = document.querySelector('.chat-mobile-video') as HTMLVideoElement;
+    if (!video) return;
+
+    const playVideo = () => {
+      video.play().catch(() => {
+        document.addEventListener('touchstart', () => {
+          video.play();
+        }, { once: true });
+      });
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', playVideo, { once: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatMobileVideo);
+  } else {
+    initChatMobileVideo();
+  }
+</script>
