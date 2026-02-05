@@ -712,6 +712,50 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
   }
 
+  /* /chat móvil: centrar botón de asistencia verticalmente */
+  @media (max-width: 640px) {
+    body.chat-page .support-container {
+      top: 50%;
+      bottom: auto;
+      left: max(16px, calc(env(safe-area-inset-left) + 16px));
+      transform: translateY(-50%);
+    }
+
+    /* Asegurar que la flecha del tooltip se posicione dentro del tooltip */
+    body.chat-page .support-tooltip {
+      position: relative;
+    }
+  }
+
+  /* Samsung S25 Ultra (Android grande ~412x9xx): balancear distribución */
+  @media (max-width: 425px) and (min-width: 390px) and (min-height: 880px) and (hover: none) and (pointer: coarse) {
+    .chat-mobile-layout {
+      justify-content: center;
+    }
+
+    .chat-mobile-content {
+      flex: 0 0 auto;
+      padding-top: calc(84px + env(safe-area-inset-top));
+      padding-bottom: 0.4rem;
+      gap: clamp(0.55rem, 1.4vh, 0.95rem);
+    }
+
+    .chat-mobile-buttons {
+      margin-top: clamp(0.7rem, 1.8vh, 1.2rem);
+    }
+
+    .chat-mobile-slider {
+      height: clamp(290px, 34vh, 360px);
+      max-height: 42vh;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      margin-top: 8px;
+    }
+
+    .chat-mobile-slider .slider-item {
+      top: 40% !important;
+    }
+  }
+
   /* iPhone Plus / pantallas altas (ej. iPhone 16 Plus): subir el slider un poco */
   @media (max-width: 480px) and (min-width: 428px) and (min-height: 880px) {
     /* Centrar el conjunto (texto+botones+slider) para evitar hueco inferior */
