@@ -1,12 +1,18 @@
 ---
 // Capa delantera del home: bloque izquierdo (título, CTA, tiendas) + smartphone. Inspeccionable por separado.
 import HeroHomeLeft from '../hero/HeroHomeLeft.astro';
+
+interface Props {
+  phoneSrc?: string;
+}
+
+const { phoneSrc = "/images/smartphone_2%201.png" } = Astro.props;
 ---
 
 <div class="home-hero-overlay">
   <HeroHomeLeft />
   <div class="home-hero-phone-wrap">
-    <img src="/images/smartphonehome.png" alt="BeMind Power app" class="home-hero-smartphone" />
+    <img src={phoneSrc} alt="BeMind Power app" class="home-hero-smartphone" />
   </div>
 </div>
 

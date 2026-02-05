@@ -1,0 +1,298 @@
+---
+// Bloque izquierdo de /finance según Figma (node 1537-5119).
+// Texto: "Maneja tus / finanzas / sin salir del chat" + descripción + Ver Más + botones tienda.
+---
+<aside class="finance-left" aria-label="Finanzas BeMind Power">
+  <div class="finance-left-content">
+    <h1 class="finance-title">
+      <span class="finance-title-line1">Maneja tus</span>
+      <span class="finance-title-line2">finanzas</span>
+      <span class="finance-title-line3">sin salir del chat</span>
+    </h1>
+    <p class="finance-subtitle">
+      Desde productos locales hasta servicios digitales: todo en una sola comunidad.
+    </p>
+    <a href="#slider" class="finance-cta">Ver Más</a>
+    <div class="finance-badges">
+      <a href="#" class="finance-store-btn" aria-label="Download on the App Store">
+        <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+      </a>
+      <a href="#" class="finance-store-btn" aria-label="Get it on Google Play">
+        <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .finance-left {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 695px;
+    min-height: 0;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 15;
+  }
+
+  .finance-left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .finance-title {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .finance-title-line1,
+  .finance-title-line2,
+  .finance-title-line3 {
+    font-family: 'OPTIFutura-ExtraBlackCond', 'OPTIFutura', 'Inter', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+  }
+
+  .finance-title-line1 {
+    font-size: clamp(32px, 5vw, 72px);
+  }
+
+  .finance-title-line2 {
+    font-size: clamp(32px, 5vw, 72px);
+  }
+
+  .finance-title-line3 {
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(22px, 2.6vw, 42px);
+    font-weight: 700;
+  }
+
+  .finance-subtitle {
+    color: #fff;
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(15px, 1.35vw, 24px);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 512px;
+    opacity: 0.95;
+  }
+
+  .finance-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: 0 2rem;
+    width: min(262px, 18vw);
+    background: #1929ff;
+    color: #fff;
+    font-family: 'OPTIFutura-ExtraBlackCond', 'OPTIFutura', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 1.15vw, 20px);
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    text-decoration: none;
+    margin: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .finance-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 24px rgba(25, 41, 255, 0.5);
+  }
+
+  .finance-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .finance-store-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 60px;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(55, 27, 190, 0.25), 0 -4px 14px rgba(25, 41, 255, 0.2);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .finance-store-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(55, 27, 190, 0.35);
+  }
+
+  .finance-store-btn img {
+    height: 32px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 769px) {
+    .finance-badges .finance-store-btn {
+      width: 250px;
+      height: 64px;
+      padding: 0 24px;
+    }
+
+    .finance-badges .finance-store-btn img {
+      height: 38px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .finance-left {
+      text-align: center;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    .finance-left-content {
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .finance-title {
+      align-items: center;
+    }
+
+    .finance-title-line1,
+    .finance-title-line2 {
+      font-size: clamp(28px, 5vw, 48px);
+    }
+
+    .finance-title-line3 {
+      font-size: clamp(18px, 2.5vw, 32px);
+    }
+
+    .finance-subtitle {
+      font-size: clamp(14px, 1.3vw, 20px);
+      text-align: center;
+    }
+
+    .finance-cta {
+      min-height: 60px;
+      width: min(240px, 70vw);
+      font-size: clamp(13px, 1.1vw, 18px);
+    }
+
+    .finance-badges {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .finance-left {
+      padding: 1rem 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    .finance-left-content {
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .finance-title {
+      align-items: center;
+    }
+
+    .finance-title-line1,
+    .finance-title-line2 {
+      font-size: clamp(26px, 7vw, 40px);
+    }
+
+    .finance-title-line3 {
+      font-size: clamp(16px, 4.5vw, 28px);
+    }
+
+    .finance-subtitle {
+      font-size: clamp(14px, 3.8vw, 18px);
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .finance-cta {
+      min-height: 56px;
+      width: min(220px, 75vw);
+      font-size: 15px;
+    }
+
+    .finance-badges {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .finance-left {
+      padding: 0.75rem 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    .finance-left-content {
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .finance-title {
+      align-items: center;
+    }
+
+    .finance-title-line1,
+    .finance-title-line2 {
+      font-size: clamp(22px, 6vw, 32px);
+    }
+
+    .finance-title-line3 {
+      font-size: clamp(14px, 4vw, 22px);
+    }
+
+    .finance-subtitle {
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .finance-cta {
+      min-height: 52px;
+      width: min(200px, 85vw);
+      font-size: 14px;
+      padding: 0 1.5rem;
+    }
+
+    .finance-badges {
+      gap: 10px;
+      align-items: center;
+    }
+
+    .finance-store-btn {
+      width: 200px;
+      height: 52px;
+      padding: 0 16px;
+      min-height: 48px;
+    }
+
+    .finance-store-btn img {
+      height: 28px;
+    }
+  }
+</style>

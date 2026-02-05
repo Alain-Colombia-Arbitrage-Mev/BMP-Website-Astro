@@ -1,39 +1,33 @@
-# BeMind Power — sitio web
+# BeMind Power
 
-Sitio corporativo de BeMind Power en Astro. Incluye la landing principal, página de soporte e internacionalización (ES/EN).
+Web en Astro: landing, soporte, ES/EN.
 
-## Cómo correr el proyecto
-
-Desde la raíz del proyecto:
+## Desarrollo
 
 ```bash
 npm install
 npm run dev
 ```
 
-El servidor de desarrollo queda en `http://localhost:4321`.
-
-Para generar la build de producción:
+Servidor en `http://localhost:4321`. Build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-La salida va a `./dist/`. El deploy está configurado para Cloudflare Pages (`wrangler.toml`).
+Salida en `./dist/`. Deploy en Cloudflare Pages (`wrangler.toml`).
 
 ## Diseño
 
-La página `/home` sigue el layout del frame **"1"** del archivo Pencil `home1.pen` (1728×1117): columna izquierda con título, subtítulo, botón "Ver Más" y badges; zona derecha con el slider de características; glow azul 910px; tipografía OPTIFutura/Neometric.
+`/home` replica el frame "1" de `home1.pen`: izquierda título/CTA/badges, derecha slider, glow azul, OPTIFutura/Neometric.
 
 ## Estructura
 
-- `public/` — estáticos (imágenes, fuentes, favicons). Los logos están en `public/images/logos/`.
-- `src/pages/` — rutas: `index.astro` (bienvenida), `home.astro` (landing), `soporte.astro`.
-- `src/components/` — cabeceras, hero, slider de features, fondos, etc.
-- `src/stores/` — estado global (idioma, menú) con Nanostores.
-- `src/styles/global.css` — estilos globales y Tailwind.
+- `public/` — estáticos; logos en `public/images/logos/`
+- `src/pages/` — `index`, `home`, `soporte`
+- `src/components/` — header, hero, slider, fondos
+- `src/stores/` — idioma y menú (Nanostores)
+- `src/styles/global.css` — Tailwind y globales
 
-## Stack
-
-Astro 5, Tailwind CSS 4, i18next para los textos, Nanostores para el estado.
+Astro 5, Tailwind 4, i18next, Nanostores.

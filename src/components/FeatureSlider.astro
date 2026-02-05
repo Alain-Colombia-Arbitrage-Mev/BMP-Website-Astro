@@ -1,11 +1,17 @@
 ---
 import FeatureCard from './FeatureCard.astro';
 
-// Datos de las tarjetas del slider - 9 tarjetas
-// Orden: Chat (centro), Wallet, Marketplace, Apps, Nutrition, Comunidades, Música, Salud Mental, AI Finanzas
+interface Props {
+  /** Tarjeta activa al cargar: 0=Chat, 1=Wallet, 2=Marketplace… Default 2 */
+  initialIndex?: number;
+}
+
+const { initialIndex = 2 } = Astro.props;
+
+// Slider: 9 tarjetas (Chat, Wallet, Marketplace, Apps, Nutrition, Comunidades, Música, Salud Mental, AI Finanzas)
 const features = [
   {
-    // CHAT - índice 0, activo primero
+    // Chat (0, activo por defecto)
     image: '/images/Chat.svg',
     logo: '/images/logohorizontal.svg',
     title: 'Chat',
@@ -79,8 +85,6 @@ const features = [
   }
 ];
 
-// Índice inicial - Chat siempre activo primero (posición 0)
-const CHAT_INDEX = 0;
 ---
 
 <section class="feature-slider relative w-full flex flex-col items-center justify-center overflow-visible" data-feature-slider>
@@ -89,7 +93,7 @@ const CHAT_INDEX = 0;
       <div 
         id="slider-track" 
         class="slider-track flex items-center justify-center"
-        data-initial-index={CHAT_INDEX}
+        data-initial-index={initialIndex}
       >
         {features.map((feature, index) => (
           <div 
@@ -225,8 +229,6 @@ const CHAT_INDEX = 0;
 
 <script>
 
-  const CHAT_INDEX = 0;
-
   // Escalas según distancia desde la tarjeta activa (más pronunciadas como en Figma)
   const SCALES = {
     0: 1.0,    // activa - tamaño completo
@@ -268,8 +270,9 @@ const CHAT_INDEX = 0;
     if (track.hasAttribute('data-initialized')) return;
     track.setAttribute('data-initialized', 'true');
 
-    // Iniciar en Chat (siempre activo primero - índice 4)
-    let currentIndex = CHAT_INDEX;
+    const rawInitial = track.getAttribute('data-initial-index');
+    const initialIndex = rawInitial !== null ? Math.max(0, parseInt(rawInitial, 10) % items.length) : 0;
+    let currentIndex = initialIndex;
     const totalItems = items.length;
 
     const getCardWidth = (): number => {

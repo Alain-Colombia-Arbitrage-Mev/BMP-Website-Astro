@@ -1,0 +1,288 @@
+---
+// Bloque izquierdo de /marketplace
+---
+<aside class="marketplace-left" aria-label="Marketplace BeMind Power">
+  <div class="marketplace-left-content">
+    <h1 class="marketplace-title">
+      <span class="marketplace-title-line1">Compra y vende</span>
+      <span class="marketplace-title-line2">sin salir del chat</span>
+    </h1>
+    <p class="marketplace-subtitle">
+      Desde productos locales hasta servicios digitales: todo en una sola comunidad.
+    </p>
+    <a href="#slider" class="marketplace-cta">Ver Más</a>
+    <div class="marketplace-badges">
+      <a href="#" class="marketplace-store-btn" aria-label="Download on the App Store">
+        <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+      </a>
+      <a href="#" class="marketplace-store-btn" aria-label="Get it on Google Play">
+        <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .marketplace-left {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 695px;
+    min-height: 0;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 15;
+  }
+
+  .marketplace-left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .marketplace-title {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .marketplace-title-line1,
+  .marketplace-title-line2 {
+    font-family: 'OPTIFutura-ExtraBlackCond', 'OPTIFutura', 'Inter', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+  }
+
+  .marketplace-title-line1 {
+    font-size: clamp(32px, 5vw, 72px);
+  }
+
+  .marketplace-title-line2 {
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(22px, 2.6vw, 42px);
+    font-weight: 700;
+  }
+
+  .marketplace-subtitle {
+    color: #fff;
+    font-family: 'Neometric', 'Inter', sans-serif;
+    font-size: clamp(15px, 1.35vw, 24px);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 512px;
+    opacity: 0.95;
+  }
+
+  .marketplace-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: 0 2rem;
+    width: min(262px, 18vw);
+    background: #1929ff;
+    color: #fff;
+    font-family: 'OPTIFutura-ExtraBlackCond', 'OPTIFutura', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 1.15vw, 20px);
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    text-decoration: none;
+    margin: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .marketplace-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 24px rgba(25, 41, 255, 0.5);
+  }
+
+  .marketplace-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .marketplace-store-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 60px;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(55, 27, 190, 0.25), 0 -4px 14px rgba(25, 41, 255, 0.2);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .marketplace-store-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(55, 27, 190, 0.35);
+  }
+
+  .marketplace-store-btn img {
+    height: 32px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  @media (min-width: 769px) {
+    .marketplace-badges .marketplace-store-btn {
+      width: 250px;
+      height: 64px;
+      padding: 0 24px;
+    }
+
+    .marketplace-badges .marketplace-store-btn img {
+      height: 38px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .marketplace-left {
+      text-align: center;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    .marketplace-left-content {
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .marketplace-title {
+      align-items: center;
+    }
+
+    .marketplace-title-line1 {
+      font-size: clamp(28px, 5vw, 48px);
+    }
+
+    .marketplace-title-line2 {
+      font-size: clamp(18px, 2.5vw, 32px);
+    }
+
+    .marketplace-subtitle {
+      font-size: clamp(14px, 1.3vw, 20px);
+      text-align: center;
+    }
+
+    .marketplace-cta {
+      min-height: 60px;
+      width: min(240px, 70vw);
+      font-size: clamp(13px, 1.1vw, 18px);
+    }
+
+    .marketplace-badges {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .marketplace-left {
+      padding: 1rem 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    .marketplace-left-content {
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .marketplace-title {
+      align-items: center;
+    }
+
+    .marketplace-title-line1 {
+      font-size: clamp(26px, 7vw, 40px);
+    }
+
+    .marketplace-title-line2 {
+      font-size: clamp(16px, 4.5vw, 28px);
+    }
+
+    .marketplace-subtitle {
+      font-size: clamp(14px, 3.8vw, 18px);
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .marketplace-cta {
+      min-height: 56px;
+      width: min(220px, 75vw);
+      font-size: 15px;
+    }
+
+    .marketplace-badges {
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .marketplace-left {
+      padding: 0.75rem 0;
+      text-align: center;
+      align-items: center;
+    }
+
+    .marketplace-left-content {
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .marketplace-title {
+      align-items: center;
+    }
+
+    .marketplace-title-line1 {
+      font-size: clamp(22px, 6vw, 32px);
+    }
+
+    .marketplace-title-line2 {
+      font-size: clamp(14px, 4vw, 22px);
+    }
+
+    .marketplace-subtitle {
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .marketplace-cta {
+      min-height: 52px;
+      width: min(200px, 85vw);
+      font-size: 14px;
+      padding: 0 1.5rem;
+    }
+
+    .marketplace-badges {
+      gap: 10px;
+      align-items: center;
+    }
+
+    .marketplace-store-btn {
+      width: 200px;
+      height: 52px;
+      padding: 0 16px;
+      min-height: 48px;
+    }
+
+    .marketplace-store-btn img {
+      height: 28px;
+    }
+  }
+</style>

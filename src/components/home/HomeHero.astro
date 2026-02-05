@@ -3,14 +3,21 @@
 import HomeHeroBackground from './HomeHeroBackground.astro';
 import HomeHeroSliderLayer from './HomeHeroSliderLayer.astro';
 import HomeHeroOverlay from './HomeHeroOverlay.astro';
+
+interface Props {
+  videoSrc?: string;
+  phoneSrc?: string;
+}
+
+const { videoSrc, phoneSrc } = Astro.props;
 ---
 
 <div class="home-hero">
-  <HomeHeroBackground />
+  <HomeHeroBackground videoSrc={videoSrc} />
   <HomeHeroSliderLayer>
     <slot />
   </HomeHeroSliderLayer>
-  <HomeHeroOverlay />
+  <HomeHeroOverlay phoneSrc={phoneSrc} />
 </div>
 
 <style>

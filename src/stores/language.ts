@@ -1,10 +1,10 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { computed } from 'nanostores';
 
-// Tipos - Idiomas soportados
+// Idiomas soportados
 export type Lang = 'es' | 'en' | 'pt' | 'zh' | 'ar';
 
-// Lista de idiomas con metadata
+// Lista idiomas + metadata
 export const languages = [
   { code: 'en', label: 'English', flag: '🇺🇸', dir: 'ltr' },
   { code: 'es', label: 'Español', flag: '🇪🇸', dir: 'ltr' },
@@ -294,7 +294,7 @@ const translations: Record<Lang, Record<string, string>> = {
 
 type TranslationKey = keyof typeof translations.es;
 
-// Validar si es un idioma soportado
+// Valida idioma soportado
 const isValidLang = (lang: string): lang is Lang => {
   return ['es', 'en', 'pt', 'zh', 'ar'].includes(lang);
 };
@@ -318,22 +318,22 @@ export const $lang = persistentAtom<Lang>('lang', detectBrowserLang(), {
   decode: (value) => (isValidLang(value) ? value : 'en')
 });
 
-// Función para obtener traducción
+// Obtiene traducción
 export const t = (key: string): string => {
   const lang = $lang.get();
   return translations[lang][key] || translations.en[key] || key;
 };
 
-// Computed store para las traducciones actuales
+// Traducciones actuales (computed)
 export const $translations = computed($lang, (lang) => translations[lang]);
 
-// Obtener info del idioma actual
+// Info idioma actual
 export const getCurrentLanguage = () => {
   const lang = $lang.get();
   return languages.find(l => l.code === lang) || languages[0];
 };
 
-// Acciones
+// Acciones del store
 export const setLanguage = (lang: Lang): void => {
   if (isValidLang(lang)) {
     $lang.set(lang);

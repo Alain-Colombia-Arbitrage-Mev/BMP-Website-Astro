@@ -1,5 +1,5 @@
 ---
-// Botones de App Store y Google Play
+// App Store / Google Play
 interface Props {
   appStoreUrl?: string;
   googlePlayUrl?: string;
@@ -23,7 +23,7 @@ const {
 <style>
   .hero-store-buttons {
     display: flex;
-    gap: 20px;
+    gap: clamp(18px, 2vw, 28px);
     position: relative;
     z-index: 18;
   }
@@ -32,8 +32,8 @@ const {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 60px;
+    width: clamp(190px, 18vw, 240px);
+    height: clamp(58px, 6vh, 70px);
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -55,9 +55,39 @@ const {
   }
 
   .store-btn img {
-    height: 37px;
+    height: clamp(35px, 3.5vh, 46px);
     width: auto;
     object-fit: contain;
+  }
+
+  @media (min-width: 1440px) {
+    .hero-store-buttons {
+      gap: clamp(22px, 2.2vw, 32px);
+    }
+
+    .store-btn {
+      width: clamp(210px, 19vw, 260px);
+      height: clamp(64px, 6.5vh, 75px);
+    }
+
+    .store-btn img {
+      height: clamp(40px, 4vh, 50px);
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero-store-buttons {
+      gap: clamp(26px, 2.4vw, 36px);
+    }
+
+    .store-btn {
+      width: clamp(230px, 20vw, 280px);
+      height: clamp(68px, 7vh, 80px);
+    }
+
+    .store-btn img {
+      height: clamp(44px, 4.5vh, 54px);
+    }
   }
 
   @media (max-width: 1024px) {
@@ -75,6 +105,7 @@ const {
     .hero-store-buttons {
       flex-direction: column;
       gap: 12px;
+      margin-top: 1.5vh;
     }
 
     .store-btn {
@@ -90,6 +121,7 @@ const {
   @media (max-width: 480px) {
     .hero-store-buttons {
       gap: 10px;
+      margin-top: 1.2vh;
     }
 
     .store-btn {
@@ -106,6 +138,7 @@ const {
   @media (max-width: 375px) {
     .hero-store-buttons {
       gap: 9px;
+      margin-top: 1vh;
     }
 
     .store-btn {

@@ -1,0 +1,115 @@
+---
+// Página marketplace: columna izquierda + hero/slider a la derecha (desktop); apilado en móvil.
+import Layout from '../layouts/Layout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import FeatureSlider from '../components/FeatureSlider.astro';
+import MarketplaceLeftContent from '../components/marketplace/MarketplaceLeftContent.astro';
+---
+
+<Layout title="BeMind Power - Marketplace" description="BeMind Power: marketplace y bienestar con tecnología inmersiva." bodyClass="marketplace-page">
+  <div class="marketplace-page-wrap relative min-h-[100dvh] w-full">
+    <HomeHeader />
+    <div class="marketplace-bg absolute inset-0 z-0">
+      <HomeHero 
+        videoSrc="https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/marketplace.mp4"
+        phoneSrc="/images/smartphone3 1.png"
+      >
+        <FeatureSlider initialIndex={2} />
+      </HomeHero>
+    </div>
+    <div class="marketplace-layout">
+      <MarketplaceLeftContent />
+      <div class="marketplace-right" aria-hidden="true">
+        <!-- Slider ya está dentro de HomeHero; esta columna solo ocupa espacio en desktop -->
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  body.marketplace-page {
+    background: #000000;
+    overflow-x: hidden;
+  }
+
+  body.marketplace-page .marketplace-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  /* Desktop: dos columnas — izquierda contenido, derecha deja espacio al hero/slider */
+  body.marketplace-page .marketplace-layout {
+    position: relative;
+    z-index: 10;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0 6%;
+    padding-top: max(80px, 10vh);
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  body.marketplace-page .marketplace-layout .marketplace-left {
+    flex: 0 1 auto;
+    max-width: 55%;
+    pointer-events: auto;
+  }
+
+  body.marketplace-page .marketplace-layout .marketplace-right {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 400px;
+    pointer-events: none;
+  }
+
+  /* Ocultar el bloque izquierdo original del hero (HeroHomeLeft) en /marketplace */
+  body.marketplace-page .home-hero-overlay .hero-home-left {
+    display: none !important;
+  }
+
+  /* Mantener la imagen del teléfono siempre a la derecha en /marketplace */
+  body.marketplace-page .home-hero-overlay .home-hero-phone-wrap {
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+
+  /* Móvil: apilar — contenido arriba, hero/slider abajo */
+  @media (max-width: 1024px) {
+    body.marketplace-page .marketplace-layout {
+      flex-direction: column;
+      padding-top: max(120px, 15vh);
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    body.marketplace-page .marketplace-layout .marketplace-left {
+      max-width: 100%;
+      text-align: center;
+      align-items: center;
+    }
+
+    body.marketplace-page .marketplace-layout .marketplace-right {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body.marketplace-page .marketplace-layout {
+      padding-top: max(110px, 14vh);
+    }
+  }
+
+  @media (max-width: 480px) {
+    body.marketplace-page .marketplace-layout {
+      padding-top: max(100px, 13vh);
+    }
+  }
+</style>

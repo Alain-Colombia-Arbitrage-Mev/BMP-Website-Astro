@@ -1,5 +1,10 @@
 ---
 // Fondo de la página home: base negro + video + resplandor (tamaño home).
+interface Props {
+  videoSrc?: string;
+}
+
+const { videoSrc = "https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/finance.mp4" } = Astro.props;
 ---
 
 <div class="home-hero-bg">
@@ -15,7 +20,7 @@
     playsinline
     preload="auto"
   >
-    <source src="https://pub-d1d8eb4932844ef19f969720eed8b94a.r2.dev/1%20(8).mp4" type="video/mp4" />
+    <source src={videoSrc} type="video/mp4" />
   </video>
   
   <!-- Overlay oscuro para mejorar legibilidad -->

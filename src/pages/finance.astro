@@ -1,0 +1,112 @@
+---
+// Página finance: columna izquierda (Figma 1537-5119) + hero/slider a la derecha (desktop); apilado en móvil.
+import Layout from '../layouts/Layout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import FeatureSlider from '../components/FeatureSlider.astro';
+import FinanceLeftContent from '../components/finance/FinanceLeftContent.astro';
+---
+
+<Layout title="BeMind Power - Finance" description="BeMind Power: finanzas y bienestar con tecnología inmersiva." bodyClass="finance-page">
+  <div class="finance-page-wrap relative min-h-[100dvh] w-full">
+    <HomeHeader />
+    <div class="finance-bg absolute inset-0 z-0">
+      <HomeHero>
+        <FeatureSlider initialIndex={1} />
+      </HomeHero>
+    </div>
+    <div class="finance-layout">
+      <FinanceLeftContent />
+      <div class="finance-right" aria-hidden="true">
+        <!-- Slider ya está dentro de HomeHero; esta columna solo ocupa espacio en desktop -->
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  body.finance-page {
+    background: #000000;
+    overflow-x: hidden;
+  }
+
+  body.finance-page .finance-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  /* Desktop: dos columnas — izquierda contenido, derecha deja espacio al hero/slider */
+  body.finance-page .finance-layout {
+    position: relative;
+    z-index: 10;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0 6%;
+    padding-top: max(80px, 10vh);
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  body.finance-page .finance-layout .finance-left {
+    flex: 0 1 auto;
+    max-width: 55%;
+    pointer-events: auto;
+  }
+
+  body.finance-page .finance-layout .finance-right {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 400px;
+    pointer-events: none;
+  }
+
+  /* Ocultar el bloque izquierdo original del hero (HeroHomeLeft) en /finance; solo mostramos FinanceLeftContent */
+  body.finance-page .home-hero-overlay .hero-home-left {
+    display: none !important;
+  }
+
+  /* Mantener la imagen del teléfono siempre a la derecha en /finance */
+  body.finance-page .home-hero-overlay .home-hero-phone-wrap {
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+
+  /* Móvil: apilar — contenido arriba, hero/slider abajo (el hero ya es full viewport) */
+  @media (max-width: 1024px) {
+    body.finance-page .finance-layout {
+      flex-direction: column;
+      padding-top: max(120px, 15vh);
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    body.finance-page .finance-layout .finance-left {
+      max-width: 100%;
+      text-align: center;
+      align-items: center;
+    }
+
+    body.finance-page .finance-layout .finance-right {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body.finance-page .finance-layout {
+      padding-top: max(110px, 14vh);
+    }
+  }
+
+  @media (max-width: 480px) {
+    body.finance-page .finance-layout {
+      padding-top: max(100px, 13vh);
+    }
+  }
+</style>

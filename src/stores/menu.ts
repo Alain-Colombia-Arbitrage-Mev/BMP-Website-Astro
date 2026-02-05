@@ -1,10 +1,10 @@
 import { atom } from 'nanostores';
 import { t, $lang } from './language';
 
-// Store para el estado del menú móvil
+// Estado menú móvil
 export const $menuOpen = atom<boolean>(false);
 
-// Acciones
+// Acciones del store
 export const openMenu = (): void => {
   $menuOpen.set(true);
 };
@@ -17,7 +17,7 @@ export const toggleMenu = (): void => {
   $menuOpen.set(!$menuOpen.get());
 };
 
-// Función helper para actualizar el aria-label del botón hamburguesa
+// Actualiza aria-label del hamburger
 const updateHamburgerAriaLabel = (): void => {
   const hamburgerBtn = document.getElementById('hamburger-btn');
   if (hamburgerBtn) {

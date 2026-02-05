@@ -11,10 +11,22 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(520px, 45vw);
+    width: clamp(480px, 43vw, 650px);
     z-index: 10;
     pointer-events: none;
     opacity: 0.85;
+  }
+
+  @media (min-width: 1440px) {
+    .hero-logo-geometric {
+      width: clamp(540px, 45vw, 720px);
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero-logo-geometric {
+      width: clamp(600px, 47vw, 800px);
+    }
   }
 
   .hero-logo-geometric img {

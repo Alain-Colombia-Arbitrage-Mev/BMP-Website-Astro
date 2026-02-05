@@ -7,10 +7,24 @@
 
 <style>
   .hero-logo-text {
-    width: min(250px, 28vw);
-    margin-bottom: 1.2vh;
+    width: clamp(230px, 25vw, 320px);
+    margin-bottom: clamp(10px, 1.2vh, 18px);
     position: relative;
     z-index: 20;
+  }
+
+  @media (min-width: 1440px) {
+    .hero-logo-text {
+      width: clamp(260px, 26vw, 340px);
+      margin-bottom: clamp(12px, 1.3vh, 20px);
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .hero-logo-text {
+      width: clamp(290px, 27vw, 360px);
+      margin-bottom: clamp(14px, 1.4vh, 22px);
+    }
   }
 
   .hero-logo-text img {
@@ -21,14 +35,14 @@
   @media (max-width: 768px) {
     .hero-logo-text {
       width: min(200px, 40vw);
-      margin-bottom: 0.8vh;
+      margin-bottom: 3vh;
     }
   }
 
   @media (max-width: 480px) {
     .hero-logo-text {
       width: min(165px, 42vw);
-      margin-bottom: 0.7vh;
+      margin-bottom: 2.8vh;
     }
   }
 
@@ -36,7 +50,7 @@
   @media (max-width: 375px) {
     .hero-logo-text {
       width: min(150px, 40vw);
-      margin-bottom: 0.6vh;
+      margin-bottom: 2.5vh;
     }
   }
 </style>
