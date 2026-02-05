@@ -24,6 +24,7 @@ const {
   <HeroTitle text={mainTitle} />
   <HeroDescription text={description} />
   <HeroStoreButtons />
+  <a href="#features" class="ver-mas-btn">Ver Más</a>
 </div>
 
 <style>
@@ -40,6 +41,30 @@ const {
     padding-right: 5vw;
   }
 
+  .ver-mas-btn {
+    margin-top: 2.5vh;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 42px;
+    background: #1929ff;
+    color: #ffffff;
+    font-family: 'OPTIFutura', 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.2px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 25px rgba(25, 41, 255, 0.4);
+    z-index: 20;
+  }
+
+  .ver-mas-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(25, 41, 255, 0.6);
+  }
+
   @media (max-width: 1024px) {
     .hero-content {
       padding-top: 22vh;
@@ -48,20 +73,38 @@ const {
 
   @media (max-width: 768px) {
     .hero-content {
-      padding-top: 25vh;
+      padding-top: 28vh;
+    }
+
+    .ver-mas-btn {
+      margin-top: 2.5vh;
+      padding: 16px 40px;
+      font-size: 18px;
     }
   }
 
   @media (max-width: 480px) {
     .hero-content {
-      padding-top: 23vh;
+      padding-top: 26vh;
+    }
+
+    .ver-mas-btn {
+      margin-top: 2vh;
+      padding: 14px 36px;
+      font-size: 16px;
     }
   }
 
   /* iPhone SE y pantallas muy pequeñas */
   @media (max-width: 375px) {
     .hero-content {
-      padding-top: 22vh;
+      padding-top: 25vh;
+    }
+
+    .ver-mas-btn {
+      margin-top: 1.8vh;
+      padding: 12px 32px;
+      font-size: 15px;
     }
   }
 </style>

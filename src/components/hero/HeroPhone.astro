@@ -21,8 +21,8 @@ const {
     left: 50%;
     bottom: -20%;
     transform: translateX(-50%) rotate(var(--rotation, -10deg));
-    width: min(650px, 52vw);
-    z-index: 20;
+    width: min(500px, 42vw);
+    z-index: 25;
     pointer-events: none;
   }
 
@@ -33,22 +33,22 @@ const {
 
   @media (max-width: 1024px) {
     .hero-phone {
-      width: min(560px, 50vw);
+      width: min(480px, 42vw);
       bottom: -18%;
     }
   }
 
   @media (max-width: 768px) {
     .hero-phone {
-      width: min(450px, 60vw);
-      bottom: -15%;
+      width: min(420px, 65vw);
+      bottom: -18%;
     }
   }
 
   @media (max-width: 480px) {
     .hero-phone {
-      width: min(360px, 70vw);
-      bottom: -18%;
+      width: min(380px, 75vw);
+      bottom: -15%;
     }
   }
 </style>

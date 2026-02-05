@@ -278,17 +278,26 @@ const navItems = [
     .site-header {
       padding-left: 1rem;
       padding-right: 1rem;
+      top: 1rem;
     }
 
     .header-glass {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      min-height: 52px;
+      padding-left: 0.65rem;
+      padding-right: 0.65rem;
+      min-height: 48px;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
     }
 
     .hamburger-button {
-      min-width: 44px;
-      min-height: 44px;
+      min-width: 40px;
+      min-height: 40px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .site-header-logo {
+      height: 1.75rem !important;
     }
 
     .mobile-menu-panel[data-open='true'] {
@@ -307,6 +316,26 @@ const navItems = [
       min-height: 44px;
       padding: 0 1.25rem;
       font-size: 14px;
+    }
+  }
+
+  /* Para pantallas muy pequeñas */
+  @media (max-width: 380px) {
+    .header-glass {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      min-height: 46px;
+    }
+
+    .site-header-logo {
+      height: 1.65rem !important;
+    }
+
+    .hamburger-button {
+      min-width: 38px;
+      min-height: 38px;
+      width: 38px;
+      height: 38px;
     }
   }
 </style>
