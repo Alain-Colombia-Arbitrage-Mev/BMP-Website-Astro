@@ -1,0 +1,580 @@
+---
+// Página Comunidad: clonada de /chat con contenido específico de Comunidades.
+import Layout from '../layouts/Layout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import FeatureSlider from '../components/FeatureSlider.astro';
+---
+
+<Layout title="BeMind Power - Comunidad" description="BeMind Power: crea, únete y colabora con personas que comparten tus intereses y valores." bodyClass="comunidad-page">
+  <div class="comunidad-page-wrap relative min-h-[100dvh] w-full">
+    <HomeHeader />
+
+    <!-- Layout Desktop: usa HomeHero con video y phone de Comunidad, slider inicia en Comunidades (index 5) -->
+    <div class="comunidad-desktop-layout">
+      <HomeHero
+        videoSrc="/videos/destacate.mp4"
+        phoneSrc="/images/comunity.png"
+        titleLine1="Destácate"
+        titleLine2="Crea tu comunidad"
+        subtitle="Crea, únete y colabora con personas que comparten tus intereses y valores."
+        ctaText="Ver Más"
+        ctaHref="/comunidad"
+        titleLine1Key="comunidad.hero.titleLine1"
+        titleLine2Key="comunidad.hero.titleLine2"
+        subtitleKey="comunidad.hero.subtitle"
+        ctaKey="comunidad.hero.cta"
+      >
+        <FeatureSlider initialIndex={5} />
+      </HomeHero>
+    </div>
+
+    <!-- Layout Mobile: estructura separada para mejor control -->
+    <div class="comunidad-mobile-layout">
+      <!-- Video de fondo -->
+      <div class="comunidad-mobile-bg">
+        <video
+          class="comunidad-mobile-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        >
+          <source src="/videos/destacate.mp4" type="video/mp4" />
+        </video>
+        <div class="comunidad-mobile-overlay"></div>
+        <div class="comunidad-mobile-glow"></div>
+      </div>
+
+      <!-- Contenido superior: título + botones -->
+      <div class="comunidad-mobile-content">
+        <div class="comunidad-mobile-title">
+          <h1 class="comunidad-title">
+            <span class="comunidad-title-line1" data-i18n="comunidad.hero.titleLine1">Destácate</span>
+            <span class="comunidad-title-line2" data-i18n="comunidad.hero.titleLine2">Crea tu comunidad</span>
+          </h1>
+          <p class="comunidad-subtitle" data-i18n="comunidad.hero.subtitle">Crea, únete y colabora con personas que comparten tus intereses y valores.</p>
+        </div>
+
+        <div class="comunidad-mobile-buttons">
+          <a href="#slider" class="comunidad-cta" data-i18n="comunidad.hero.cta">Ver Más</a>
+          <div class="comunidad-badges">
+            <a href="#" class="comunidad-store-btn" aria-label="Download on the App Store">
+              <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+            </a>
+            <a href="#" class="comunidad-store-btn" aria-label="Get it on Google Play">
+              <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider abajo, inicia en Comunidades (index 5) -->
+      <div class="comunidad-mobile-slider">
+        <FeatureSlider initialIndex={5} />
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  body.comunidad-page {
+    background: #000000;
+    overflow-x: hidden;
+  }
+
+  /* Desktop: mostrar layout normal, ocultar mobile */
+  .comunidad-desktop-layout {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .comunidad-mobile-layout {
+    display: none;
+  }
+
+  /* ===== MOBILE + TABLETS TÁCTILES ===== */
+  @media (max-width: 768px), (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1366px) {
+    body.comunidad-page {
+      overflow-x: hidden;
+      overscroll-behavior: none;
+    }
+
+    .comunidad-desktop-layout {
+      display: none;
+    }
+
+    .comunidad-mobile-layout {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      min-height: 100dvh;
+      min-height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
+      padding-top: calc(70px + env(safe-area-inset-top));
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .comunidad-mobile-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .comunidad-mobile-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.85;
+    }
+
+    .comunidad-mobile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .comunidad-mobile-glow {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(
+        circle,
+        rgba(40, 54, 233, 0.89) 0%,
+        rgba(40, 54, 233, 0.5) 40%,
+        transparent 70%
+      );
+      filter: blur(198px);
+      z-index: 2;
+    }
+
+    .comunidad-mobile-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.5rem, 2vh, 1.5rem) 5%;
+      gap: clamp(0.4rem, 1.2vh, 0.8rem);
+      flex: 0 0 auto;
+    }
+
+    .comunidad-mobile-title {
+      text-align: center;
+      width: 100%;
+    }
+
+    .comunidad-title {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 0 clamp(0.3rem, 1vh, 0.6rem) 0;
+      line-height: 1.1;
+    }
+
+    .comunidad-title-line1 {
+      font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
+      font-size: clamp(24px, 7vw, 40px);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+    }
+
+    .comunidad-title-line2 {
+      font-family: 'Neometric', 'Inter', sans-serif;
+      font-size: clamp(14px, 4vw, 24px);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .comunidad-subtitle {
+      color: #fff;
+      font-family: 'Neometric', 'Inter', sans-serif;
+      font-size: clamp(11px, 2.8vw, 14px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin: 0;
+      max-width: 92%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .comunidad-mobile-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: clamp(0.4rem, 1.5vh, 1rem);
+      gap: clamp(0.3rem, 0.8vh, 0.5rem);
+      width: 100%;
+    }
+
+    .comunidad-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: clamp(42px, 5.5vh, 50px);
+      padding: 0 2rem;
+      width: min(280px, 72vw);
+      background: #1929ff;
+      color: #fff;
+      font-family: 'OPTIFutura-ExtraBlackCond', 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: clamp(14px, 3.8vw, 16px);
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .comunidad-cta:hover,
+    .comunidad-cta:active {
+      transform: scale(1.02);
+      box-shadow: 0 4px 24px rgba(25, 41, 255, 0.5);
+    }
+
+    .comunidad-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(0.3rem, 0.6vh, 0.5rem);
+    }
+
+    .comunidad-store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(260px, 68vw);
+      height: clamp(42px, 5.5vh, 50px);
+      padding: 0 18px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      box-shadow: 0 4px 14px rgba(55, 27, 190, 0.25), 0 -4px 14px rgba(25, 41, 255, 0.2);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .comunidad-store-btn:hover,
+    .comunidad-store-btn:active {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(55, 27, 190, 0.35);
+    }
+
+    .comunidad-store-btn img {
+      height: clamp(24px, 3.8vh, 32px);
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .comunidad-mobile-slider {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2%;
+      overflow: visible;
+    }
+
+    .comunidad-mobile-slider .feature-slider {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .comunidad-mobile-slider .slider-container {
+      height: 100%;
+      min-height: 200px;
+      overflow: visible;
+    }
+
+    .comunidad-mobile-slider .slider-wrapper {
+      padding: 0;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .comunidad-mobile-slider .slider-track {
+      overflow: visible;
+    }
+
+    .comunidad-mobile-slider .slider-nav {
+      display: none;
+    }
+  }
+
+  /* ===== TABLETS TÁCTILES (iPad, etc.) ===== */
+  @media (hover: none) and (pointer: coarse) and (min-width: 769px) and (max-width: 1366px) {
+    .comunidad-mobile-layout {
+      padding-top: calc(90px + env(safe-area-inset-top));
+    }
+
+    .comunidad-mobile-title {
+      max-width: 720px;
+    }
+
+    .comunidad-cta {
+      width: min(520px, 60vw);
+    }
+
+    .comunidad-store-btn {
+      width: min(520px, 60vw);
+    }
+
+    .comunidad-mobile-slider {
+      min-height: 300px;
+    }
+  }
+
+  /* ===== TABLETS PEQUEÑAS / MÓVILES GRANDES (601-768px) ===== */
+  @media (max-width: 768px) and (min-width: 601px) {
+    .comunidad-mobile-layout {
+      padding-top: calc(80px + env(safe-area-inset-top));
+    }
+
+    .comunidad-title-line1 {
+      font-size: clamp(34px, 5.5vw, 44px);
+    }
+
+    .comunidad-title-line2 {
+      font-size: clamp(19px, 3.2vw, 26px);
+    }
+
+    .comunidad-subtitle {
+      font-size: clamp(13px, 2vw, 16px);
+    }
+
+    .comunidad-cta {
+      width: min(300px, 55vw);
+      height: 52px;
+      font-size: 16px;
+    }
+
+    .comunidad-store-btn {
+      width: min(280px, 52vw);
+      height: 52px;
+    }
+
+    .comunidad-store-btn img {
+      height: 32px;
+    }
+  }
+
+  /* ===== MÓVILES PEQUEÑOS (<=374px) - iPhone SE ===== */
+  @media (max-width: 374px) {
+    .comunidad-mobile-layout {
+      padding-top: calc(62px + env(safe-area-inset-top));
+    }
+
+    .comunidad-mobile-content {
+      padding-left: 4%;
+      padding-right: 4%;
+    }
+
+    .comunidad-title-line1 {
+      font-size: clamp(22px, 6.5vw, 28px);
+    }
+
+    .comunidad-title-line2 {
+      font-size: clamp(13px, 3.8vw, 16px);
+    }
+
+    .comunidad-subtitle {
+      font-size: 11px;
+      max-width: 90%;
+    }
+
+    .comunidad-cta {
+      width: min(230px, 70vw);
+      height: 44px;
+      font-size: 14px;
+      padding: 0 1.5rem;
+    }
+
+    .comunidad-store-btn {
+      width: min(210px, 66vw);
+      height: 44px;
+      padding: 0 14px;
+    }
+
+    .comunidad-store-btn img {
+      height: 26px;
+    }
+
+    .comunidad-mobile-slider {
+      min-height: 180px;
+    }
+  }
+
+  /* ===== PANTALLAS MUY CORTAS ===== */
+  @media (max-width: 768px) and (max-height: 650px) {
+    .comunidad-mobile-layout {
+      padding-top: calc(60px + env(safe-area-inset-top));
+    }
+
+    .comunidad-title-line1 {
+      font-size: clamp(22px, 6.5vw, 30px);
+    }
+
+    .comunidad-title-line2 {
+      font-size: clamp(13px, 3.5vw, 17px);
+    }
+
+    .comunidad-subtitle {
+      font-size: 11px;
+    }
+
+    .comunidad-cta {
+      height: 40px;
+      font-size: 13px;
+    }
+
+    .comunidad-store-btn {
+      height: 40px;
+    }
+
+    .comunidad-store-btn img {
+      height: 22px;
+    }
+
+    .comunidad-mobile-slider {
+      min-height: 160px;
+    }
+  }
+
+  /* /comunidad móvil: centrar botón de asistencia verticalmente */
+  @media (max-width: 640px) {
+    body.comunidad-page .support-container {
+      top: 50%;
+      bottom: auto;
+      left: max(16px, calc(env(safe-area-inset-left) + 16px));
+      transform: translateY(-50%);
+    }
+
+    body.comunidad-page .support-tooltip {
+      position: relative;
+    }
+  }
+
+  /* ===== LANDSCAPE ===== */
+  @media (max-width: 768px) and (max-height: 500px) and (orientation: landscape) {
+    .comunidad-mobile-layout {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .comunidad-mobile-content {
+      flex: 1;
+      min-width: 50%;
+      padding: 60px 2% 0.4rem 2%;
+      gap: 0.25rem;
+    }
+
+    .comunidad-mobile-title {
+      padding: 0;
+    }
+
+    .comunidad-title {
+      margin-bottom: 0.3rem;
+    }
+
+    .comunidad-title-line1 {
+      font-size: clamp(18px, 4.5vw, 26px);
+    }
+
+    .comunidad-title-line2 {
+      font-size: clamp(11px, 2.5vw, 16px);
+    }
+
+    .comunidad-subtitle {
+      font-size: 10px;
+    }
+
+    .comunidad-mobile-buttons {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .comunidad-badges {
+      flex-direction: row;
+      gap: 0.3rem;
+    }
+
+    .comunidad-cta {
+      height: 36px;
+      width: auto;
+      min-width: 130px;
+      font-size: 11px;
+    }
+
+    .comunidad-store-btn {
+      height: 36px;
+      width: auto;
+      min-width: 125px;
+    }
+
+    .comunidad-store-btn img {
+      height: 18px;
+    }
+
+    .comunidad-mobile-slider {
+      width: 100%;
+      min-height: 160px;
+      max-height: 220px;
+    }
+  }
+</style>
+
+<script>
+  // Optimizar reproducción de video en mobile
+  function initComunidadMobileVideo(): void {
+    const video = document.querySelector('.comunidad-mobile-video') as HTMLVideoElement;
+    if (!video) return;
+
+    const playVideo = () => {
+      video.play().catch(() => {
+        document.addEventListener('touchstart', () => {
+          video.play();
+        }, { once: true });
+      });
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener('loadeddata', playVideo, { once: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initComunidadMobileVideo);
+  } else {
+    initComunidadMobileVideo();
+  }
+</script>
