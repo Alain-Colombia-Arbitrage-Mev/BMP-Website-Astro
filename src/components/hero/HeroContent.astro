@@ -24,7 +24,6 @@ const {
   <HeroTitle text={mainTitle} />
   <HeroDescription text={description} />
   <HeroStoreButtons />
-  <a href="/chat" class="ver-mas-btn">Ver Más</a>
 </div>
 
 <style>
@@ -53,46 +52,6 @@ const {
     }
   }
 
-  .ver-mas-btn {
-    margin-top: clamp(20px, 2.5vh, 36px);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(14px, 1.5vh, 20px) clamp(38px, 4vw, 56px);
-    background: #1929ff;
-    color: #ffffff;
-    font-family: 'OPTIFutura', 'Inter', sans-serif;
-    font-size: clamp(17px, 1.6vw, 24px);
-    font-weight: 900;
-    letter-spacing: 0.2px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 0 25px rgba(25, 41, 255, 0.4);
-    z-index: 20;
-  }
-
-  .ver-mas-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px rgba(25, 41, 255, 0.6);
-  }
-
-  @media (min-width: 1440px) {
-    .ver-mas-btn {
-      margin-top: clamp(24px, 2.7vh, 40px);
-      padding: clamp(16px, 1.7vh, 22px) clamp(44px, 4.5vw, 64px);
-      font-size: clamp(19px, 1.7vw, 26px);
-    }
-  }
-
-  @media (min-width: 1920px) {
-    .ver-mas-btn {
-      margin-top: clamp(28px, 3vh, 44px);
-      padding: clamp(18px, 1.9vh, 24px) clamp(50px, 5vw, 72px);
-      font-size: clamp(21px, 1.8vw, 28px);
-    }
-  }
-
   @media (max-width: 1024px) {
     .hero-content {
       padding-top: 22vh;
@@ -103,23 +62,11 @@ const {
     .hero-content {
       padding-top: 24vh;
     }
-
-    .ver-mas-btn {
-      margin-top: 3.5vh;
-      padding: 16px 40px;
-      font-size: 18px;
-    }
   }
 
   @media (max-width: 480px) {
     .hero-content {
       padding-top: 22vh;
-    }
-
-    .ver-mas-btn {
-      margin-top: 3vh;
-      padding: 14px 36px;
-      font-size: 16px;
     }
   }
 
@@ -127,12 +74,6 @@ const {
   @media (max-width: 375px) {
     .hero-content {
       padding-top: 20vh;
-    }
-
-    .ver-mas-btn {
-      margin-top: 2.5vh;
-      padding: 12px 32px;
-      font-size: 15px;
     }
   }
 </style>

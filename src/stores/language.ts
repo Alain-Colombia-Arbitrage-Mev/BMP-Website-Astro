@@ -6,11 +6,11 @@ export type Lang = 'es' | 'en' | 'pt' | 'zh' | 'ar';
 
 // Lista idiomas + metadata
 export const languages = [
-  { code: 'en', label: 'English', flag: '🇺🇸', dir: 'ltr' },
-  { code: 'es', label: 'Español', flag: '🇪🇸', dir: 'ltr' },
-  { code: 'pt', label: 'Português', flag: '🇧🇷', dir: 'ltr' },
-  { code: 'zh', label: '中文', flag: '🇨🇳', dir: 'ltr' },
-  { code: 'ar', label: 'العربية', flag: '🇸🇦', dir: 'rtl' }
+  { code: 'en', label: 'English', flag: '/images/flags/us.svg', dir: 'ltr' },
+  { code: 'es', label: 'Español', flag: '/images/flags/co.svg', dir: 'ltr' },
+  { code: 'pt', label: 'Português', flag: '/images/flags/br.svg', dir: 'ltr' },
+  { code: 'zh', label: '中文', flag: '/images/flags/cn.svg', dir: 'ltr' },
+  { code: 'ar', label: 'العربية', flag: '/images/flags/sa.svg', dir: 'rtl' }
 ] as const;
 
 // Traducciones

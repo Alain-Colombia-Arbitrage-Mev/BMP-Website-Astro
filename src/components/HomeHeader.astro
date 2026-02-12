@@ -36,11 +36,12 @@ const navItems = [
         </div>
       </nav>
 
-      <!-- Acciones: selector idioma, Registro, Login (misma barra que primera hoja + idiomas) -->
+      <!-- Acciones: selector idioma + botón descarga Android -->
       <div class="hidden lg:flex items-center gap-3">
         <LanguageSwitcher />
-        <!-- <a href="/registro" class="header-btn header-btn-registro" data-i18n="header.register">Registro</a>
-        <a href="/login" class="header-btn header-btn-login" data-i18n="header.login">Login</a> -->
+        <a href="https://play.google.com/store/apps/details?id=chat.bemindepower.bmpchat&hl=es_US" class="header-download-btn" aria-label="Get it on Google Play">
+          <img src="/images/google-play-badge.svg" alt="Google Play" class="header-download-icon" />
+        </a>
       </div>
 
       <div class="lg:hidden flex flex-col w-full mobile-nav-container">
@@ -119,9 +120,10 @@ const navItems = [
           </div>
         </nav>
 
-        <div class="w-full flex flex-col gap-2 mt-2 sm:hidden">
-          <!-- <a href="/registro" class="header-btn header-btn-registro text-center py-3 rounded-full text-[14px] font-semibold" data-i18n="header.register">Registro</a>
-          <a href="/login" class="header-btn header-btn-login text-center py-3 rounded-full text-[14px] font-semibold" data-i18n="header.login">Login</a> -->
+        <div class="w-full flex flex-col gap-2 mt-2">
+          <a href="https://play.google.com/store/apps/details?id=chat.bemindepower.bmpchat&hl=es_US" class="header-download-btn header-download-btn-mobile" aria-label="Get it on Google Play">
+            <img src="/images/google-play-badge.svg" alt="Google Play" class="header-download-icon" />
+          </a>
         </div>
 
         <div class="w-full h-px bg-white/10 my-3"></div>
@@ -131,19 +133,19 @@ const navItems = [
           <p class="text-white/50 text-[11px] text-center mb-2" data-i18n="menu.selectLanguage">Seleccionar idioma</p>
           <div class="flex items-center justify-center gap-3">
             <button type="button" class="mobile-lang-btn" data-lang="en" aria-label="English">
-              <span class="text-xl">🇺🇸</span>
+              <img src="/images/flags/us.svg" alt="English" width="28" height="19" />
             </button>
             <button type="button" class="mobile-lang-btn" data-lang="es" aria-label="Español">
-              <span class="text-xl">🇪🇸</span>
+              <img src="/images/flags/co.svg" alt="Español" width="28" height="19" />
             </button>
             <button type="button" class="mobile-lang-btn" data-lang="pt" aria-label="Português">
-              <span class="text-xl">🇧🇷</span>
+              <img src="/images/flags/br.svg" alt="Português" width="28" height="19" />
             </button>
             <button type="button" class="mobile-lang-btn" data-lang="zh" aria-label="中文">
-              <span class="text-xl">🇨🇳</span>
+              <img src="/images/flags/cn.svg" alt="中文" width="28" height="19" />
             </button>
             <button type="button" class="mobile-lang-btn" data-lang="ar" aria-label="العربية">
-              <span class="text-xl">🇸🇦</span>
+              <img src="/images/flags/sa.svg" alt="العربية" width="28" height="19" />
             </button>
           </div>
         </div>
@@ -219,46 +221,38 @@ const navItems = [
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
   }
 
-  /* Botones Registro y Login - según Figma: pill shape, altura ~42px */
-  .header-btn {
+  /* Botón descarga Android en navbar */
+  .header-download-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 42px;
-    padding: 0 24px;
+    padding: 0 16px;
     border-radius: 9999px;
-    font-weight: 700;
-    font-size: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    white-space: nowrap;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .header-btn:hover {
+  .header-download-btn:hover {
     transform: scale(1.03);
-    filter: brightness(1.1);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
   }
 
-  .header-btn-registro {
-    background: #a713bf;
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 16px rgba(167, 19, 191, 0.45);
+  .header-download-icon {
+    height: 32px;
+    width: auto;
   }
 
-  .header-btn-registro:hover {
-    box-shadow: 0 6px 24px rgba(167, 19, 191, 0.55);
-  }
-
-  .header-btn-login {
-    background: #1929ff;
-    color: #fff;
-    border: none;
-    box-shadow: 0 4px 16px rgba(25, 41, 255, 0.45);
-  }
-
-  .header-btn-login:hover {
-    box-shadow: 0 6px 24px rgba(25, 41, 255, 0.55);
+  .header-download-btn-mobile {
+    width: 100%;
+    height: 46px;
+    justify-content: center;
+    border-radius: 12px;
   }
 
   /* Tablet: menos espacio para que no se apriete */

@@ -5,13 +5,13 @@ interface Props {
 
 const { size = 'md' } = Astro.props;
 
-// Idiomas y banderas
+// Idiomas y banderas (SVG images)
 const languages = [
-  { code: 'en', label: 'English', flag: '🇺🇸' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'pt', label: 'Português', flag: '🇧🇷' },
-  { code: 'zh', label: '中文', flag: '🇨🇳' },
-  { code: 'ar', label: 'العربية', flag: '🇸🇦' }
+  { code: 'en', label: 'English', flag: '/images/flags/us.svg' },
+  { code: 'es', label: 'Español', flag: '/images/flags/co.svg' },
+  { code: 'pt', label: 'Português', flag: '/images/flags/br.svg' },
+  { code: 'zh', label: '中文', flag: '/images/flags/cn.svg' },
+  { code: 'ar', label: 'العربية', flag: '/images/flags/sa.svg' }
 ];
 ---
 
@@ -26,7 +26,7 @@ const languages = [
     aria-expanded="false"
     aria-haspopup="listbox"
   >
-    <span class="current-flag text-lg">🇺🇸</span>
+    <img class="current-flag" src="/images/flags/us.svg" alt="" width="24" height="16" />
     <span class="current-label hidden sm:inline">English</span>
     <svg class="dropdown-arrow w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -46,7 +46,7 @@ const languages = [
         role="option"
         aria-selected="false"
       >
-        <span class="text-xl">{lang.flag}</span>
+        <img class="lang-flag-img" src={lang.flag} alt="" width="24" height="16" />
         <span class="flex-1">{lang.label}</span>
         <svg class="check-icon w-4 h-4 opacity-0 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -57,6 +57,15 @@ const languages = [
 </div>
 
 <style>
+  .current-flag,
+  .lang-flag-img {
+    width: 24px;
+    height: 16px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
   .lang-trigger {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
@@ -116,7 +125,7 @@ const languages = [
       const trigger = dropdown.querySelector<HTMLButtonElement>('.lang-trigger');
       const menu = dropdown.querySelector<HTMLElement>('.lang-menu');
       const options = dropdown.querySelectorAll<HTMLButtonElement>('.lang-option');
-      const currentFlag = dropdown.querySelector<HTMLElement>('.current-flag');
+      const currentFlag = dropdown.querySelector<HTMLImageElement>('.current-flag');
       const currentLabel = dropdown.querySelector<HTMLElement>('.current-label');
 
       if (!trigger || !menu) return;
@@ -125,7 +134,7 @@ const languages = [
       const updateUI = (lang: Lang): void => {
         const langInfo = languages.find(l => l.code === lang);
         if (langInfo) {
-          if (currentFlag) currentFlag.textContent = langInfo.flag;
+          if (currentFlag) currentFlag.src = langInfo.flag;
           if (currentLabel) currentLabel.textContent = langInfo.label;
         }
 
