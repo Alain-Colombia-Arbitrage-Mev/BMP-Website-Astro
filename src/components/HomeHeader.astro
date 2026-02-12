@@ -1,11 +1,21 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
+const currentPath = Astro.url.pathname;
+
 const navItems = [
-  { href: '/', label: 'Inicio', key: 'nav.home', isActive: true },
-  { href: '/about', label: 'Sobre nosotros', key: 'nav.about', isActive: false },
-  { href: '/contact', label: 'Contacto', key: 'nav.contact', isActive: false }
-];
+  { href: '/', label: 'Inicio', key: 'nav.home' },
+  { href: '/chat', label: 'Chat', key: 'nav.chat' },
+  { href: '/apps', label: 'Apps', key: 'nav.apps' },
+  { href: '/salud', label: 'Salud', key: 'nav.salud' },
+  { href: '/comunidad', label: 'Comunidad', key: 'nav.comunidad' },
+  { href: '/musica', label: 'Música', key: 'nav.musica' },
+  { href: '/salud-mental', label: 'Salud Mental', key: 'nav.saludMental' },
+  { href: '/finanzas-simples', label: 'Finanzas', key: 'nav.finanzas' },
+].map(item => ({
+  ...item,
+  isActive: currentPath === item.href || currentPath === item.href + '/',
+}));
 ---
 
 <header class="site-header absolute left-0 right-0 top-6 z-50 px-[6%] max-lg:px-[5%] max-sm:px-4">
@@ -21,12 +31,12 @@ const navItems = [
 
       <!-- Navegación Desktop - centrada (misma que primera hoja) -->
       <nav class="absolute left-1/2 -translate-x-1/2 hidden lg:block" aria-label="Navegación principal">
-        <div class="flex flex-nowrap items-center justify-center gap-9 max-lg:gap-6">
+        <div class="flex flex-nowrap items-center justify-center gap-5 max-xl:gap-3 max-lg:gap-2">
           {navItems.map((item) => (
             <a
               href={item.href}
               class:list={[
-                'nav-link text-white no-underline whitespace-nowrap text-[17px] max-lg:text-[15px] transition-opacity hover:opacity-90',
+                'nav-link text-white no-underline whitespace-nowrap text-[14px] max-xl:text-[13px] max-lg:text-[12px] transition-opacity hover:opacity-90',
                 item.isActive ? 'font-black' : 'font-normal'
               ]}
             >
@@ -181,7 +191,7 @@ const navItems = [
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
-    max-height: 320px;
+    max-height: 520px;
     overflow: hidden;
   }
 
