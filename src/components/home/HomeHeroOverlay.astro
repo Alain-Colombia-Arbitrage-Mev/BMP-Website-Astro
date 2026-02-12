@@ -4,13 +4,22 @@ import HeroHomeLeft from '../hero/HeroHomeLeft.astro';
 
 interface Props {
   phoneSrc?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  titleLine1Key?: string;
+  titleLine2Key?: string;
+  subtitleKey?: string;
+  ctaKey?: string;
 }
 
-const { phoneSrc = "/images/smartphone_2%201.png" } = Astro.props;
+const { phoneSrc = "/images/smartphone_2%201.png", titleLine1, titleLine2, subtitle, ctaText, ctaHref, titleLine1Key, titleLine2Key, subtitleKey, ctaKey } = Astro.props;
 ---
 
 <div class="home-hero-overlay">
-  <HeroHomeLeft />
+  <HeroHomeLeft titleLine1={titleLine1} titleLine2={titleLine2} subtitle={subtitle} ctaText={ctaText} ctaHref={ctaHref} titleLine1Key={titleLine1Key} titleLine2Key={titleLine2Key} subtitleKey={subtitleKey} ctaKey={ctaKey} />
   <div class="home-hero-phone-wrap">
     <img src={phoneSrc} alt="BeMind Power app" class="home-hero-smartphone" />
   </div>

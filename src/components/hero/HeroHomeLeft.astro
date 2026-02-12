@@ -1,14 +1,37 @@
 ---
+interface Props {
+  titleLine1?: string;
+  titleLine2?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  titleLine1Key?: string;
+  titleLine2Key?: string;
+  subtitleKey?: string;
+  ctaKey?: string;
+}
+
+const {
+  titleLine1 = "Todo empieza",
+  titleLine2 = "con una conversación",
+  subtitle = "Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.",
+  ctaText = "Ver Más",
+  ctaHref = "/chat",
+  titleLine1Key = "home.hero.titleLine1",
+  titleLine2Key = "home.hero.titleLine2",
+  subtitleKey = "home.hero.subtitle",
+  ctaKey = "home.hero.cta",
+} = Astro.props;
 ---
 <!-- Componente único izquierdo según Figma: títulos arriba, Ver más, botones de descarga debajo uno del otro -->
 <aside class="hero-home-left" aria-label="Presentación BeMind Power">
   <div class="hero-home-left-content">
     <h1 class="hero-home-title">
-      <span class="hero-home-title-line1" data-i18n="home.hero.titleLine1">Todo empieza</span>
-      <span class="hero-home-title-line2" data-i18n="home.hero.titleLine2">con una conversación</span>
+      <span class="hero-home-title-line1" data-i18n={titleLine1Key}>{titleLine1}</span>
+      <span class="hero-home-title-line2" data-i18n={titleLine2Key}>{titleLine2}</span>
     </h1>
-    <p class="hero-home-subtitle" data-i18n="home.hero.subtitle">Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.</p>
-    <a href="/chat" class="hero-home-cta" data-i18n="home.hero.cta">Ver Más</a>
+    <p class="hero-home-subtitle" data-i18n={subtitleKey}>{subtitle}</p>
+    <a href={ctaHref} class="hero-home-cta" data-i18n={ctaKey}>{ctaText}</a>
     <div class="hero-home-badges">
       <a href="#" class="store-btn" aria-label="Download on the App Store">
         <img src="/images/app-store-badge.svg" alt="Download on the App Store" />

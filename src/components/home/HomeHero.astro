@@ -7,9 +7,18 @@ import HomeHeroOverlay from './HomeHeroOverlay.astro';
 interface Props {
   videoSrc?: string;
   phoneSrc?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  titleLine1Key?: string;
+  titleLine2Key?: string;
+  subtitleKey?: string;
+  ctaKey?: string;
 }
 
-const { videoSrc, phoneSrc } = Astro.props;
+const { videoSrc, phoneSrc, titleLine1, titleLine2, subtitle, ctaText, ctaHref, titleLine1Key, titleLine2Key, subtitleKey, ctaKey } = Astro.props;
 ---
 
 <div class="home-hero">
@@ -17,7 +26,7 @@ const { videoSrc, phoneSrc } = Astro.props;
   <HomeHeroSliderLayer>
     <slot />
   </HomeHeroSliderLayer>
-  <HomeHeroOverlay phoneSrc={phoneSrc} />
+  <HomeHeroOverlay phoneSrc={phoneSrc} titleLine1={titleLine1} titleLine2={titleLine2} subtitle={subtitle} ctaText={ctaText} ctaHref={ctaHref} titleLine1Key={titleLine1Key} titleLine2Key={titleLine2Key} subtitleKey={subtitleKey} ctaKey={ctaKey} />
 </div>
 
 <style>
