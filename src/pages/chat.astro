@@ -35,25 +35,28 @@ import FeatureSlider from '../components/FeatureSlider.astro';
         <div class="chat-mobile-glow"></div>
       </div>
 
-      <!-- Textos arriba: título + subtítulo + descripción con separación clara -->
-      <div class="chat-mobile-text">
-        <h1 class="chat-title">
-          <span class="chat-title-line1" data-i18n="home.hero.titleLine1">Todo empieza</span>
-          <span class="chat-title-line2" data-i18n="home.hero.titleLine2">con una conversación</span>
-        </h1>
-        <p class="chat-subtitle" data-i18n="home.hero.subtitle">Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.</p>
-      </div>
+      <!-- Contenido superior: textos + botones -->
+      <div class="chat-mobile-content">
+        <!-- Textos -->
+        <div class="chat-mobile-text">
+          <h1 class="chat-title">
+            <span class="chat-title-line1" data-i18n="home.hero.titleLine1">Todo empieza</span>
+            <span class="chat-title-line2" data-i18n="home.hero.titleLine2">con una conversación</span>
+          </h1>
+          <p class="chat-subtitle" data-i18n="home.hero.subtitle">Y desde ahí: paga, vende, sana o escucha música. Sin salir del chat.</p>
+        </div>
 
-      <!-- Botones en el centro -->
-      <div class="chat-mobile-buttons">
-        <a href="#slider" class="chat-cta" data-i18n="home.hero.cta">Ver Más</a>
-        <div class="chat-badges">
-          <a href="#" class="chat-store-btn" aria-label="Download on the App Store">
-            <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
-          </a>
-          <a href="#" class="chat-store-btn" aria-label="Get it on Google Play">
-            <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
-          </a>
+        <!-- Botones -->
+        <div class="chat-mobile-buttons">
+          <a href="#slider" class="chat-cta" data-i18n="home.hero.cta">Ver Más</a>
+          <div class="chat-badges">
+            <a href="#" class="chat-store-btn" aria-label="Download on the App Store">
+              <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+            </a>
+            <a href="#" class="chat-store-btn" aria-label="Get it on Google Play">
+              <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+            </a>
+          </div>
         </div>
       </div>
 
@@ -94,18 +97,15 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       display: none;
     }
 
-    /* Layout principal: flex column distribuido verticalmente en el viewport */
+    /* Layout principal: altura fija al viewport, sin scroll */
     .chat-mobile-layout {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       position: relative;
       width: 100%;
-      min-height: 100dvh;
-      min-height: 100vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
+      height: 100dvh;
+      height: 100vh;
+      overflow: hidden;
       box-sizing: border-box;
       padding-top: calc(70px + env(safe-area-inset-top));
       padding-bottom: env(safe-area-inset-bottom);
@@ -157,22 +157,33 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       z-index: 2;
     }
 
-    /* === TEXTOS ARRIBA === */
-    .chat-mobile-text {
+    /* === CONTENIDO SUPERIOR (textos + botones) — 60% del espacio === */
+    .chat-mobile-content {
       position: relative;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 6;
+      min-height: 0;
+      padding: 0 5%;
+      gap: clamp(1rem, 2.5vh, 1.5rem);
+    }
+
+    /* === TEXTOS === */
+    .chat-mobile-text {
       text-align: center;
-      padding: clamp(1rem, 3vh, 2rem) 5% 0;
-      flex: 0 0 auto;
+      width: 100%;
     }
 
     .chat-title {
       color: #fff;
       display: flex;
       flex-direction: column;
-      gap: clamp(0.15rem, 0.5vh, 0.3rem);
-      margin: 0 0 clamp(0.8rem, 2vh, 1.2rem) 0;
-      line-height: 1.15;
+      gap: clamp(0.25rem, 0.8vh, 0.5rem);
+      margin: 0 0 clamp(0.6rem, 1.5vh, 1rem) 0;
+      line-height: 1.1;
     }
 
     .chat-title-line1 {
@@ -190,32 +201,29 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-subtitle {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.7);
       font-family: 'Neometric', 'Inter', sans-serif;
-      font-size: clamp(12px, 3.2vw, 15px);
+      font-size: clamp(12px, 3vw, 15px);
       font-weight: 400;
-      line-height: 1.45;
+      line-height: 1.4;
       margin: 0 auto;
-      max-width: 85%;
+      max-width: 88%;
     }
 
-    /* === BOTONES EN EL CENTRO === */
+    /* === BOTONES === */
     .chat-mobile-buttons {
-      position: relative;
-      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(0.5rem, 1.2vh, 0.75rem);
-      padding: clamp(0.5rem, 1.5vh, 1rem) 5%;
-      flex: 0 0 auto;
+      gap: clamp(0.4rem, 0.8vh, 0.6rem);
+      width: 100%;
     }
 
     .chat-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: clamp(44px, 6vh, 52px);
+      height: clamp(42px, 5.5vh, 50px);
       padding: 0 2rem;
       width: min(280px, 72vw);
       background: #1929ff;
@@ -239,7 +247,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(0.4rem, 0.8vh, 0.6rem);
+      gap: clamp(0.3rem, 0.6vh, 0.5rem);
     }
 
     .chat-store-btn {
@@ -247,7 +255,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       align-items: center;
       justify-content: center;
       width: min(260px, 68vw);
-      height: clamp(44px, 6vh, 52px);
+      height: clamp(42px, 5.5vh, 50px);
       padding: 0 18px;
       background: rgba(0, 0, 0, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -270,35 +278,37 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       object-fit: contain;
     }
 
-    /* === SLIDER ABAJO === */
+    /* === SLIDER ABAJO — 40% del espacio === */
     .chat-mobile-slider {
       position: relative;
       z-index: 5;
       width: 100%;
-      flex: 1 1 auto;
-      min-height: 200px;
+      flex: 4;
+      min-height: 0;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      padding: 0 2% clamp(0.5rem, 1.5vh, 1rem);
-      overflow: visible;
+      padding: 0 2%;
+      overflow: hidden;
     }
 
     .chat-mobile-slider .feature-slider {
       width: 100%;
       height: 100%;
+      min-height: 0 !important;
       overflow: visible;
     }
 
     .chat-mobile-slider .slider-container {
       height: 100%;
-      min-height: 180px;
+      min-height: 0 !important;
       overflow: visible;
     }
 
     .chat-mobile-slider .slider-wrapper {
       padding: 0;
       height: 100%;
+      min-height: 0;
       overflow: visible;
     }
 
@@ -318,7 +328,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       padding-top: calc(90px + env(safe-area-inset-top));
     }
 
-    .chat-mobile-text {
+    .chat-mobile-content {
       max-width: 720px;
       margin-left: auto;
       margin-right: auto;
@@ -330,10 +340,6 @@ import FeatureSlider from '../components/FeatureSlider.astro';
 
     .chat-store-btn {
       width: min(520px, 60vw);
-    }
-
-    .chat-mobile-slider {
-      min-height: 300px;
     }
   }
 
@@ -377,17 +383,18 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       padding-top: calc(62px + env(safe-area-inset-top));
     }
 
-    .chat-mobile-text {
+    .chat-mobile-content {
       padding-left: 4%;
       padding-right: 4%;
+      gap: clamp(0.6rem, 1.5vh, 1rem);
     }
 
     .chat-title-line1 {
-      font-size: clamp(24px, 7vw, 30px);
+      font-size: clamp(22px, 6.5vw, 28px);
     }
 
     .chat-title-line2 {
-      font-size: clamp(14px, 4vw, 18px);
+      font-size: clamp(12px, 3.5vw, 16px);
     }
 
     .chat-subtitle {
@@ -409,11 +416,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-store-btn img {
-      height: 26px;
-    }
-
-    .chat-mobile-slider {
-      min-height: 170px;
+      height: 24px;
     }
   }
 
@@ -423,12 +426,12 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       padding-top: calc(60px + env(safe-area-inset-top));
     }
 
-    .chat-mobile-text {
-      padding-top: 0.5rem;
+    .chat-mobile-content {
+      gap: clamp(0.5rem, 1.2vh, 0.8rem);
     }
 
     .chat-title {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .chat-title-line1 {
@@ -436,7 +439,7 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-title-line2 {
-      font-size: clamp(13px, 3.5vw, 17px);
+      font-size: clamp(12px, 3.2vw, 17px);
     }
 
     .chat-subtitle {
@@ -444,20 +447,16 @@ import FeatureSlider from '../components/FeatureSlider.astro';
     }
 
     .chat-cta {
-      height: 40px;
+      height: 38px;
       font-size: 13px;
     }
 
     .chat-store-btn {
-      height: 40px;
+      height: 38px;
     }
 
     .chat-store-btn img {
-      height: 22px;
-    }
-
-    .chat-mobile-slider {
-      min-height: 150px;
+      height: 20px;
     }
   }
 
@@ -483,10 +482,16 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       justify-content: center;
     }
 
-    .chat-mobile-text {
+    .chat-mobile-content {
       flex: 1;
       min-width: 50%;
-      padding: 0 2%;
+      flex-direction: row;
+      padding: 60px 2% 0.4rem 2%;
+      gap: 0.5rem;
+    }
+
+    .chat-mobile-text {
+      flex: 1;
       text-align: left;
     }
 
@@ -515,7 +520,6 @@ import FeatureSlider from '../components/FeatureSlider.astro';
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.3rem;
-      padding: 0 2%;
     }
 
     .chat-badges {
