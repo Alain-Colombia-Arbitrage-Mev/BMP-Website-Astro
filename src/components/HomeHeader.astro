@@ -36,7 +36,7 @@ const navItems = [
             <a
               href={item.href}
               class:list={[
-                'nav-link text-white no-underline whitespace-nowrap text-[14px] max-xl:text-[13px] max-lg:text-[12px] transition-opacity hover:opacity-90',
+                'nav-link text-white no-underline whitespace-nowrap text-[14px] max-xl:text-[13px] max-lg:text-[12px]',
                 item.isActive ? 'font-black' : 'font-normal'
               ]}
             >
@@ -184,6 +184,35 @@ const navItems = [
 
   .nav-link {
     text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1929ff, #6366f1);
+    border-radius: 1px;
+    transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    text-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+  }
+
+  /* El link activo siempre muestra la línea */
+  .nav-link.font-black::after {
+    width: 100%;
+    background: linear-gradient(90deg, #1929ff, #818cf8);
   }
 
   /* Estado abierto del menú */
